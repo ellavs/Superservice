@@ -1,0 +1,32 @@
+<PackageData>
+    <!--Zero or more repetitions:-->
+    <Ege>
+        <SNILS>10</SNILS>
+        <IDDocumentType>100</IDDocumentType>
+        <DocName>string</DocName>
+        <!--Optional:-->
+        <DocOrg>string</DocOrg>
+        <!--Optional:-->
+        <RegisterNumber>string</RegisterNumber>
+        <!--Optional:-->
+        <DocNumber>string</DocNumber>
+        <!--Optional:-->
+        <IDRegion>100</IDRegion>
+        <!--Optional:-->
+        <IDSubject>100</IDSubject>
+        <!--Optional:-->
+        <Mark>100</Mark>
+        <!--Optional:-->
+        <ResultDate>2008-09-29T05:49:45</ResultDate>
+        <!--Optional:-->
+        <IssueDate>2014-09-19T03:18:33</IssueDate>
+        <!--Optional:-->
+        <IDExam>100</IDExam>
+        <File>string</File>
+        <IDDocChoice>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <UID>string</UID>
+            <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+    </Ege>
+</PackageData>

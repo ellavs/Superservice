@@ -1,0 +1,30 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="AdmissionVolume">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element type="xs:string" name="UID" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:string" name="UIDCampaign" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="IDDirection" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="IDEducationLevel" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Budget_o" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Budget_oz" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Budget_z" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Quota_o" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Quota_oz" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Quota_z" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Paid_o" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Paid_oz" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Paid_z" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Target_o" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Target_oz" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Target_z" minOccurs="0" maxOccurs="1"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

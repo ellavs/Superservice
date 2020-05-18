@@ -1,0 +1,24 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="PackageData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="EntranceTest">
+					<xs:complexType>
+						<xs:all>
+							<xs:element type="xs:string" name="UID"/>
+							<xs:element type="xs:string" name="UIDCompetitiveGroup"/>
+							<xs:element type="xs:integer" name="IDEntranceTestType"/>
+							<xs:element type="xs:string" name="TestName"/>
+							<xs:element type="xs:boolean" name="IsEge"/>
+							<xs:element type="xs:integer" name="MinScore"/>
+							<xs:element type="xs:integer" name="Priority"/>
+							<xs:element type="xs:integer" name="IDSubject"/>
+							<xs:element type="xs:string" name="UIDReplaceEntranceTest"/>
+
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

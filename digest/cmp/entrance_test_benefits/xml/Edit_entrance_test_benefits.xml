@@ -1,0 +1,14 @@
+<PackageData>
+	<EntranceTestBenefit>
+		<UID>2019-CG-3256-isp0_cb_0</UID>
+		<UIDEntranceTest>2019-CG-3256-1</UIDEntranceTest>
+		<IDBenefit>3</IDBenefit>
+		<IDOlympicDiplomaType>1</IDOlympicDiplomaType>
+		<IDOlympicLevel>3</IDOlympicLevel>
+		<OlympicProfiles>
+			<IDOlympicProfile>3</IDOlympicProfile>
+			<IDOlympicProfile>2</IDOlympicProfile>
+		</OlympicProfiles>
+		<EgeMinValue>60</EgeMinValue>
+	</EntranceTestBenefit>
+</PackageData>

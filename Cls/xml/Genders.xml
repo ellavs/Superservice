@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Genders>
+<Gender><ID>1</ID><Name>Мужской</Name><Actual>true</Actual></Gender><Gender><ID>2</ID><Name>Женский</Name><Actual>true</Actual></Gender></Genders>

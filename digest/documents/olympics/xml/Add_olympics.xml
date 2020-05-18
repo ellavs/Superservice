@@ -1,0 +1,26 @@
+<PackageData>
+    <!--Zero or more repetitions:-->
+    <Olympics>
+        <SNILS>10</SNILS>
+        <IDDocumentType>100</IDDocumentType>
+        <DocName>string</DocName>
+        <!--Optional:-->
+        <DocOrg>string</DocOrg>
+        <!--Optional:-->
+        <DocSeries>string</DocSeries>
+        <!--Optional:-->
+        <DocNumber>string</DocNumber>
+        <!--Optional:-->
+        <IssueDate>2008-09-29T05:49:45</IssueDate>
+        <!--Optional:-->
+        <IDOlympic>100</IDOlympic>
+        <!--Optional:-->
+        <IDOlympicDiplomants>100</IDOlympicDiplomants>
+        <File>string</File>
+        <IDDocChoice>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <UID>string</UID>
+            <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+    </Olympics>
+</PackageData>

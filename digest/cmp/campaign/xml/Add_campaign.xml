@@ -1,0 +1,18 @@
+<PackageData>
+	<Campaign>
+		<UID>2019_06</UID>
+		<Name>Бакалавры и специалисты 2019</Name>
+		<YearStart>2019</YearStart>
+		<YearEnd>2019</YearEnd>
+		<EducationForms>
+			<IDEducationForm>1</IDEducationForm>
+			<IDEducationForm>2</IDEducationForm>
+		</EducationForms>
+		<EducationLevels>
+			<IDEducationLevel>1</IDEducationLevel>
+			<IDEducationLevel>2</IDEducationLevel>
+		</EducationLevels>
+		<IDCampaignType>1</IDCampaignType>
+		<IDCampaignStatus>2</IDCampaignStatus>
+	</Campaign>
+</PackageData>

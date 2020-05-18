@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntranceTestDocumentTypes>
+<EntranceTestDocumentType><ID>1</ID><Name>Экзаменационная ведомость</Name><Actual>true</Actual></EntranceTestDocumentType><EntranceTestDocumentType><ID>2</ID><Name>Экзаменационный лист</Name><Actual>true</Actual></EntranceTestDocumentType><EntranceTestDocumentType><ID>3</ID><Name>Апелляционная ведомость</Name><Actual>true</Actual></EntranceTestDocumentType></EntranceTestDocumentTypes>

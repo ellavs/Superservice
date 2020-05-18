@@ -1,0 +1,18 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CompetitiveGroupProgram">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element type="xs:string" name="UIDCompetitiveGroup"/>
+                            <xs:element type="xs:string" name="UIDSubdivisionOrg"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:string" name="UID"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,24 @@
+<PackageData>
+    <!--Zero or more repetitions:-->
+    <Educations>
+        <SNILS>10</SNILS>
+        <IDDocumentType>100</IDDocumentType>
+        <DocName>string</DocName>
+        <!--Optional:-->
+        <DocOrg>string</DocOrg>
+        <DocSeries>string</DocSeries>
+        <DocNumber>string</DocNumber>
+        <!--Optional:-->
+        <RegisterNumber>string</RegisterNumber>
+        <!--Optional:-->
+        <IDDirection>100</IDDirection>
+        <IDEducationLevel>100</IDEducationLevel>
+        <IssueDate>2008-09-29T05:49:45</IssueDate>
+        <File>string</File>
+        <IDDocChoice>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <UID>string</UID>
+            <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+    </Educations>
+</PackageData>

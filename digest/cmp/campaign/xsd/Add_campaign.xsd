@@ -1,0 +1,37 @@
+
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Campaign">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element type="xs:string" name="UID"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:integer" name="YearStart"/>
+                            <xs:element type="xs:integer" name="YearEnd"/>
+                            <xs:element name="EducationForms">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="IDEducationForm" maxOccurs="unbounded" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="EducationLevels">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="IDEducationLevel" maxOccurs="unbounded" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:integer" name="IDCampaignType"/>
+                            <xs:element type="xs:integer" name="IDCampaignStatus"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+

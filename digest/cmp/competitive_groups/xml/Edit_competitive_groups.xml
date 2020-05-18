@@ -1,0 +1,24 @@
+<PackageData>
+	<CompetitiveGroup>
+		<UID>2019-CG-3256-22</UID>
+		<UIDCampaign>2019_06</UIDCampaign>
+		<Name>Бакалавриат-Экономика-очная-бюджет-2019-2</Name>
+		<IDLevelBudget>1</IDLevelBudget>
+		<IDEducationLevel>1</IDEducationLevel>
+		<IDEducationSource>1</IDEducationSource>
+		<IDEducationForm>1</IDEducationForm>
+		<IDDirection>1594</IDDirection>
+		<Budget_o>1</Budget_o>
+		<Budget_oz>1</Budget_oz>
+		<Budget_z>1</Budget_z>
+		<Quota_o>1</Quota_o>
+		<Quota_oz>1</Quota_oz>
+		<Quota_z>1</Quota_z>
+		<Paid_o>1</Paid_o>
+		<Paid_oz>1</Paid_oz>
+		<Paid_z>1</Paid_z>
+		<Target_o>1</Target_o>
+		<Target_oz>1</Target_oz>
+		<Target_z>1</Target_z>
+	</CompetitiveGroup>
+</PackageData>

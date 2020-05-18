@@ -1,0 +1,64 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Entrants">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element type="xs:long" name="SNILS"/>
+                            <xs:element type="xs:string" name="Surname"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:string" name="Patronymic" minOccurs="0"/>
+                            <xs:element type="xs:integer" name="IDGender"/>
+                            <xs:element type="xs:dateTime" name="Birthday"/>
+                            <xs:element type="xs:string" name="Birthplace"/>
+                            <xs:element type="xs:string" name="Phone" minOccurs="0"/>
+                            <xs:element type="xs:string" name="Email" minOccurs="0"/>
+                            <xs:element type="xs:integer" name="IDOKCM"/>
+                            <xs:element type="xs:string" name="UidEpgu" minOccurs="0"/>
+                            <xs:element name="RegistrationAddr" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element type="xs:string" name="FullAddr"/>
+                                        <xs:element type="xs:int" name="IndexAddr"/>
+                                        <xs:element type="xs:integer" name="IDRegion"/>
+                                        <xs:element type="xs:string" name="Area"/>
+                                        <xs:element type="xs:string" name="City"/>
+                                        <xs:element type="xs:string" name="CityArea"/>
+                                        <xs:element type="xs:string" name="Street"/>
+                                        <xs:element type="xs:integer" name="AdditionalArea"/>
+                                        <xs:element type="xs:string" name="AdditionalStreet"/>
+                                        <xs:element type="xs:integer" name="House"/>
+                                        <xs:element type="xs:integer" name="Building1"/>
+                                        <xs:element type="xs:integer" name="Building2"/>
+                                        <xs:element type="xs:integer" name="Apartment"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="FactAddr" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element type="xs:string" name="FullAddr"/>
+                                        <xs:element type="xs:integer" name="IndexAddr"/>
+                                        <xs:element type="xs:integer" name="IDRegion"/>
+                                        <xs:element type="xs:string" name="Area"/>
+                                        <xs:element type="xs:string" name="City"/>
+                                        <xs:element type="xs:string" name="CityArea"/>
+                                        <xs:element type="xs:string" name="Street"/>
+                                        <xs:element type="xs:integer" name="AdditionalArea"/>
+                                        <xs:element type="xs:string" name="AdditionalStreet"/>
+                                        <xs:element type="xs:integer" name="House"/>
+                                        <xs:element type="xs:integer" name="Building1"/>
+                                        <xs:element type="xs:integer" name="Building2"/>
+                                        <xs:element type="xs:integer" name="Apartment"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+

@@ -1,0 +1,27 @@
+
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Oktmos">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Oktmo"   minOccurs="0">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element type="xs:integer" name="ID"/>
+                            <xs:element type="xs:integer" name="Ter"/>
+                            <xs:element type="xs:integer" name="Kod1"/>
+                            <xs:element type="xs:integer" name="Kod2"/>
+                            <xs:element type="xs:integer" name="Kod3"/>
+                            <xs:element type="xs:integer" name="Kc"/>
+                            <xs:element type="xs:integer" name="Section"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:dateTime" name="UtvDate"/>
+                            <xs:element type="xs:dateTime" name="VvedDate"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+

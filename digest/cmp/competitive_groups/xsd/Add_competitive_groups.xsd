@@ -1,0 +1,35 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CompetitiveGroup">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element type="xs:string" name="UID"/>
+                            <xs:element type="xs:string" name="UIDCampaign"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:integer" name="IDLevelBudget" minOccurs="0"/>
+                            <xs:element type="xs:integer" name="IDEducationLevel"/>
+                            <xs:element type="xs:integer" name="IDEducationSource"/>
+                            <xs:element type="xs:integer" name="IDEducationForm"/>
+                            <xs:element type="xs:integer" name="IDDirection"/>
+                            <xs:element type="xs:integer" name="Budget_o"/>
+                            <xs:element type="xs:integer" name="Budget_oz"/>
+                            <xs:element type="xs:integer" name="Budget_z"/>
+                            <xs:element type="xs:integer" name="Quota_o"/>
+                            <xs:element type="xs:integer" name="Quota_oz"/>
+                            <xs:element type="xs:integer" name="Quota_z"/>
+                            <xs:element type="xs:integer" name="Paid_o"/>
+                            <xs:element type="xs:integer" name="Paid_oz"/>
+                            <xs:element type="xs:integer" name="Paid_z"/>
+                            <xs:element type="xs:integer" name="Target_o"/>
+                            <xs:element type="xs:integer" name="Target_oz"/>
+                            <xs:element type="xs:integer" name="Target_z"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+

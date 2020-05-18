@@ -1,0 +1,20 @@
+<PackageData>
+    <!--Zero or more repetitions:-->
+    <EntranceTestAgreed>
+        <IDEntranceTestAgreedChoice>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <UID>string</UID>
+            <UIDEpgu>100</UIDEpgu>
+        </IDEntranceTestAgreedChoice>
+        <IDApplicationChoice>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <UID>string</UID>
+            <UIDEpgu>100</UIDEpgu>
+        </IDApplicationChoice>
+        <IDEntranceTestCalendarChoice>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <UID>string</UID>
+            <UIDEpgu>100</UIDEpgu>
+        </IDEntranceTestCalendarChoice>
+    </EntranceTestAgreed>
+</PackageData>

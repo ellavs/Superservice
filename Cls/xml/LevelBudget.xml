@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LevelBudget>
+<Budget><ID>1</ID><Code></Code><Name>Федеральный</Name><Actual>true</Actual></Budget><Budget><ID>2</ID><Code></Code><Name>Региональный</Name><Actual>true</Actual></Budget><Budget><ID>3</ID><Code></Code><Name>Муниципальный</Name><Actual>true</Actual></Budget></LevelBudget>

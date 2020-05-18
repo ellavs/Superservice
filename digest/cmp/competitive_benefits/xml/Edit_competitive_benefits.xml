@@ -1,0 +1,15 @@
+<PackageData>
+	<CompetitiveBenefit>
+		<UIDCompetitiveGroup>2019-CG-32562</UIDCompetitiveGroup>
+		<Creative>false</Creative>
+		<Athletic>false</Athletic>
+		<IDBenefit>1</IDBenefit>
+		<IDOlympicDiplomaType>3</IDOlympicDiplomaType>
+		<EgeMinValue>75</EgeMinValue>
+		<OlympicProfiles>
+			<IDOlympicProfile>3</IDOlympicProfile>
+		</OlympicProfiles>
+		<UID>D47C38AB-2BBC-4997-9006-8811BC8C79A1</UID>
+	</CompetitiveBenefit>
+</PackageData>
+

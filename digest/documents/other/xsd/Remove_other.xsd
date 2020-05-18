@@ -1,0 +1,23 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Other" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="IDDocChoice">
+                                <xs:complexType>
+                                    <xs:choice>
+                                        <xs:element type="xs:string" name="UID"/>
+                                        <xs:element type="xs:integer" name="UIDEpgu"/>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+

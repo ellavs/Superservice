@@ -1,0 +1,2253 @@
+Спецификация взаимодействия 
+сервиса приема с ИС ООВО
+
+
+Оглавление
+Оглавление	1
+Общие сведения	3
+Список используемых методов	4
+Получение классификаторов	4
+Внесения данных (сообщения) в систему	4
+Запрос наличия обработанных данных (сообщения) и получения результатов обработки сообщения	4
+Отправки отчета о результатах обработки данных (сообщения)	4
+Общее описание сообщения	5
+Описание методов	7
+Метод получения классификаторов и справочников	7
+Метод - внесения данных (сообщения) в систему	9
+Метод – Запрос наличия обработанных данных (сообщения) и получения результатов обработки сообщения	14
+Неподписанный запрос о наличии сообщений для ИС ВУЗа	14
+JWT-запрос на получение результата обработки сообщения	14
+Метод - Отчет о получении результата обработки сообщения	19
+Описание структуры данных метода получения классификаторов и справочников	21
+XSD-структура и XML-пакеты с данными приложены в файле Cls.rar.	21
+Описание структуры данных метода внесение данных (сообщения) в систему	41
+При значении поля data_type = «Campaign», для значения поля «Action» = «Add» и «Edit»	41
+При значении поля data_type = «Campaign», для значения поля «Action» = «Remove»	43
+При значении поля data_type = «Achievements», для значения поля «Action» = «Add» и «Edit»	44
+При значении поля data_type = «Achievements», для значения поля «Action» = « Remove»	45
+При значении поля data_type = « admission_volume», для значения поля «Action» = «Add» и «Edit»	46
+При значении поля data_type = « admission_volume», для значения поля «Action» = «Remove»	48
+При значении поля data_type = «competitive_groups», для значения поля «Action» = «Add» и «Edit»	49
+При значении поля data_type = «competitive_groups», для значения поля «Action» = «Remove»	51
+При значении поля data_type = « competitive_benefits», для значения поля «Action» = «Add» и «Edit»	52
+При значении поля data_type = « competitive_benefits», для значения поля «Action» = «Remove»	54
+При значении поля data_type = « competitive_group_programs », для значения поля «Action» = «Add» и «Edit»	55
+При значении поля data_type = « competitive_group_programs », для значения поля «Action» = « Remove »	55
+При значении поля data_type = « entrance_tests», для значения поля «Action» = «Add» и «Edit»	57
+При значении поля data_type = « entrance_tests», для значения поля «Action» = «Remove»	58
+При значении поля data_type = «entrance_test_benefits», для значения поля «Action» = «Add» и «Edit»	59
+При значении поля data_type = «entrance_test_benefits», для значения поля «Action» = «Remove»	61
+При значении поля data_type = «completitive_groups_applications_rating», для значения поля «Action» = «Add»	62
+Инструкция по созданию  тестового сертификата в среде Linux	66
+
+
+
+
+
+Общие сведения
+
+В рамках обмена установим, что одно сообщение (JWT -  Json Web Tocken) включает в себя сущность (данные) и действия над ней.
+
+Жизненный цикл сообщения состоит из 4-х основных этапов:
+1) внесение сообщения в систему;
+2) запрос о наличии обработанных сообщений;
+3) получение результата обработки сообщения;
+4) отчет о получении результата обработки сообщения.
+
+
+
+Список используемых методов 
+
+Внимание!!! 
+Адрес 85.142.162.12:8031 – это адрес тестового сервера для отладки в открытой сети. 
+Адрес на пилотное тестирование будет уточнен позже.
+
+Для использования методов /token/new, /token/info, /token/confirm  для подписания сообщений необходим тестовый сертификат, который зарегистрирован в системе. Для регистрации Вы должны прислать нам открытый ключ сертификата либо любой подписанный этим сертификатом файл. Инструкция по созданию тестового сертификата лписана в соотвествующем разделе – «Инструкция по созданию  тестового сертификата в среде Linux».
+
+Получение классификаторов
+
+Вызов метода:
+
+http://10.10.11.12:8031/api/cls/request
+
+Внесения данных (сообщения) в систему 
+
+Вызов метода:
+http:// 85.142.162.12:8031/api/token/new 
+
+Запрос наличия обработанных данных (сообщения) и получения результатов обработки сообщения 
+
+Вызов метода:
+http:// 85.142.162.12:8031/api/token/info
+
+Отправки отчета о результатах обработки данных (сообщения) 
+
+Вызов метода:
+http:// 85.142.162.12:8031/api/token/confirm
+
+
+
+
+Общее описание сообщения
+
+В общем случае для обмена сообщениями будет использоваться протокол http, запрос формы POST с заголовком «application/json», тело сообщения должно иметь вид:
+     
+     {"token":"JWT"}
+
+где JWT состоит из следующих частей: header, payload, verify signarure, представляющих собой строку в формате Base64 и разделенных символом точка. 
+
+Пример сообщения на условных данных (обращаем внимание на разделение частей точкой, для удобства части выделены цветом):
+ ewogICJhY3Rpb24iOiAiIiwKICAiZGF0YV90eXBlIjogIiIsCiAgIk9HUk4iOiAiIiwKICAiS1BQIjogIiIsCiAgImNlcnQ2NCI6ICIiCn0=.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.dXyC5EuKJaerCjbcTQmbCfv+5IyW71RLEYJnx71lZZQVwUmzpcMI/3rMt4mYBCgLhHAaM4s0Jv/2YBjFnEM7tw==
+
+Header
+Header представляет  строку в Base64 см. выше соответствующий цвет. При декодировании имеет структуру JSON в виде.  
+
+{ 
+     "action": "" , 
+     "data_type": "",  
+     "OGRN": "",  
+     "KPP": "",  
+     "cert64": "" 
+}
+
+action – это будет выполняемое действие - одно из возможных значений:  
+* Add, 
+* Edit,
+* Remove,
+* GetMessage,
+* MessageConfirm.
+ 
+data_type – тип передаваемых данных (например профиль абитуриента или заявление) – одно из возможных значений:
+* campaign,
+* achievements,
+* admission_volume,
+* competitive_groups,
+* competitive_benefits,
+* competitive_group_programs,
+* entrance_tests,
+* entrance_test_benefits
+* completitive_groups_applications_rating
+
+Payload
+Payload непосредственно сами данные сообщения (в стадии разработки! -  приведены данные для примера вида записи) и представляет  строку в Base64 см. выше соответствующий цвет. При декодировании имеет структуру XML в виде (на примере данных о приемной кампании): 
+
+<PackageData>
+	<Campaign>
+		<UID>2019_01</UID>
+		<Name>Бакалавры и специалисты 2019</Name>
+		<YearStart>2019</YearStart>
+		<YearEnd>2019</YearEnd>
+		<EducationForms>
+			<EducationFormID>1</EducationFormID>
+			<EducationFormID>2</EducationFormID>
+		</EducationForms>
+		<EducationLevels>
+			<EducationLevelID>3</EducationLevelID>
+			<EducationLevelID>1</EducationLevelID>
+			<EducationLevelID>2</EducationLevelID>
+		</EducationLevels>
+		<CampaignType>
+			<CampaignTypeID>1</CampaignTypeID>
+		</CampaignType>
+		<CampaignStatus>
+			<CampaignStatusID>2</CampaignStatusID>
+		</CampaignStatus>
+	</Campaign>
+</PackageData>
+
+Verify signarure
+Verify signarure представляет закодированную в Base64 ЭЦП по ГОСТ 34.10-2012 см. выше соответствующий цвет.. Подписываемая последовательность представляет собой конкатенацию части Header и Payload разделенных символом точка. 
+
+Открытый ключ сертификата, которым осуществляется подпись помещается в виде x509 сертификата закодированного в Base64 в Header в поле  cert64.
+Описание методов
+Метод получения классификаторов и справочников
+
+В общем случае для обмена сообщениями используется протокол http. Запрос формы POST с заголовком «Content-Type» «application/json».
+Тело сообщения должно иметь вид:
+     
+     {"OGRN" : "","KPP" : "","CLS" : ""}
+
+где OGRN это ОГРН зарегистрированной организации в системе, где KPP это КПП зарегистрированной организации в системе,  где CLS это вид запрашиваемого классификатора.  CLS может принимать значения: 
+
+№
+п/пВид классификатора 
+в запросеОписание1DirectionsОбщероссийский классификатор специальностей по образованию2CampaignTypeТипы приемных компаний3CampaignStatusСтатусы приемных компаний4BenefitСправочник льгот5EducationFormФормы образования6EducationLevelУровни образования ПК7EducationSourceИсточник финансирования8EntranceTestTypeТип вступительного испытания9LevelBudgetУровни бюджета10OlympicDiplomaTypeТипы дипломов олимпиад11OlympicLevelУровни олимпиад12SubjectОбразовательные предметы13EduLevelsCampaignTypesТипы ПК по уровням образования14AchievementCategoryКатегории индивидуальных достижений15ApplicationStatusesСтатусы заявлений16CompatriotCategoriesКатегории соотечественников17CompositionThemesТемы сочинений18DisabilityTypesКатегории инвалидности19DocumentCategoriesКатегории документов20DocumentTypesТипы документов21EntranceTestDocumentTypesТипы документов вступительного испытания22EntranceTestResultSourcesИсточник результата вступительного испытания23GenderПол24MinScoreSubjectsМинимальное значение ЕГЭ по предметам25OkcmsОбщероссийский классификатор стран мира26OktmosСправочник муниципалитетов (из ОКТМО)27OlympicMinEgeМинимальное значение ЕГЭ для подтверждения олимпиады28OrderAdmissionStatusesСтатус приказов29OrderAdmissionTypesТипы приказов30OrphanCategoriesКатегория документов детей-сирот31ParentsLostCategoriesКатегории граждан, родители и опекуны которых погибли при исполнении служебных обязанностей32RadiationWorkCategories
+Категории граждан, участвовавших в работах на радиационных объектах или подвергшихся воздействию радиации33RegionsСправочник регионов34ReturnTypesТипы результата35VeteranCategoriesКатегории граждан, участвовавших в боевых действиях36ViolationTypesТип нарушений в заявлении37OlympicsProfilesСведения об олимпиаде и ее организаторах38OlyProfilesПрофили олимпиад39OlympicsОлимпиады*данные с xsd-схемами и xml-пакеты с данными справочников в прилагаемом архиве
+
+Пример сообщения с запросом:
+
+{
+"OGRN" : "1234567890987",
+"KPP" : "123456789",
+"CLS" : "EduLevelsCampaignTypes"
+}
+
+Пример ответа : 
+
+<?xml version="1.0" encoding="UTF-8"?>
+<EduLevelsCampaignTypes>
+    <EduLevelsCampaignType>
+        <ID>1</ID>
+        <IDCampaignTypes>1</IDCampaignTypes>
+        <IDEducationLevel>1</IDEducationLevel>
+    </EduLevelsCampaignType>
+    <EduLevelsCampaignType>
+        <ID>2</ID>
+        <IDCampaignTypes>1</IDCampaignTypes>
+        <IDEducationLevel>2</IDEducationLevel>
+    </EduLevelsCampaignType>
+    <EduLevelsCampaignType>
+        <ID>3</ID>
+        <IDCampaignTypes>2</IDCampaignTypes>
+        <IDEducationLevel>4</IDEducationLevel>
+    </EduLevelsCampaignType>
+    <EduLevelsCampaignType>
+        <ID>4</ID>
+        <IDCampaignTypes>3</IDCampaignTypes>
+        <IDEducationLevel>1</IDEducationLevel>
+    </EduLevelsCampaignType>
+    <EduLevelsCampaignType>
+        <ID>5</ID>
+        <IDCampaignTypes>4</IDCampaignTypes>
+        <IDEducationLevel>5</IDEducationLevel>
+    </EduLevelsCampaignType>
+    <EduLevelsCampaignType>
+        <ID>6</ID>
+        <IDCampaignTypes>5</IDCampaignTypes>
+        <IDEducationLevel>1</IDEducationLevel>
+    </EduLevelsCampaignType>
+    <EduLevelsCampaignType>
+        <ID>7</ID>
+        <IDCampaignTypes>5</IDCampaignTypes>
+        <IDEducationLevel>2</IDEducationLevel>
+    </EduLevelsCampaignType>
+    <EduLevelsCampaignType>
+        <ID>8</ID>
+        <IDCampaignTypes>5</IDCampaignTypes>
+        <IDEducationLevel>3</IDEducationLevel>
+    </EduLevelsCampaignType>
+    <EduLevelsCampaignType>
+        <ID>9</ID>
+        <IDCampaignTypes>5</IDCampaignTypes>
+        <IDEducationLevel>4</IDEducationLevel>
+    </EduLevelsCampaignType>
+    <EduLevelsCampaignType>
+        <ID>10</ID>
+        <IDCampaignTypes>5</IDCampaignTypes>
+        <IDEducationLevel>5</IDEducationLevel>
+    </EduLevelsCampaignType>
+</EduLevelsCampaignTypes>
+
+Метод - внесения данных (сообщения) в систему 
+
+Допустимые значения полей:
+
+для Header допустимые значения поля «action»:
+* Add, 
+* Edit,
+* Remove;
+
+поле «datatype»:
+* данные для представлены в прилагаемом архиве (xsd-схемы и примеры xml-пакетов на добавление, редактирование и удаление данных.
+
+Пример сообщения:
+Пример Header до кодирования в base64:
+{ 
+     "action": "Add",  
+     "data_type": "campain",  
+     "OGRN": "1234567890987",  
+     "KPP": "123456789",  
+     "cert64": "MIIEYTCCBBCgAwIBAgITEgBBhm25R8IVG6FyMgABAEGGbTAIBgYqhQMCAgMwfzEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBjcnlwdG9wcm8ucnUxCzAJBgNVBAYTAlJVMQ8wDQYDVQQHEwZNb3Njb3cxFzAVBgNVBAoTDkNSWVBUTy1QUk8gTExDMSEwHwYDVQQDExhDUllQVE8tUFJPIFRlc3QgQ2VudGVyIDIwHhcNMjAwMjI4MTMzMjI0WhcNMjAwNTI4MTM0MjI0WjCCAWgxGDAWBgUqhQNkARINNTA4Nzc0NjY5NzUyODE6MDgGA1UECQwx0KPQuy7Qn9GA0LXRgdC90LXQvdGB0LrQuNC5INCS0LDQuyDQtC4xOSDRgdGC0YAuMTETMBEGA1UECgwK0KHQsNC80YvQuTEVMBMGA1UEBwwM0JzQvtGB0LrQstCwMRowGAYIKoUDA4EDAQESDDAwNzgxNDUwODkyMTEbMBkGCSqGSIb3DQEJARYMbWFpbEBtYWlsLnJ1MRowGAYIKoUDA4EDAQESDDExMTExMTExMTExMTEYMBYGBSqFA2QBEg0xMTExMTExMTExMTExMQswCQYDVQQGEwJSVTEiMCAGA1UEKgwZ0JjQstCw0L0g0JjQstCw0L3QvtCy0LjRhzERMA8GA1UEDAwI0KDRg9C70YwxGjAYBgNVBAMMEdCY0KEg0KHQsNC80L7Qs9C+MRUwEwYDVQQEDAzQmNCy0LDQvdC+0LIwZjAfBggqhQMHAQEBATATBgcqhQMCAiQABggqhQMHAQECAgNDAARA2MWlMDJAQpXr2rSxFAi8PhtQJ36bw4qwaSVq9053YzKPTbh1wU5wF32Y3iEQnkQl3SXbY43ZxWeEPfdvPvaHL6OCAXMwggFvMBMGA1UdJQQMMAoGCCsGAQUFBwMEMAsGA1UdDwQEAwIE8DAdBgNVHQ4EFgQU1xJln3hUeA/fRN6yTyk7OT6DSU0wHwYDVR0jBBgwFoAUToM+FGnv7F16lStfEf43MhZJVSswXAYDVR0fBFUwUzBRoE+gTYZLaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC9DUllQVE8tUFJPJTIwVGVzdCUyMENlbnRlciUyMDIoMSkuY3JsMIGsBggrBgEFBQcBAQSBnzCBnDBkBggrBgEFBQcwAoZYaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC90ZXN0LWNhLTIwMTRfQ1JZUFRPLVBSTyUyMFRlc3QlMjBDZW50ZXIlMjAyKDEpLmNydDA0BggrBgEFBQcwAYYoaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvb2NzcC9vY3NwLnNyZjAIBgYqhQMCAgMDQQBrsvMSbI8zrcGATqppTRcFEBxB9QeT80YoZ+ZmweEZk3tLXFvMQ7ezHogsKW0sL6XDVzJQKzDmHIfO49NbUm7Y" 
+}
+
+Пример Payload до кодирования в base64:
+<PackageData>
+	<Campaign>
+		<UID>2019_06</UID>
+		<Name>Бакалавры и специалисты 2019</Name>
+		<YearStart>2019</YearStart>
+		<YearEnd>2019</YearEnd>
+		<EducationForms>
+			<IDEducationForm>1</IDEducationForm>
+			<IDEducationForm>2</IDEducationForm>
+		</EducationForms>
+		<EducationLevels>
+			<IDEducationLevel>1</IDEducationLevel>
+			<IDEducationLevel>2</IDEducationLevel>
+		</EducationLevels>
+		<IDCampaignType>1</IDCampaignType>
+		<IDCampaignStatus>2</IDCampaignStatus>
+	</Campaign>
+</PackageData>
+
+
+Пример JWT: 
+eyJJREpXVCI6MCwiUklESldUIjowLCJhY3Rpb24iOiJBZGQiLCJkYXRhX3R5cGUiOiJjYW1wYWlnbiIsIk9HUk4iOiIxMjM0NTY3ODkwOTg3IiwiS1BQIjoiMTIzNDU2Nzg5IiwiQ2VydDY0IjoiTUlJRVlUQ0NCQkNnQXdJQkFnSVRFZ0JCaG0yNVI4SVZHNkZ5TWdBQkFFR0diVEFJQmdZcWhRTUNBZ013ZnpFak1DRUdDU3FHU0liM0RRRUpBUllVYzNWd2NHOXlkRUJqY25sd2RHOXdjbTh1Y25VeEN6QUpCZ05WQkFZVEFsSlZNUTh3RFFZRFZRUUhFd1pOYjNOamIzY3hGekFWQmdOVkJBb1REa05TV1ZCVVR5MVFVazhnVEV4RE1TRXdId1lEVlFRREV4aERVbGxRVkU4dFVGSlBJRlJsYzNRZ1EyVnVkR1Z5SURJd0hoY05NakF3TWpJNE1UTXpNakkwV2hjTk1qQXdOVEk0TVRNME1qSTBXakNDQVdneEdEQVdCZ1VxaFFOa0FSSU5OVEE0TnpjME5qWTVOelV5T0RFNk1EZ0dBMVVFQ1F3eDBLUFF1eTdRbjlHQTBMWFJnZEM5MExYUXZkR0IwTHJRdU5DNUlOQ1MwTERRdXlEUXRDNHhPU0RSZ2RHQzBZQXVNVEVUTUJFR0ExVUVDZ3dLMEtIUXNOQzgwWXZRdVRFVk1CTUdBMVVFQnd3TTBKelF2dEdCMExyUXN0Q3dNUm93R0FZSUtvVURBNEVEQVFFU0REQXdOemd4TkRVd09Ea3lNVEViTUJrR0NTcUdTSWIzRFFFSkFSWU1iV0ZwYkVCdFlXbHNMbkoxTVJvd0dBWUlLb1VEQTRFREFRRVNEREV4TVRFeE1URXhNVEV4TVRFWU1CWUdCU3FGQTJRQkVnMHhNVEV4TVRFeE1URXhNVEV4TVFzd0NRWURWUVFHRXdKU1ZURWlNQ0FHQTFVRUtnd1owSmpRc3RDdzBMMGcwSmpRc3RDdzBMM1F2dEN5MExqUmh6RVJNQThHQTFVRURBd0kwS0RSZzlDNzBZd3hHakFZQmdOVkJBTU1FZENZMEtFZzBLSFFzTkM4MEw3UXM5QytNUlV3RXdZRFZRUUVEQXpRbU5DeTBMRFF2ZEMrMExJd1pqQWZCZ2dxaFFNSEFRRUJBVEFUQmdjcWhRTUNBaVFBQmdncWhRTUhBUUVDQWdOREFBUkEyTVdsTURKQVFwWHIyclN4RkFpOFBodFFKMzZidzRxd2FTVnE5MDUzWXpLUFRiaDF3VTV3RjMyWTNpRVFua1FsM1NYYlk0M1p4V2VFUGZkdlB2YUhMNk9DQVhNd2dnRnZNQk1HQTFVZEpRUU1NQW9HQ0NzR0FRVUZCd01FTUFzR0ExVWREd1FFQXdJRThEQWRCZ05WSFE0RUZnUVUxeEpsbjNoVWVBL2ZSTjZ5VHlrN09UNkRTVTB3SHdZRFZSMGpCQmd3Rm9BVVRvTStGR252N0YxNmxTdGZFZjQzTWhaSlZTc3dYQVlEVlIwZkJGVXdVekJSb0UrZ1RZWkxhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzlEVWxsUVZFOHRVRkpQSlRJd1ZHVnpkQ1V5TUVObGJuUmxjaVV5TURJb01Ta3VZM0pzTUlHc0JnZ3JCZ0VGQlFjQkFRU0JuekNCbkRCa0JnZ3JCZ0VGQlFjd0FvWllhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzkwWlhOMExXTmhMVEl3TVRSZlExSlpVRlJQTFZCU1R5VXlNRlJsYzNRbE1qQkRaVzUwWlhJbE1qQXlLREVwTG1OeWREQTBCZ2dyQmdFRkJRY3dBWVlvYUhSMGNEb3ZMM1JsYzNSallTNWpjbmx3ZEc5d2NtOHVjblV2YjJOemNDOXZZM053TG5OeVpqQUlCZ1lxaFFNQ0FnTURRUUJyc3ZNU2JJOHpyY0dBVHFwcFRSY0ZFQnhCOVFlVDgwWW9aK1ptd2VFWmszdExYRnZNUTdlekhvZ3NLVzBzTDZYRFZ6SlFLekRtSElmTzQ5TmJVbTdZIn0=.PFBhY2thZ2VEYXRhPgoJPENhbXBhaWduPgoJCTxVSUQ+MjAxOV8wNjwvVUlEPgoJCTxOYW1lPtCR0LDQutCw0LvQsNCy0YDRiyDQuCDRgdC/0LXRhtC40LDQu9C40YHRgtGLIDIwMTk8L05hbWU+CgkJPFllYXJTdGFydD4yMDE5PC9ZZWFyU3RhcnQ+CgkJPFllYXJFbmQ+MjAxOTwvWWVhckVuZD4KCQk8RWR1Y2F0aW9uRm9ybXM+CgkJCTxJREVkdWNhdGlvbkZvcm0+MTwvSURFZHVjYXRpb25Gb3JtPgoJCQk8SURFZHVjYXRpb25Gb3JtPjI8L0lERWR1Y2F0aW9uRm9ybT4KCQk8L0VkdWNhdGlvbkZvcm1zPgoJCTxFZHVjYXRpb25MZXZlbHM+CgkJCTxJREVkdWNhdGlvbkxldmVsPjE8L0lERWR1Y2F0aW9uTGV2ZWw+CgkJCTxJREVkdWNhdGlvbkxldmVsPjI8L0lERWR1Y2F0aW9uTGV2ZWw+CgkJPC9FZHVjYXRpb25MZXZlbHM+CgkJPElEQ2FtcGFpZ25UeXBlPjE8L0lEQ2FtcGFpZ25UeXBlPgoJCTxJRENhbXBhaWduU3RhdHVzPjI8L0lEQ2FtcGFpZ25TdGF0dXM+Cgk8L0NhbXBhaWduPgo8L1BhY2thZ2VEYXRhPg==.rF0vM6c/UgRI5LCC9TY7GzOX0OqeDduOOwqFnYdi+NDc5uQCCPmlvcE4shLrq+cHF6bCZC1Tka5i1r3OVICljg== eyJJREpXVCI6MCwiUklESldUIjowLCJhY3Rpb24iOiJBZGQiLCJkYXRhX3R5cGUiOiJjYW1wYWlnbiIsIk9HUk4iOiIxMjM0NTY3ODkwOTg3IiwiS1BQIjoiMTIzNDU2Nzg5IiwiQ2VydDY0IjoiTUlJRVlUQ0NCQkNnQXdJQkFnSVRFZ0JCaG0yNVI4SVZHNkZ5TWdBQkFFR0diVEFJQmdZcWhRTUNBZ013ZnpFak1DRUdDU3FHU0liM0RRRUpBUllVYzNWd2NHOXlkRUJqY25sd2RHOXdjbTh1Y25VeEN6QUpCZ05WQkFZVEFsSlZNUTh3RFFZRFZRUUhFd1pOYjNOamIzY3hGekFWQmdOVkJBb1REa05TV1ZCVVR5MVFVazhnVEV4RE1TRXdId1lEVlFRREV4aERVbGxRVkU4dFVGSlBJRlJsYzNRZ1EyVnVkR1Z5SURJd0hoY05NakF3TWpJNE1UTXpNakkwV2hjTk1qQXdOVEk0TVRNME1qSTBXakNDQVdneEdEQVdCZ1VxaFFOa0FSSU5OVEE0TnpjME5qWTVOelV5T0RFNk1EZ0dBMVVFQ1F3eDBLUFF1eTdRbjlHQTBMWFJnZEM5MExYUXZkR0IwTHJRdU5DNUlOQ1MwTERRdXlEUXRDNHhPU0RSZ2RHQzBZQXVNVEVUTUJFR0ExVUVDZ3dLMEtIUXNOQzgwWXZRdVRFVk1CTUdBMVVFQnd3TTBKelF2dEdCMExyUXN0Q3dNUm93R0FZSUtvVURBNEVEQVFFU0REQXdOemd4TkRVd09Ea3lNVEViTUJrR0NTcUdTSWIzRFFFSkFSWU1iV0ZwYkVCdFlXbHNMbkoxTVJvd0dBWUlLb1VEQTRFREFRRVNEREV4TVRFeE1URXhNVEV4TVRFWU1CWUdCU3FGQTJRQkVnMHhNVEV4TVRFeE1URXhNVEV4TVFzd0NRWURWUVFHRXdKU1ZURWlNQ0FHQTFVRUtnd1owSmpRc3RDdzBMMGcwSmpRc3RDdzBMM1F2dEN5MExqUmh6RVJNQThHQTFVRURBd0kwS0RSZzlDNzBZd3hHakFZQmdOVkJBTU1FZENZMEtFZzBLSFFzTkM4MEw3UXM5QytNUlV3RXdZRFZRUUVEQXpRbU5DeTBMRFF2ZEMrMExJd1pqQWZCZ2dxaFFNSEFRRUJBVEFUQmdjcWhRTUNBaVFBQmdncWhRTUhBUUVDQWdOREFBUkEyTVdsTURKQVFwWHIyclN4RkFpOFBodFFKMzZidzRxd2FTVnE5MDUzWXpLUFRiaDF3VTV3RjMyWTNpRVFua1FsM1NYYlk0M1p4V2VFUGZkdlB2YUhMNk9DQVhNd2dnRnZNQk1HQTFVZEpRUU1NQW9HQ0NzR0FRVUZCd01FTUFzR0ExVWREd1FFQXdJRThEQWRCZ05WSFE0RUZnUVUxeEpsbjNoVWVBL2ZSTjZ5VHlrN09UNkRTVTB3SHdZRFZSMGpCQmd3Rm9BVVRvTStGR252N0YxNmxTdGZFZjQzTWhaSlZTc3dYQVlEVlIwZkJGVXdVekJSb0UrZ1RZWkxhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzlEVWxsUVZFOHRVRkpQSlRJd1ZHVnpkQ1V5TUVObGJuUmxjaVV5TURJb01Ta3VZM0pzTUlHc0JnZ3JCZ0VGQlFjQkFRU0JuekNCbkRCa0JnZ3JCZ0VGQlFjd0FvWllhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzkwWlhOMExXTmhMVEl3TVRSZlExSlpVRlJQTFZCU1R5VXlNRlJsYzNRbE1qQkRaVzUwWlhJbE1qQXlLREVwTG1OeWREQTBCZ2dyQmdFRkJRY3dBWVlvYUhSMGNEb3ZMM1JsYzNSallTNWpjbmx3ZEc5d2NtOHVjblV2YjJOemNDOXZZM053TG5OeVpqQUlCZ1lxaFFNQ0FnTURRUUJyc3ZNU2JJOHpyY0dBVHFwcFRSY0ZFQnhCOVFlVDgwWW9aK1ptd2VFWmszdExYRnZNUTdlekhvZ3NLVzBzTDZYRFZ6SlFLekRtSElmTzQ5TmJVbTdZIn0= PFBhY2thZ2VEYXRhPgoJPENhbXBhaWduPgoJCTxVSUQ+MjAxOV8wNjwvVUlEPgoJCTxOYW1lPtCR0LDQutCw0LvQsNCy0YDRiyDQuCDRgdC/0LXRhtC40LDQu9C40YHRgtGLIDIwMTk8L05hbWU+CgkJPFllYXJTdGFydD4yMDE5PC9ZZWFyU3RhcnQ+CgkJPFllYXJFbmQ+MjAxOTwvWWVhckVuZD4KCQk8RWR1Y2F0aW9uRm9ybXM+CgkJCTxJREVkdWNhdGlvbkZvcm0+MTwvSURFZHVjYXRpb25Gb3JtPgoJCQk8SURFZHVjYXRpb25Gb3JtPjI8L0lERWR1Y2F0aW9uRm9ybT4KCQk8L0VkdWNhdGlvbkZvcm1zPgoJCTxFZHVjYXRpb25MZXZlbHM+CgkJCTxJREVkdWNhdGlvbkxldmVsPjE8L0lERWR1Y2F0aW9uTGV2ZWw+CgkJCTxJREVkdWNhdGlvbkxldmVsPjI8L0lERWR1Y2F0aW9uTGV2ZWw+CgkJPC9FZHVjYXRpb25MZXZlbHM+CgkJPElEQ2FtcGFpZ25UeXBlPjE8L0lEQ2FtcGFpZ25UeXBlPgoJCTxJRENhbXBhaWduU3RhdHVzPjI8L0lEQ2FtcGFpZ25TdGF0dXM+Cgk8L0NhbXBhaWduPgo8L1BhY2thZ2VEYXRhPg== rF0vM6c/UgRI5LCC9TY7GzOX0OqeDduOOwqFnYdi+NDc5uQCCPmlvcE4shLrq+cHF6bCZC1Tka5i1r3OVICljg== 
+
+При успешном приеме сообщения ответ будет содержать id сообщения в сервисе приема. 
+
+В противном случае ответ будет содержать сообщение об ошибке в формате Json, например: 
+
+{"Error": " Текст ошибки"}
+Метод – Запрос наличия обработанных данных (сообщения) и получения результатов обработки сообщения 
+Неподписанный запрос о наличии сообщений для ИС ВУЗа
+Для проверки наличия сообщений для ИС ВУЗа используется запрос формы POST с полями, содержащими ОГРН и КПП организации.
+
+В общем случае для обмена сообщениями будет использоваться протокол http, запрос формы POST с заголовком «application/json», тело сообщения должно иметь вид:
+
+Пример сообщения:
+{
+"OGRN":"1234567890987",
+"KPP":"123456789"
+}
+
+При успешном приеме сообщения ответ будет содержать Json, например:
+
+{"Messages":2}
+
+а при отсутствии сообщений:
+
+{"Messages":0}
+
+В противном случае ответ будет содержать сообщение об ошибке в формате Json, например: 
+
+{"Error": " Текст ошибки"}
+
+JWT-запрос на получение результата обработки сообщения
+
+Вид Header:
+{ 
+     "action": "" , 
+     "OGRN": "",  
+     "KPP": "",  
+     "IDJWT": "",  
+     "cert64": "" 
+}
+
+Допустимые значения полей:
+
+допустимые значения поля «action»:
+* GetMessage;
+
+При наличии значения в поле IDJWT – будут отданы данные по заданному IDJWT, в противном случае будут выданы данные, стоящие в очереди на отправку в ИС ООВО.
+
+Пример сообщения:
+
+Пример Header до кодирования в base64:
+{ 
+     "OGRN": "1234567890987",  
+     "KPP": "123456789", 
+     "IDJWT": "6",  
+     "cert64": "MIIEYTCCBBCgAwIBAgITEgBBhm25R8IVG6FyMgABAEGGbTAIBgYqhQMCAgMwfzEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBjcnlwdG9wcm8ucnUxCzAJBgNVBAYTAlJVMQ8wDQYDVQQHEwZNb3Njb3cxFzAVBgNVBAoTDkNSWVBUTy1QUk8gTExDMSEwHwYDVQQDExhDUllQVE8tUFJPIFRlc3QgQ2VudGVyIDIwHhcNMjAwMjI4MTMzMjI0WhcNMjAwNTI4MTM0MjI0WjCCAWgxGDAWBgUqhQNkARINNTA4Nzc0NjY5NzUyODE6MDgGA1UECQwx0KPQuy7Qn9GA0LXRgdC90LXQvdGB0LrQuNC5INCS0LDQuyDQtC4xOSDRgdGC0YAuMTETMBEGA1UECgwK0KHQsNC80YvQuTEVMBMGA1UEBwwM0JzQvtGB0LrQstCwMRowGAYIKoUDA4EDAQESDDAwNzgxNDUwODkyMTEbMBkGCSqGSIb3DQEJARYMbWFpbEBtYWlsLnJ1MRowGAYIKoUDA4EDAQESDDExMTExMTExMTExMTEYMBYGBSqFA2QBEg0xMTExMTExMTExMTExMQswCQYDVQQGEwJSVTEiMCAGA1UEKgwZ0JjQstCw0L0g0JjQstCw0L3QvtCy0LjRhzERMA8GA1UEDAwI0KDRg9C70YwxGjAYBgNVBAMMEdCY0KEg0KHQsNC80L7Qs9C+MRUwEwYDVQQEDAzQmNCy0LDQvdC+0LIwZjAfBggqhQMHAQEBATATBgcqhQMCAiQABggqhQMHAQECAgNDAARA2MWlMDJAQpXr2rSxFAi8PhtQJ36bw4qwaSVq9053YzKPTbh1wU5wF32Y3iEQnkQl3SXbY43ZxWeEPfdvPvaHL6OCAXMwggFvMBMGA1UdJQQMMAoGCCsGAQUFBwMEMAsGA1UdDwQEAwIE8DAdBgNVHQ4EFgQU1xJln3hUeA/fRN6yTyk7OT6DSU0wHwYDVR0jBBgwFoAUToM+FGnv7F16lStfEf43MhZJVSswXAYDVR0fBFUwUzBRoE+gTYZLaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC9DUllQVE8tUFJPJTIwVGVzdCUyMENlbnRlciUyMDIoMSkuY3JsMIGsBggrBgEFBQcBAQSBnzCBnDBkBggrBgEFBQcwAoZYaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC90ZXN0LWNhLTIwMTRfQ1JZUFRPLVBSTyUyMFRlc3QlMjBDZW50ZXIlMjAyKDEpLmNydDA0BggrBgEFBQcwAYYoaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvb2NzcC9vY3NwLnNyZjAIBgYqhQMCAgMDQQBrsvMSbI8zrcGATqppTRcFEBxB9QeT80YoZ+ZmweEZk3tLXFvMQ7ezHogsKW0sL6XDVzJQKzDmHIfO49NbUm7Y" 
+}
+
+Пример сообщения:
+Пример JWT : 
+eyJJREpXVCI6NiwiYWN0aW9uIjoiQWRkIiwiZGF0YV90eXBlIjoiY2FtcGFpbiIsIk9HUk4iOiIxMjM0NTY3ODkwOTg3IiwiS1BQIjoiMTIzNDU2Nzg5IiwiQ2VydDY0IjoiTUlJRVlUQ0NCQkNnQXdJQkFnSVRFZ0JCaG0yNVI4SVZHNkZ5TWdBQkFFR0diVEFJQmdZcWhRTUNBZ013ZnpFak1DRUdDU3FHU0liM0RRRUpBUllVYzNWd2NHOXlkRUJqY25sd2RHOXdjbTh1Y25VeEN6QUpCZ05WQkFZVEFsSlZNUTh3RFFZRFZRUUhFd1pOYjNOamIzY3hGekFWQmdOVkJBb1REa05TV1ZCVVR5MVFVazhnVEV4RE1TRXdId1lEVlFRREV4aERVbGxRVkU4dFVGSlBJRlJsYzNRZ1EyVnVkR1Z5SURJd0hoY05NakF3TWpJNE1UTXpNakkwV2hjTk1qQXdOVEk0TVRNME1qSTBXakNDQVdneEdEQVdCZ1VxaFFOa0FSSU5OVEE0TnpjME5qWTVOelV5T0RFNk1EZ0dBMVVFQ1F3eDBLUFF1eTdRbjlHQTBMWFJnZEM5MExYUXZkR0IwTHJRdU5DNUlOQ1MwTERRdXlEUXRDNHhPU0RSZ2RHQzBZQXVNVEVUTUJFR0ExVUVDZ3dLMEtIUXNOQzgwWXZRdVRFVk1CTUdBMVVFQnd3TTBKelF2dEdCMExyUXN0Q3dNUm93R0FZSUtvVURBNEVEQVFFU0REQXdOemd4TkRVd09Ea3lNVEViTUJrR0NTcUdTSWIzRFFFSkFSWU1iV0ZwYkVCdFlXbHNMbkoxTVJvd0dBWUlLb1VEQTRFREFRRVNEREV4TVRFeE1URXhNVEV4TVRFWU1CWUdCU3FGQTJRQkVnMHhNVEV4TVRFeE1URXhNVEV4TVFzd0NRWURWUVFHRXdKU1ZURWlNQ0FHQTFVRUtnd1owSmpRc3RDdzBMMGcwSmpRc3RDdzBMM1F2dEN5MExqUmh6RVJNQThHQTFVRURBd0kwS0RSZzlDNzBZd3hHakFZQmdOVkJBTU1FZENZMEtFZzBLSFFzTkM4MEw3UXM5QytNUlV3RXdZRFZRUUVEQXpRbU5DeTBMRFF2ZEMrMExJd1pqQWZCZ2dxaFFNSEFRRUJBVEFUQmdjcWhRTUNBaVFBQmdncWhRTUhBUUVDQWdOREFBUkEyTVdsTURKQVFwWHIyclN4RkFpOFBodFFKMzZidzRxd2FTVnE5MDUzWXpLUFRiaDF3VTV3RjMyWTNpRVFua1FsM1NYYlk0M1p4V2VFUGZkdlB2YUhMNk9DQVhNd2dnRnZNQk1HQTFVZEpRUU1NQW9HQ0NzR0FRVUZCd01FTUFzR0ExVWREd1FFQXdJRThEQWRCZ05WSFE0RUZnUVUxeEpsbjNoVWVBL2ZSTjZ5VHlrN09UNkRTVTB3SHdZRFZSMGpCQmd3Rm9BVVRvTStGR252N0YxNmxTdGZFZjQzTWhaSlZTc3dYQVlEVlIwZkJGVXdVekJSb0UrZ1RZWkxhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzlEVWxsUVZFOHRVRkpQSlRJd1ZHVnpkQ1V5TUVObGJuUmxjaVV5TURJb01Ta3VZM0pzTUlHc0JnZ3JCZ0VGQlFjQkFRU0JuekNCbkRCa0JnZ3JCZ0VGQlFjd0FvWllhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzkwWlhOMExXTmhMVEl3TVRSZlExSlpVRlJQTFZCU1R5VXlNRlJsYzNRbE1qQkRaVzUwWlhJbE1qQXlLREVwTG1OeWREQTBCZ2dyQmdFRkJRY3dBWVlvYUhSMGNEb3ZMM1JsYzNSallTNWpjbmx3ZEc5d2NtOHVjblV2YjJOemNDOXZZM053TG5OeVpqQUlCZ1lxaFFNQ0FnTURRUUJyc3ZNU2JJOHpyY0dBVHFwcFRSY0ZFQnhCOVFlVDgwWW9aK1ptd2VFWmszdExYRnZNUTdlekhvZ3NLVzBzTDZYRFZ6SlFLekRtSElmTzQ5TmJVbTdZIn0=
+
+При некорректном запросе ответ будет содержать сообщение об ошибке в формате Json, например: 
+
+{"Error":"Текст ошибки"}
+
+При успешном приеме сообщения ответ будет содержать JWT следующего содержания:
+eyJJRFRva2VuIjoxODAwLCJEYXRhVHlwZSI6IkVycm9yIiwiQ2VydDY0IjoiTUlJRVlUQ0NCQkNnQXdJQkFnSVRFZ0JCaG0yNVI4SVZHNkZ5TWdBQkFFR0diVEFJQmdZcWhRTUNBZ013ZnpFak1DRUdDU3FHU0liM0RRRUpBUllVYzNWd2NHOXlkRUJqY25sd2RHOXdjbTh1Y25VeEN6QUpCZ05WQkFZVEFsSlZNUTh3RFFZRFZRUUhFd1pOYjNOamIzY3hGekFWQmdOVkJBb1REa05TV1ZCVVR5MVFVazhnVEV4RE1TRXdId1lEVlFRREV4aERVbGxRVkU4dFVGSlBJRlJsYzNRZ1EyVnVkR1Z5SURJd0hoY05NakF3TWpJNE1UTXpNakkwV2hjTk1qQXdOVEk0TVRNME1qSTBXakNDQVdneEdEQVdCZ1VxaFFOa0FSSU5OVEE0TnpjME5qWTVOelV5T0RFNk1EZ0dBMVVFQ1F3eDBLUFF1eTdRbjlHQTBMWFJnZEM5MExYUXZkR0IwTHJRdU5DNUlOQ1MwTERRdXlEUXRDNHhPU0RSZ2RHQzBZQXVNVEVUTUJFR0ExVUVDZ3dLMEtIUXNOQzgwWXZRdVRFVk1CTUdBMVVFQnd3TTBKelF2dEdCMExyUXN0Q3dNUm93R0FZSUtvVURBNEVEQVFFU0REQXdOemd4TkRVd09Ea3lNVEViTUJrR0NTcUdTSWIzRFFFSkFSWU1iV0ZwYkVCdFlXbHNMbkoxTVJvd0dBWUlLb1VEQTRFREFRRVNEREV4TVRFeE1URXhNVEV4TVRFWU1CWUdCU3FGQTJRQkVnMHhNVEV4TVRFeE1URXhNVEV4TVFzd0NRWURWUVFHRXdKU1ZURWlNQ0FHQTFVRUtnd1owSmpRc3RDdzBMMGcwSmpRc3RDdzBMM1F2dEN5MExqUmh6RVJNQThHQTFVRURBd0kwS0RSZzlDNzBZd3hHakFZQmdOVkJBTU1FZENZMEtFZzBLSFFzTkM4MEw3UXM5QytNUlV3RXdZRFZRUUVEQXpRbU5DeTBMRFF2ZEMrMExJd1pqQWZCZ2dxaFFNSEFRRUJBVEFUQmdjcWhRTUNBaVFBQmdncWhRTUhBUUVDQWdOREFBUkEyTVdsTURKQVFwWHIyclN4RkFpOFBodFFKMzZidzRxd2FTVnE5MDUzWXpLUFRiaDF3VTV3RjMyWTNpRVFua1FsM1NYYlk0M1p4V2VFUGZkdlB2YUhMNk9DQVhNd2dnRnZNQk1HQTFVZEpRUU1NQW9HQ0NzR0FRVUZCd01FTUFzR0ExVWREd1FFQXdJRThEQWRCZ05WSFE0RUZnUVUxeEpsbjNoVWVBL2ZSTjZ5VHlrN09UNkRTVTB3SHdZRFZSMGpCQmd3Rm9BVVRvTStGR252N0YxNmxTdGZFZjQzTWhaSlZTc3dYQVlEVlIwZkJGVXdVekJSb0UrZ1RZWkxhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzlEVWxsUVZFOHRVRkpQSlRJd1ZHVnpkQ1V5TUVObGJuUmxjaVV5TURJb01Ta3VZM0pzTUlHc0JnZ3JCZ0VGQlFjQkFRU0JuekNCbkRCa0JnZ3JCZ0VGQlFjd0FvWllhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzkwWlhOMExXTmhMVEl3TVRSZlExSlpVRlJQTFZCU1R5VXlNRlJsYzNRbE1qQkRaVzUwWlhJbE1qQXlLREVwTG1OeWREQTBCZ2dyQmdFRkJRY3dBWVlvYUhSMGNEb3ZMM1JsYzNSallTNWpjbmx3ZEc5d2NtOHVjblV2YjJOemNDOXZZM053TG5OeVpqQUlCZ1lxaFFNQ0FnTURRUUJyc3ZNU2JJOHpyY0dBVHFwcFRSY0ZFQnhCOVFlVDgwWW9aK1ptd2VFWmszdExYRnZNUTdlekhvZ3NLVzBzTDZYRFZ6SlFLekRtSElmTzQ5TmJVbTdZIn0=.PGVycm9yUGF5bG9hZD48RXJyb3JDb2RlPjUwMDwvRXJyb3JDb2RlPjxFcnJvckRlc2NyaXB0aW9uPtCS0L3Rg9GC0YDQtdC90L3Rj9GPINC+0YjQuNCx0LrQsCDRgdC10YDQstC10YDQsDwvRXJyb3JEZXNjcmlwdGlvbj48RW50aXR5VHlwZT5qd3RfdG9rZW48L0VudGl0eVR5cGU+PFVJRD48L1VJRD48VUlEUGFyZW50PjwvVUlEUGFyZW50PjwvZXJyb3JQYXlsb2FkPg==.HpxztRrkcBTi4A90sHZgQvzar+eZFmrC0fQQ7Dh4f2KIApQBCvz3XCzhOUd64Fdn6ynVcHfLYlmSCz/lvP3Yrw==
+
+{"IDJWT":6,"DataType":"Error","Cert64":"MIIEYTCCBBCgAwIBAgITEgBBhm25R8IVG6FyMgABAEGGbTAIBgYqhQMCAgMwfzEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBjcnlwdG9wcm8ucnUxCzAJBgNVBAYTAlJVMQ8wDQYDVQQHEwZNb3Njb3cxFzAVBgNVBAoTDkNSWVBUTy1QUk8gTExDMSEwHwYDVQQDExhDUllQVE8tUFJPIFRlc3QgQ2VudGVyIDIwHhcNMjAwMjI4MTMzMjI0WhcNMjAwNTI4MTM0MjI0WjCCAWgxGDAWBgUqhQNkARINNTA4Nzc0NjY5NzUyODE6MDgGA1UECQwx0KPQuy7Qn9GA0LXRgdC90LXQvdGB0LrQuNC5INCS0LDQuyDQtC4xOSDRgdGC0YAuMTETMBEGA1UECgwK0KHQsNC80YvQuTEVMBMGA1UEBwwM0JzQvtGB0LrQstCwMRowGAYIKoUDA4EDAQESDDAwNzgxNDUwODkyMTEbMBkGCSqGSIb3DQEJARYMbWFpbEBtYWlsLnJ1MRowGAYIKoUDA4EDAQESDDExMTExMTExMTExMTEYMBYGBSqFA2QBEg0xMTExMTExMTExMTExMQswCQYDVQQGEwJSVTEiMCAGA1UEKgwZ0JjQstCw0L0g0JjQstCw0L3QvtCy0LjRhzERMA8GA1UEDAwI0KDRg9C70YwxGjAYBgNVBAMMEdCY0KEg0KHQsNC80L7Qs9C+MRUwEwYDVQQEDAzQmNCy0LDQvdC+0LIwZjAfBggqhQMHAQEBATATBgcqhQMCAiQABggqhQMHAQECAgNDAARA2MWlMDJAQpXr2rSxFAi8PhtQJ36bw4qwaSVq9053YzKPTbh1wU5wF32Y3iEQnkQl3SXbY43ZxWeEPfdvPvaHL6OCAXMwggFvMBMGA1UdJQQMMAoGCCsGAQUFBwMEMAsGA1UdDwQEAwIE8DAdBgNVHQ4EFgQU1xJln3hUeA/fRN6yTyk7OT6DSU0wHwYDVR0jBBgwFoAUToM+FGnv7F16lStfEf43MhZJVSswXAYDVR0fBFUwUzBRoE+gTYZLaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC9DUllQVE8tUFJPJTIwVGVzdCUyMENlbnRlciUyMDIoMSkuY3JsMIGsBggrBgEFBQcBAQSBnzCBnDBkBggrBgEFBQcwAoZYaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC90ZXN0LWNhLTIwMTRfQ1JZUFRPLVBSTyUyMFRlc3QlMjBDZW50ZXIlMjAyKDEpLmNydDA0BggrBgEFBQcwAYYoaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvb2NzcC9vY3NwLnNyZjAIBgYqhQMCAgMDQQBrsvMSbI8zrcGATqppTRcFEBxB9QeT80YoZ+ZmweEZk3tLXFvMQ7ezHogsKW0sL6XDVzJQKzDmHIfO49NbUm7Y"}
+
+<errorPayload><ErrorCode>500</ErrorCode><ErrorDescription>Внутренняя ошибка сервера</ErrorDescription><EntityType>jwt_token</EntityType><UID></UID><UIDParent></UIDParent></errorPayload>
+
+Декодированный Payload ответа 
+1. при успешной обработке сообщения:
+<PackageData><UID></UID></PackageData>
+
+2. при ошибке:
+<errorPayload><ErrorCode>500</ErrorCode><ErrorDescription>Внутренняя ошибка сервера</ErrorDescription><EntityType>jwt_token</EntityType><UID></UID><UIDParent></UIDParent></errorPayload>
+
+
+
+
+Метод - Отчет о получении результата обработки сообщения
+
+Имеет вид JWT, например:
+
+{ 
+     "action": "MessageConfirm",  
+     "OGRN": "1234567890987",  
+     "KPP": "123456789", 
+     "IDJWT": "6",  
+     "cert64": "MIIEYTCCBBCgAwIBAgITEgBBhm25R8IVG6FyMgABAEGGbTAIBgYqhQMCAgMwfzEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBjcnlwdG9wcm8ucnUxCzAJBgNVBAYTAlJVMQ8wDQYDVQQHEwZNb3Njb3cxFzAVBgNVBAoTDkNSWVBUTy1QUk8gTExDMSEwHwYDVQQDExhDUllQVE8tUFJPIFRlc3QgQ2VudGVyIDIwHhcNMjAwMjI4MTMzMjI0WhcNMjAwNTI4MTM0MjI0WjCCAWgxGDAWBgUqhQNkARINNTA4Nzc0NjY5NzUyODE6MDgGA1UECQwx0KPQuy7Qn9GA0LXRgdC90LXQvdGB0LrQuNC5INCS0LDQuyDQtC4xOSDRgdGC0YAuMTETMBEGA1UECgwK0KHQsNC80YvQuTEVMBMGA1UEBwwM0JzQvtGB0LrQstCwMRowGAYIKoUDA4EDAQESDDAwNzgxNDUwODkyMTEbMBkGCSqGSIb3DQEJARYMbWFpbEBtYWlsLnJ1MRowGAYIKoUDA4EDAQESDDExMTExMTExMTExMTEYMBYGBSqFA2QBEg0xMTExMTExMTExMTExMQswCQYDVQQGEwJSVTEiMCAGA1UEKgwZ0JjQstCw0L0g0JjQstCw0L3QvtCy0LjRhzERMA8GA1UEDAwI0KDRg9C70YwxGjAYBgNVBAMMEdCY0KEg0KHQsNC80L7Qs9C+MRUwEwYDVQQEDAzQmNCy0LDQvdC+0LIwZjAfBggqhQMHAQEBATATBgcqhQMCAiQABggqhQMHAQECAgNDAARA2MWlMDJAQpXr2rSxFAi8PhtQJ36bw4qwaSVq9053YzKPTbh1wU5wF32Y3iEQnkQl3SXbY43ZxWeEPfdvPvaHL6OCAXMwggFvMBMGA1UdJQQMMAoGCCsGAQUFBwMEMAsGA1UdDwQEAwIE8DAdBgNVHQ4EFgQU1xJln3hUeA/fRN6yTyk7OT6DSU0wHwYDVR0jBBgwFoAUToM+FGnv7F16lStfEf43MhZJVSswXAYDVR0fBFUwUzBRoE+gTYZLaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC9DUllQVE8tUFJPJTIwVGVzdCUyMENlbnRlciUyMDIoMSkuY3JsMIGsBggrBgEFBQcBAQSBnzCBnDBkBggrBgEFBQcwAoZYaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC90ZXN0LWNhLTIwMTRfQ1JZUFRPLVBSTyUyMFRlc3QlMjBDZW50ZXIlMjAyKDEpLmNydDA0BggrBgEFBQcwAYYoaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvb2NzcC9vY3NwLnNyZjAIBgYqhQMCAgMDQQBrsvMSbI8zrcGATqppTRcFEBxB9QeT80YoZ+ZmweEZk3tLXFvMQ7ezHogsKW0sL6XDVzJQKzDmHIfO49NbUm7Y" 
+}
+
+При успешном приеме сообщения ответ будет содержать JWT следующего содержания:  
+
+eyJJREpXVCI6NiwiYWN0aW9uIjoiTWVzc2FnZUNvbmZpcm0iLCJkYXRhX3R5cGUiOiJjYW1wYWluIiwiT0dSTiI6IjEyMzQ1Njc4OTA5ODciLCJLUFAiOiIxMjM0NTY3ODkiLCJDZXJ0NjQiOiJNSUlFWVRDQ0JCQ2dBd0lCQWdJVEVnQkJobTI1UjhJVkc2RnlNZ0FCQUVHR2JUQUlCZ1lxaFFNQ0FnTXdmekVqTUNFR0NTcUdTSWIzRFFFSkFSWVVjM1Z3Y0c5eWRFQmpjbmx3ZEc5d2NtOHVjblV4Q3pBSkJnTlZCQVlUQWxKVk1ROHdEUVlEVlFRSEV3Wk5iM05qYjNjeEZ6QVZCZ05WQkFvVERrTlNXVkJVVHkxUVVrOGdURXhETVNFd0h3WURWUVFERXhoRFVsbFFWRTh0VUZKUElGUmxjM1FnUTJWdWRHVnlJREl3SGhjTk1qQXdNakk0TVRNek1qSTBXaGNOTWpBd05USTRNVE0wTWpJMFdqQ0NBV2d4R0RBV0JnVXFoUU5rQVJJTk5UQTROemMwTmpZNU56VXlPREU2TURnR0ExVUVDUXd4MEtQUXV5N1FuOUdBMExYUmdkQzkwTFhRdmRHQjBMclF1TkM1SU5DUzBMRFF1eURRdEM0eE9TRFJnZEdDMFlBdU1URVRNQkVHQTFVRUNnd0swS0hRc05DODBZdlF1VEVWTUJNR0ExVUVCd3dNMEp6UXZ0R0IwTHJRc3RDd01Sb3dHQVlJS29VREE0RURBUUVTRERBd056Z3hORFV3T0RreU1URWJNQmtHQ1NxR1NJYjNEUUVKQVJZTWJXRnBiRUJ0WVdsc0xuSjFNUm93R0FZSUtvVURBNEVEQVFFU0RERXhNVEV4TVRFeE1URXhNVEVZTUJZR0JTcUZBMlFCRWcweE1URXhNVEV4TVRFeE1URXhNUXN3Q1FZRFZRUUdFd0pTVlRFaU1DQUdBMVVFS2d3WjBKalFzdEN3MEwwZzBKalFzdEN3MEwzUXZ0Q3kwTGpSaHpFUk1BOEdBMVVFREF3STBLRFJnOUM3MFl3eEdqQVlCZ05WQkFNTUVkQ1kwS0VnMEtIUXNOQzgwTDdRczlDK01SVXdFd1lEVlFRRURBelFtTkN5MExEUXZkQyswTEl3WmpBZkJnZ3FoUU1IQVFFQkFUQVRCZ2NxaFFNQ0FpUUFCZ2dxaFFNSEFRRUNBZ05EQUFSQTJNV2xNREpBUXBYcjJyU3hGQWk4UGh0UUozNmJ3NHF3YVNWcTkwNTNZektQVGJoMXdVNXdGMzJZM2lFUW5rUWwzU1hiWTQzWnhXZUVQZmR2UHZhSEw2T0NBWE13Z2dGdk1CTUdBMVVkSlFRTU1Bb0dDQ3NHQVFVRkJ3TUVNQXNHQTFVZER3UUVBd0lFOERBZEJnTlZIUTRFRmdRVTF4SmxuM2hVZUEvZlJONnlUeWs3T1Q2RFNVMHdId1lEVlIwakJCZ3dGb0FVVG9NK0ZHbnY3RjE2bFN0ZkVmNDNNaFpKVlNzd1hBWURWUjBmQkZVd1V6QlJvRStnVFlaTGFIUjBjRG92TDNSbGMzUmpZUzVqY25sd2RHOXdjbTh1Y25VdlEyVnlkRVZ1Y205c2JDOURVbGxRVkU4dFVGSlBKVEl3VkdWemRDVXlNRU5sYm5SbGNpVXlNRElvTVNrdVkzSnNNSUdzQmdnckJnRUZCUWNCQVFTQm56Q0JuREJrQmdnckJnRUZCUWN3QW9aWWFIUjBjRG92TDNSbGMzUmpZUzVqY25sd2RHOXdjbTh1Y25VdlEyVnlkRVZ1Y205c2JDOTBaWE4wTFdOaExUSXdNVFJmUTFKWlVGUlBMVkJTVHlVeU1GUmxjM1FsTWpCRFpXNTBaWElsTWpBeUtERXBMbU55ZERBMEJnZ3JCZ0VGQlFjd0FZWW9hSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZiMk56Y0M5dlkzTndMbk55WmpBSUJnWXFoUU1DQWdNRFFRQnJzdk1TYkk4enJjR0FUcXBwVFJjRkVCeEI5UWVUODBZb1orWm13ZUVaazN0TFhGdk1RN2V6SG9nc0tXMHNMNlhEVnpKUUt6RG1ISWZPNDlOYlVtN1kifQ==..HjvemZjdHdfKJeVWAkjuw1UVm3X4BnX21h30l1IIyu3J+b16bzcBgT2BRjifNT85NwZ/p1URhbVRmnUeEHbifA==
+
+
+
+
+
+Описание структуры данных метода получения классификаторов и справочников
+XSD-структура и XML-пакеты с данными приложены в файле Cls.rar.
+
+№
+п/пВид классификатора 
+в запросе/
+XSD/XMLОписание1DirectionsОбщероссийский классификатор специальностей по образованиюXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Directions">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Direction" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:short" name="IDDirection"/>
+              <xs:element type="xs:byte" name="section"/>
+              <xs:element type="xs:string" name="code"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="CodeMcko2011"/>
+              <xs:element type="xs:string" name="CodeMcko2013"/>
+              <xs:element type="xs:dateTime" name="Created"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+              <xs:element type="xs:short" name="IDParent"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Directions>
+    <Direction>
+    <IDDirection>1195</IDDirection>
+    <section>3</section>
+    <code>1.04.00.00</code>
+    <name>Химия</name>
+    <CodeMcko2011/>
+    <CodeMcko2013/>
+    <Created>2020-02-14T14:25:20.454604+03:00</Created>
+    <IDAuthor>0</IDAuthor>
+    <Actual>true</Actual>
+    <IDParent>1179</IDParent>
+    </Direction>
+  </Directions>2CampaignTypeТипы приемных компанийXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CampaignType">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Type" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDCampaignType"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+<CampaignType>
+  <Type>
+    <IDCampaignType>2</IDCampaignType>
+    <Name>Прием на обучение в магистратуру</Name>
+    <IDAuthor>0</IDAuthor>
+    <Actual>true</Actual>
+  </Type>
+  <Type>
+</CampaignType>3CampaignStatusСтатусы приемных компанийXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CampaignStatus">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Status" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDCampaignStatus"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <CampaignStatus>
+    <Status>
+      <IDCampaignStatus>1</IDCampaignStatus>
+      <Name>Набор не начался</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </Status>
+  </CampaignStatus>4BenefitСправочник льготXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Benefit">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Benefit" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDBenefit"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+              <xs:element type="xs:string" name="ShortName"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Benefit>
+    <Benefit>
+      <IDBenefit>1</IDBenefit>
+      <Name>Зачисление без вступительных испытаний</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+      <ShortName>Без вступ. испытаний</ShortName>
+    </Benefit>
+  </Benefit>5EducationFormФормы образованияXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EducationForm">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Education" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDEducationForm"/>
+              <xs:element type="xs:string" name="Code"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EducationForm>
+    <Education>
+      <IDEducationForm>1</IDEducationForm>
+      <Code/>
+      <Name>Очная форма</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </Education>
+  </EducationForm>6EducationLevelУровни образования ПКXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EducationLevel">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Education" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDEducationLevel"/>
+              <xs:element type="xs:byte" name="Code"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EducationLevel>
+    <Education>
+      <IDEducationLevel>1</IDEducationLevel>
+      <Code>17</Code>
+      <Name>СПО</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </Education>
+  </EducationLevel>7EducationSourceИсточник финансированияXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EducationSource">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Education" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDEducationSource"/>
+              <xs:element type="xs:string" name="Code"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EducationSource>
+    <Education>
+      <IDEducationSource>1</IDEducationSource>
+      <Code/>
+      <Name>Бюджетные места</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </Education>
+  </EducationSource>8EntranceTestTypeТип вступительного испытанияXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EntranceTestType">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="EntranceTestType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDEntranceTestType"/>
+              <xs:element type="xs:string" name="Code"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EntranceTestType>
+    <EntranceTestType>
+      <IDEntranceTestType>1</IDEntranceTestType>
+      <Code/>
+      <Name>Вступительные испытания</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </EntranceTestType>
+  </EntranceTestType>9LevelBudgetУровни бюджетаXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LevelBudget">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Budget" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDLevelBudget"/>
+              <xs:element type="xs:string" name="Code"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <LevelBudget>
+    <Budget>
+      <IDLevelBudget>1</IDLevelBudget>
+      <Code/>
+      <Name>Федеральный</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </Budget>
+  </LevelBudget>10OlympicDiplomaTypeТипы дипломов олимпиадXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OlympicDiplomaType">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DiplomType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDOlympicDiplomType"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <OlympicDiplomaType>
+    <DiplomType>
+      <IDOlympicDiplomType>1</IDOlympicDiplomType>
+      <Name>победитель</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </DiplomType>
+  </OlympicDiplomaType>11OlympicLevelУровни олимпиадXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OlympicLevel">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Level" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDOlympicLevel"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <OlympicLevel>
+    <Level>
+      <IDOlympicLevel>1</IDOlympicLevel>
+      <Name>Все уровни</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </Level>
+  </OlympicLevel>12SubjectОбразовательные предметыXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Subject">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Subj" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:short" name="IDSubject"/>
+              <xs:element type="xs:string" name="Code"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+              <xs:element type="xs:string" name="Olympic"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Subject>
+    <Subj>
+      <IDSubject>1</IDSubject>
+      <Code/>
+      <Name>?Русский язык</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+      <Olympic>true</Olympic>
+    </Subj>
+  </Subject>13EduLevelsCampaignTypesТипы ПК по уровням образованияXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EduLevelsCampaignTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="EduLevelsCampaignType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="ID"/>
+              <xs:element type="xs:byte" name="IDCampaignTypes"/>
+              <xs:element type="xs:byte" name="IDEducationLevel"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EduLevelsCampaignTypes>
+    <EduLevelsCampaignType>
+      <ID>1</ID>
+      <IDCampaignTypes>1</IDCampaignTypes>
+      <IDEducationLevel>1</IDEducationLevel>
+    </EduLevelsCampaignType>
+  </EduLevelsCampaignTypes>14AchievementCategoryКатегории индивидуальных достиженийXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="AchievementCategory">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Category" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="ID"/>
+              <xs:element type="xs:string" name="Actual"/>
+              <xs:element type="xs:string" name="Name"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <AchievementCategory>
+    <Category>
+      <ID>1</ID>
+      <Actual>true</Actual>
+      <Name>?Статус чемпиона и призера Олимпийских игр</Name>
+    </Category>
+  </AchievementCategory>15ApplicationStatusesСтатусы заявленийXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ApplicationStatuses">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="ApplicationStatus" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <ApplicationStatuses>
+    <ApplicationStatus>
+      <id>1</id>
+      <name>Новое</name>
+      <actual>true</actual>
+    </ApplicationStatus>
+  </ApplicationStatuses>16CompatriotCategoriesКатегории соотечественниковXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CompatriotCategories">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="CompatriotCategory" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <CompatriotCategories>
+    <CompatriotCategory>
+      <id>1</id>
+      <name>Документ, подтверждающий наличие гражданства    СССР</name>
+      <actual>true</actual>
+    </CompatriotCategory>
+  </CompatriotCategories>17CompositionThemesТемы сочиненийXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CompositionThemes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="CompositionThem" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:short" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:short" name="year_theme"/>
+              <xs:element type="xs:string" name="actual"/>
+              <xs:element type="xs:short" name="number_theme"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <CompositionThemes>
+    <CompositionThem>
+      <id>1</id>
+      <name>?Какого человека можно назвать героем своего времени?</name>
+      <year_theme>2016</year_theme>
+      <actual>true</actual>
+      <number_theme>101</number_theme>
+    </CompositionThem>
+  </CompositionThemes>18DisabilityTypesКатегории инвалидностиXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DisabilityTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DisabilityType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <DisabilityTypes>
+    <DisabilityType>
+      <id>1</id>
+      <name>?I</name>
+      <actual>true</actual>
+    </DisabilityType>
+  </DisabilityTypes>19DocumentCategoriesКатегории документовXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DocumentCategories">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DocumentCategory" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <DocumentCategories>
+    <DocumentCategory>
+      <id>7</id>
+      <name>Тип диплома в области спорта</name>
+      <actual>true</actual>
+    </DocumentCategory>
+  </DocumentCategories>20DocumentTypesТипы документовXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DocumentTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DocumentType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:byte" name="IDCategory"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <DocumentTypes>
+    <DocumentType>
+      <id>3</id>
+      <name>?Свидетельство о результатах ЕГЭ</name>
+      <IDCategory>2</IDCategory>
+      <actual>true</actual>
+    </DocumentType>
+  </DocumentTypes>21EntranceTestDocumentTypesТипы документов вступительного испытанияXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EntranceTestDocumentTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="EntranceTestDocumentType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EntranceTestDocumentTypes>
+    <EntranceTestDocumentType>
+      <id>1</id>
+      <name>Экзаменационная ведомость</name>
+      <actual>true</actual>
+    </EntranceTestDocumentType>
+  </EntranceTestDocumentTypes>22EntranceTestResultSourcesИсточник результата вступительного испытанияXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EntranceTestResultSources">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="EntranceTestResultSource" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EntranceTestResultSources>
+    <EntranceTestResultSource>
+      <id>1</id>
+      <name>Свидетельство ЕГЭ</name>
+      <actual>true</actual>
+    </EntranceTestResultSource>
+  </EntranceTestResultSources>23GenderПолXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Gender">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Gender" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Gender>
+    <Gender>
+      <id>1</id>
+      <name>Мужской</name> 
+      <actual>true</actual>
+    </Gender>
+  </Gender>24MinScoreSubjectsМинимальное значение ЕГЭ по предметамXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="MinScoreSubjects">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="MinScoreSubject" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:byte" name="id_subject"/>
+              <xs:element type="xs:short" name="ege_year"/>
+              <xs:element type="xs:byte" name="min_score"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <MinScoreSubjects>
+    <MinScoreSubject>
+      <id>1</id>
+      <id_subject>0</id_subject>
+      <ege_year>2015</ege_year>
+      <min_score>36</min_score>
+    </MinScoreSubject>
+  </MinScoreSubjects>25OkcmsОбщероссийский классификатор стран мираXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Okcm">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Okcm" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:short" name="id"/>
+              <xs:element type="xs:short" name="code"/>
+              <xs:element type="xs:string" name="short_name"/>
+              <xs:element type="xs:string" name="full_name"/>
+              <xs:element type="xs:string" name="af"/>
+              <xs:element type="xs:string" name="afg"/>
+              <xs:element type="xs:dateTime" name="utv_date"/>
+              <xs:element type="xs:dateTime" name="vved_date"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Okcm>
+    <Okcm>
+      <id>1</id>
+      <code>004</code>
+      <short_name>АФГАНИСТАН</short_name>
+      <full_name>Переходное Исламское Государство Афганистан</full_name>
+      <af>AF</af>
+      <afg>AFG</afg>
+      <utv_date>2004-07-16T00:00:00Z</utv_date>
+      <vved_date>2004-10-01T00:00:00Z</vved_date>
+      <actual>true</actual>
+    </Okcm>
+  </Okcm>26OktmosСправочник муниципалитетов (из ОКТМО)XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Oktmo">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Oktmo" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:short" name="id"/>
+              <xs:element type="xs:byte" name="ter"/>
+              <xs:element type="xs:short" name="kod1"/>
+              <xs:element type="xs:short" name="kod2"/>
+              <xs:element type="xs:byte" name="kod3"/>
+              <xs:element type="xs:byte" name="kc"/>
+              <xs:element type="xs:byte" name="section"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:dateTime" name="utv_date"/>
+              <xs:element type="xs:dateTime" name="vved_date"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Oktmo>
+    <Oktmo>
+      <id>2</id>
+      <ter>97</ter>
+      <kod1>629</kod1>
+      <kod2>425</kod2>
+      <kod3>000</kod3>
+      <kc>7</kc>
+      <section>1</section>
+      <name>Приволжское</name>
+      <utv_date>2013-06-14T00:00:00Z</utv_date>
+      <vved_date>2014-01-01T00:00:00Z</vved_date>
+    </Oktmo>
+  </Oktmo>27OlympicMinEgeМинимальное значение ЕГЭ для подтверждения олимпиадыXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OlympicMinEge">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="MinEge" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:short" name="ege_year"/>
+              <xs:element type="xs:byte" name="min_score"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <OlympicMinEge>
+    <MinEge>
+      <id>1</id>
+      <ege_year>2012</ege_year>
+      <min_score>65</min_score>
+    </MinEge>
+  </OlympicMinEge>28OrderAdmissionStatusesСтатус приказовXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OrderAdmissionStatuses">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OrderAdmissionStatus" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <OrderAdmissionStatuses>
+    <OrderAdmissionStatus>
+      <id>1</id>
+      <name>Нет заявлений</name>
+      <actual>true</actual>
+    </OrderAdmissionStatus>
+  </OrderAdmissionStatuses>29OrderAdmissionTypesТипы приказовXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OrderAdmissionTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OrderAdmissionType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <OrderAdmissionTypes>
+    <OrderAdmissionType>
+      <id>1</id>
+      <name>Приказ о зачислении</name>
+      <actual>true</actual>
+    </OrderAdmissionType>
+  </OrderAdmissionTypes>30OrphanCategoriesКатегория документов детей-сиротXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OrphanCategories">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OrphanCategory" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <OrphanCategories>
+    <OrphanCategory>
+      <id>1</id>
+      <name>?Свидетельство о смерти обоих или единственного родителя</name>
+      <actual>true</actual>
+    </OrphanCategory>
+  </OrphanCategories>31ParentsLostCategoriesКатегории граждан, родители и опекуны которых погибли при исполнении служебных обязанностейXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ParentsLostCategories">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="ParentsLostCategory" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <ParentsLostCategories>
+    <ParentsLostCategory>
+      <id>1</id>
+      <name>?Военнослужащие</name>
+      <actual>true</actual>
+    </ParentsLostCategory>
+  </ParentsLostCategories>32RadiationWorkCategories
+Категории граждан, участвовавших в работах на радиационных объектах или подвергшихся воздействию радиацииXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="RadiationWorkCategories">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="RadiationWorkCategory" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <RadiationWorkCategories>
+    <RadiationWorkCategory>
+      <id>1</id>
+      <name>?Подверженность воздействию радиации вследствие катастрофы на Чернобыльской АЭС</name>
+      <actual>true</actual>
+    </RadiationWorkCategory>
+  </RadiationWorkCategories>33RegionsСправочник регионовXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Regions">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Region" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Regions>
+    <Region>
+      <id>1</id>
+      <name>Республика Адыгея (Адыгея)</name>
+      <actual>true</actual>
+    </Region>
+  </Regions>34ReturnTypesТипы результатаXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ReturnTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Type" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <ReturnTypes>
+    <Type>
+      <id>1</id>
+      <name>Передача лично или через доверенное лицо</name>
+      <actual>true</actual>
+    </Type>
+  </ReturnTypes>35VeteranCategoriesКатегории граждан, участвовавших в боевых действияхXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="VeteranCategories">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="VeteranCategory" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <VeteranCategories>
+    <VeteranCategory>
+      <id>1</id>
+      <name>?Военнослужащие, участвовавшие в боевых действиях</name>
+      <actual>true</actual>
+    </VeteranCategory>
+  </VeteranCategories>36ViolationTypesТип нарушений в заявленииXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ViolationTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="ViolationType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>пример XML:<?xml version="1.0" encoding="UTF-8"?>
+  <ViolationTypes>
+    <ViolationType>
+      <id>1</id>
+      <name>Ожидает проверку</name>
+      <actual>true</actual>
+    </ViolationType>
+  </ViolationTypes>37OlympicsProfilesСведения об олимпиаде и ее организаторахXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="OlympicsProfiles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="OlympicProfiles" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="Actual"/>
+                            <xs:element type="xs:integer" name="ID"/>
+                            <xs:element type="xs:integer" name="IDOlympic"/>
+                            <xs:element type="xs:integer" name="IDProfile"/>
+                            <xs:element type="xs:integer" name="IDOlympicLevel"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+пример XML:<OlympicsProfiles>
+<OlympicProfiles><Actual>true</Actual>
+<ID>2</ID>
+<IDOlympic>614</IDOlympic>
+<IDProfile>14</IDProfile>
+<IDOlympicLevel>4</IDOlympicLevel>
+</OlympicProfiles>
+</OlympicsProfiles>
+38OlyProfilesПрофили олимпиадXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="OlyProfiles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Profiles" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="Actual"/>
+                            <xs:element type="xs:integer" name="ID"/>
+                            <xs:element type="xs:string" name="Name"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>пример XML:<OlyProfiles>
+<Profiles><Actual>true</Actual>
+<ID>2</ID>
+<Name>?естественные науки</Name></Profiles>
+</OlyProfiles>
+39OlympicsОлимпиадыXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Olympics">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Olympic" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="Actual"/>
+                            <xs:element type="xs:integer" name="ID"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:integer" name="OrderNumber"/>
+                            <xs:element type="xs:integer" name="OlympYear"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+пример XML:<Olympics>
+<Olympic>
+<Actual>true</Actual>
+<ID>1</ID>
+<Name>IV Южно-Российская межрегиональная олимпиада школьников &#34;Архитектура и искусство&#34;</Name>
+<OrderNumber>0</OrderNumber>
+<OlympYear>2012</OlympYear>
+</Olympic>
+</Olympics>
+
+
+Описание структуры данных метода внесение данных (сообщения) в систему 
+
+При значении поля data_type = «Campaign», для значения поля «Action» = «Add» и «Edit» 
+
+XML
+
+<PackageData>
+	<Campaign>
+		<UID>2019_06</UID>
+		<Name>Бакалавры и специалисты 2019</Name>
+		<YearStart>2019</YearStart>
+		<YearEnd>2019</YearEnd>
+		<EducationForms>
+			<IDEducationForm>1</IDEducationForm>
+			<IDEducationForm>2</IDEducationForm>
+		</EducationForms>
+		<EducationLevels>
+			<IDEducationLevel>1</IDEducationLevel>
+			<IDEducationLevel>2</IDEducationLevel>
+		</EducationLevels>
+		<IDCampaignType>1</IDCampaignType>
+		<IDCampaignStatus>2</IDCampaignStatus>
+	</Campaign>
+</PackageData>
+
+
+XSD
+
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Campaign">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UID"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:integer" name="YearStart"/>
+                            <xs:element type="xs:integer" name="YearEnd"/>
+                            <xs:element name="EducationForms">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="IDEducationForm" maxOccurs="unbounded" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="EducationLevels">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="IDEducationLevel" maxOccurs="unbounded" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:integer" name="IDCampaignType"/>
+                            <xs:element type="xs:integer" name="IDCampaignStatus"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+
+
+
+При значении поля data_type = «Campaign», для значения поля «Action» = «Remove»
+
+XML
+
+<PackageData>
+   <Campaign>
+      <UID>2019_03</UID>
+   </Campaign>
+</PackageData>
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:sequence>
+                    <xs:element name="Campaign">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element type="xs:string" name="UID"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+При значении поля data_type = «Achievements», для значения поля «Action» = «Add» и «Edit» 
+
+XML
+<PackageData>
+	<Achievement>
+		<UIDCampaign>2019_04</UIDCampaign>
+		<UID>JHDM-LJDH-SJDBHDq</UID>
+		<IDCategory>1</IDCategory>
+		<Name>Name</Name>
+		<MaxValue>3</MaxValue>
+	</Achievement>
+</PackageData>
+
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Achievement">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UIDCampaign"/>
+                            <xs:element type="xs:string" name="UID"/>
+                            <xs:element type="xs:integer" name="IDCategory"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:integer" name="MaxValue"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+
+При значении поля data_type = «Achievements», для значения поля «Action» = « Remove» 
+
+XML
+<PackageData>
+	<Achievement>
+		<UID>JHDM-LJDH-SJDBHDq</UID>
+	</Achievement>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Achievement">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UID"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+
+
+
+
+
+
+
+При значении поля data_type = « admission_volume», для значения поля «Action» = «Add» и «Edit» 
+
+XML
+<PackageData>
+	<AdmissionVolume>
+		<UID>AV-2-17403-2019-Bak4</UID>
+		<UIDCampaign>2019_06</UIDCampaign>
+		<IDDirection>1593</IDDirection>
+		<IDEducationLevel>2</IDEducationLevel>
+		<Budget_o>175</Budget_o>
+		<Budget_oz>15</Budget_oz>
+		<Budget_z>15</Budget_z>
+		<Quota_o>24</Quota_o>
+		<Quota_oz>15</Quota_oz>
+		<Quota_z>15</Quota_z>
+		<Paid_o>400</Paid_o>
+		<Paid_oz>15</Paid_oz>
+		<Paid_z>15</Paid_z>
+		<Target_o>36</Target_o>
+		<Target_oz>15</Target_oz>
+		<Target_z>15</Target_z>
+	</AdmissionVolume>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="AdmissionVolume">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UID" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:string" name="UIDCampaign" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="IDDirection" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="IDEducationLevel" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Budget_o" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Budget_oz" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Budget_z" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Quota_o" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Quota_oz" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Quota_z" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Paid_o" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Paid_oz" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Paid_z" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Target_o" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Target_oz" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Target_z" minOccurs="0" maxOccurs="1"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+При значении поля data_type = « admission_volume», для значения поля «Action» = «Remove»
+
+XML
+<PackageData>
+   <AdmissionVolume>
+      <UID>AV-2-17403-2019-Bak4</UID>
+   </AdmissionVolume>
+</PackageData>
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:sequence>
+                        <xs:element name="AdmissionVolume">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element type="xs:string" name="UID"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+При значении поля data_type = «competitive_groups», для значения поля «Action» = «Add» и «Edit» 
+
+
+XML
+<PackageData>
+	<CompetitiveGroup>
+		<UID>2019-CG-3256-22</UID>
+		<UIDCampaign>2019_06</UIDCampaign>
+		<Name>Бакалавриат-Экономика-очная-бюджет-2019-2</Name>
+		<IDLevelBudget>1</IDLevelBudget>
+		<IDEducationLevel>1</IDEducationLevel>
+		<IDEducationSource>1</IDEducationSource>
+		<IDEducationForm>1</IDEducationForm>
+		<IDDirection>1594</IDDirection>
+		<Budget_o>22</Budget_o>
+		<Budget_oz>1</Budget_oz>
+		<Budget_z>1</Budget_z>
+		<Quota_o>1</Quota_o>
+		<Quota_oz>1</Quota_oz>
+		<Quota_z>1</Quota_z>
+		<Paid_o>1</Paid_o>
+		<Paid_oz>1</Paid_oz>
+		<Paid_z>1</Paid_z>
+		<Target_o>1</Target_o>
+		<Target_oz>1</Target_oz>
+		<Target_z>1</Target_z>
+	</CompetitiveGroup>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CompetitiveGroup">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UID"/>
+                            <xs:element type="xs:string" name="UIDCampaign"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:integer" name="IDLevelBudget" minOccurs="0"/>
+                            <xs:element type="xs:integer" name="IDEducationLevel"/>
+                            <xs:element type="xs:integer" name="IDEducationSource"/>
+                            <xs:element type="xs:integer" name="IDEducationForm"/>
+                            <xs:element type="xs:integer" name="IDDirection"/>
+                            <xs:element type="xs:integer" name="Budget_o"/>
+                            <xs:element type="xs:integer" name="Budget_oz"/>
+                            <xs:element type="xs:integer" name="Budget_z"/>
+                            <xs:element type="xs:integer" name="Quota_o"/>
+                            <xs:element type="xs:integer" name="Quota_oz"/>
+                            <xs:element type="xs:integer" name="Quota_z"/>
+                            <xs:element type="xs:integer" name="Paid_o"/>
+                            <xs:element type="xs:integer" name="Paid_oz"/>
+                            <xs:element type="xs:integer" name="Paid_z"/>
+                            <xs:element type="xs:integer" name="Target_o"/>
+                            <xs:element type="xs:integer" name="Target_oz"/>
+                            <xs:element type="xs:integer" name="Target_z"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+
+
+При значении поля data_type = «competitive_groups», для значения поля «Action» = «Remove» 
+
+XML
+<PackageData>
+   <CompetitiveGroup>
+      <UID>2019-CG-3256-22</UID>
+   </CompetitiveGroup>
+</PackageData>
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:sequence>
+                        <xs:element name="CompetitiveGroup">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element type="xs:string" name="UID"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+При значении поля data_type = « competitive_benefits», для значения поля «Action» = «Add» и «Edit» 
+
+XML
+<PackageData>
+	<CompetitiveBenefit>
+		<UIDCompetitiveGroup>2019-CG-32562</UIDCompetitiveGroup>
+		<Creative>false</Creative>
+		<Athletic>false</Athletic>
+		<IDBenefit>1</IDBenefit>
+		<IDOlympicDiplomaType>3</IDOlympicDiplomaType>
+		<EgeMinValue>75</EgeMinValue>
+		<OlympicProfiles>
+			<IDOlympicProfile>2</IDOlympicProfile>
+		</OlympicProfiles>
+		<UID>D47C38AB-2BBC-4997-9006-8811BC8C79A1</UID>
+	</CompetitiveBenefit>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CompetitiveBenefit">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UIDCompetitiveGroup"/>
+                            <xs:element type="xs:string" name="Creative"/>
+                            <xs:element type="xs:string" name="Athletic"/>
+                            <xs:element type="xs:integer" name="IDBenefit"/>
+                            <xs:element type="xs:integer" name="IDOlympicDiplomaType"/>
+                            <xs:element type="xs:integer" name="EgeMinValue"/>
+                            <xs:element name="OlympicProfiles">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:byte" name="IDOlympicProfile" maxOccurs="unbounded" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:string" name="UID"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+
+При значении поля data_type = « competitive_benefits», для значения поля «Action» = «Remove» 
+
+XML
+<PackageData>
+	<CompetitiveBenefit>
+		<UID>D47C38AB-2BBC-4997-9006-881D1BC8C79A</UID>
+	</CompetitiveBenefit>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CompetitiveBenefit">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UID"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+
+
+
+При значении поля data_type = « competitive_group_programs », для значения поля «Action» = «Add» и «Edit» 
+
+XML
+<PackageData>
+	<CompetitiveGroupProgram>
+		<UIDCompetitiveGroup>2019-CG-32562</UIDCompetitiveGroup>
+		<UIDSubdivisionOrg>YHSV-PP</UIDSubdivisionOrg>
+		<Name>Наименование программы1</Name>
+		<UID>YHWB-DKMKSJI-KMNNV1</UID>
+	</CompetitiveGroupProgram>
+</PackageData>
+
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CompetitiveGroupProgram">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UIDCompetitiveGroup"/>
+                            <xs:element type="xs:string" name="UIDSubdivisionOrg"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:string" name="UID"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+При значении поля data_type = « competitive_group_programs », для значения поля «Action» = « Remove » 
+
+
+XML
+<PackageData>
+	<CompetitiveGroupProgram>
+		<UID>YHWB-DKMKSJI-K1MNNV</UID>
+	</CompetitiveGroupProgram>
+</PackageData>
+
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CompetitiveGroupProgram">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UID"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+При значении поля data_type = « entrance_tests», для значения поля «Action» = «Add» и «Edit» 
+
+XML
+<PackageData>
+	<EntranceTest>
+		<UID>2019-CG-3256-1</UID>
+		<UIDCompetitiveGroup>2019-CG-3256</UIDCompetitiveGroup>
+		<IDEntranceTestType>1</IDEntranceTestType>
+		<TestName>ТестИмя</TestName>
+		<IsEge>false</IsEge>
+		<MinScore>45</MinScore>
+		<Priority>2</Priority>
+		<IDSubject>1</IDSubject>
+	</EntranceTest>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="PackageData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="EntranceTest">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element type="xs:string" name="UID"/>
+							<xs:element type="xs:string" name="UIDCompetitiveGroup"/>
+							<xs:element type="xs:integer" name="IDEntranceTestType"/>
+							<xs:element type="xs:string" name="TestName"/>
+							<xs:element type="xs:boolean" name="IsEge"/>
+							<xs:element type="xs:integer" name="MinScore"/>
+							<xs:element type="xs:integer" name="Priority"/>
+							<xs:element type="xs:integer" name="IDSubject"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+
+
+
+При значении поля data_type = « entrance_tests», для значения поля «Action» = «Remove» 
+
+XML
+<PackageData>
+   <EntranceTest>
+      <UID>2019-CG-3256-1</UID>
+   </EntranceTest>
+</PackageData>
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="PackageData">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="EntranceTest">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element type="xs:string" name="UID"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
+
+
+
+При значении поля data_type = «entrance_test_benefits», для значения поля «Action» = «Add» и «Edit» 
+
+XML
+<PackageData>
+	<EntranceTestBenefit>
+		<UID>2019-CG-3256-isp0_cb_0</UID>
+		<UIDEntranceTest>2019-CG-3256-1</UIDEntranceTest>
+		<IDBenefit>3</IDBenefit>
+		<IDOlympicDiplomaType>1</IDOlympicDiplomaType>
+		<IDOlympicLevel>3</IDOlympicLevel>
+		<OlympicProfiles>
+			<IDOlympicProfile>3</IDOlympicProfile>
+			<IDOlympicProfile>2</IDOlympicProfile>
+		</OlympicProfiles>
+		<EgeMinValue>75</EgeMinValue>
+	</EntranceTestBenefit>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="PackageData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="EntranceTestBenefit">
+					<xs:complexType>
+						<xs:all>
+							<xs:element type="xs:string" name="UID"/>
+							<xs:element type="xs:string" name="UIDEntranceTest"/>
+							<xs:element type="xs:integer" name="IDBenefit"/>
+							<xs:element type="xs:integer" name="IDOlympicDiplomaType"/>
+							<xs:element type="xs:integer" name="IDOlympicLevel"/>
+							<xs:element name="OlympicProfiles">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type="xs:integer" name="IDOlympicProfile" maxOccurs="unbounded" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element type="xs:integer" name="EgeMinValue"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+
+
+
+
+При значении поля data_type = «entrance_test_benefits», для значения поля «Action» = «Remove» 
+
+XML
+<PackageData>
+   <EntranceTestBenefit>
+      <UID>2019-CG-3256-isp0_cb_0</UID>
+   </EntranceTestBenefit>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="PackageData">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="EntranceTestBenefit">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element type="xs:string" name="UID"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
+
+
+При значении поля data_type = «completitive_groups_applications_rating», для значения поля «Action» = «Add» 
+
+XML
+<PackageData>
+   <CompletitiveGroupsApplications>
+      <UIDCompetitiveGroup>1225</UIDCompetitiveGroup>
+      <AdmissionVolume>70</AdmissionVolume>
+      <CommonRating>50</CommonRating>
+      <FirstRating>50</FirstRating>
+      <AgreedRating>50</AgreedRating>
+      <ChangeRating>50</ChangeRating>
+      <CountFirstStep>50</CountFirstStep>
+      <CountSecondStep>20</CountSecondStep>
+      <CountApplication>20</CountApplication>
+      <CountAgreed>20</CountAgreed>
+      <Changed>2020-07-20T10:00:00+03:00</Changed>
+      <Applications>
+      <Application>
+         <IDApplicationChoice>
+            <IDApplication>55331</IDApplication>
+            <OrderID>100001</OrderID>
+         </IDApplicationChoice>
+         <FIO>Тестов1 А.А.</FIO>
+         <Rating>1</Rating>
+         <EithoutTests>false</EithoutTests>
+         <EntranceTest1>Тест1</EntranceTest1>
+         <Result1>15.5</Result1>
+         <EntranceTest2>Тест2</EntranceTest2>
+         <Result2>10.5</Result2>
+         <EntranceTest3>Тест3</EntranceTest3>
+         <Result3>22.7</Result3>
+         <EntranceTest4>Тест4</EntranceTest4>
+         <Result4>9.2</Result4>
+         <EntranceTest5>Тест5</EntranceTest5>
+         <Result5>30</Result5>
+         <Benefit>false</Benefit>
+         <SumMark>87.9</SumMark>
+         <Agreed>true</Agreed>
+         <Original>false</Original>
+      </Application>
+      <Application>
+         <IDApplicationChoice>
+            <IDApplication>55332</IDApplication>
+         </IDApplicationChoice>
+         <FIO>Тестов2 А.А.</FIO>
+         <Rating>2</Rating>
+         <WithoutTests>true</WithoutTests>
+         <ReasonWithoutTests>Победитель олимпиады</ReasonWithoutTests>
+         <EntranceTest1>Тест1</EntranceTest1>
+         <Result1>0</Result1>
+         <EntranceTest2>Тест2</EntranceTest2>
+         <Result2>0</Result2>
+         <EntranceTest3>Тест3</EntranceTest3>
+         <Result3>0</Result3>
+         <Benefit>false</Benefit>
+         <SumMark>80</SumMark>
+         <Agreed>true</Agreed>
+         <Original>true</Original>
+         <Addition>Всероссийская олимпиада по физике</Addition>
+      </Application>
+      <Application>
+         <IDApplicationChoice>
+            <IDApplication>55333</IDApplication>
+            <OrderID>100002</OrderID>
+         </IDApplicationChoice>
+         <FIO>Тестов3 А.А.</FIO>
+         <Rating>3</Rating>
+         <WithoutTests>false</WithoutTests>
+         <EntranceTest1>Тест1</EntranceTest1>
+         <result1>15.5</result1>
+         <EntranceTest2>Тест2</EntranceTest2>
+         <Result2>10.5</Result2>
+         <EntranceTest3>Тест3</EntranceTest3>
+         <Result3>15.4</Result3>
+         <EntranceTest4>Тест4</EntranceTest4>
+         <Result4>9.2</Result4>
+         <EntranceTest5>Тест5</EntranceTest5>
+         <Result5>25</Result5>
+         <Benefit>true</Benefit>
+         <ReasonBenefit>Инвалидность</ReasonBenefit>
+         <SumMark>75.6</SumMark>
+         <Agreed>false</Agreed>
+         <Original>false</Original>
+      </Application>
+      </Applications>
+   </CompletitiveGroupsApplications>
+</PackageData>
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="PackageData">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="CompletitiveGroupsApplications">
+               <xs:complexType>
+                  <xs:all>
+                     <xs:element type="xs:string" name="UIDCompetitiveGroup"/>
+                     <xs:element type="xs:integer" name="AdmissionVolume"/>
+                     <xs:element type="xs:integer" name="CommonRating"/>
+                     <xs:element type="xs:integer" name="FirstRating"/>
+                     <xs:element type="xs:integer" name="AgreedRating"/>
+                     <xs:element type="xs:integer" name="ChangeRating"/>
+                     <xs:element type="xs:integer" name="CountFirstStep"/>
+                     <xs:element type="xs:integer" name="CountSecondStep"/>
+                     <xs:element type="xs:integer" name="CountApplication"/>
+                     <xs:element type="xs:integer" name="CountAgreed"/>
+                     <xs:element type="xs:dateTime" name="Changed"/>
+                     <xs:element name="Applications">
+                        <xs:complexType>
+                           <xs:sequence>
+                              <xs:element name="Application" maxOccurs="unbounded" minOccurs="0">
+                                 <xs:complexType>
+                                    <xs:all>
+                                       <xs:element name="IDApplicationChoice">
+                                          <xs:complexType>
+                                             <xs:choice>
+                                                <xs:element type="xs:int" name="IDApplication"/>
+                                                <xs:element type="xs:int" name="OrderID" minOccurs="0"/>
+                                             </xs:choice>
+                                          </xs:complexType>
+                                       </xs:element>
+                                       <xs:element type="xs:string" name="FIO"/>
+                                       <xs:element type="xs:integer" name="Rating"/>
+                                       <xs:element type="xs:string" name="EithoutTests" minOccurs="0"/>
+                                       <xs:element type="xs:string" name="WithoutTests" minOccurs="0"/>
+                                       <xs:element type="xs:string" name="ReasonWithoutTests" minOccurs="0"/>
+                                       <xs:element type="xs:string" name="EntranceTest1"/>
+                                       <xs:element type="xs:float" name="Result1" minOccurs="0"/>
+                                       <xs:element type="xs:string" name="EntranceTest2"/>
+                                       <xs:element type="xs:float" name="Result2"/>
+                                       <xs:element type="xs:string" name="EntranceTest3"/>
+                                       <xs:element type="xs:float" name="Result3"/>
+                                       <xs:element type="xs:string" name="EntranceTest4" minOccurs="0"/>
+                                       <xs:element type="xs:float" name="Result4" minOccurs="0"/>
+                                       <xs:element type="xs:string" name="EntranceTest5" minOccurs="0"/>
+                                       <xs:element type="xs:integer" name="Result5" minOccurs="0"/>
+                                       <xs:element type="xs:string" name="Benefit"/>
+                                       <xs:element type="xs:string" name="ReasonBenefit" minOccurs="0"/>
+                                       <xs:element type="xs:float" name="SumMark"/>
+                                       <xs:element type="xs:string" name="Agreed"/>
+                                       <xs:element type="xs:string" name="Original"/>
+                                       <xs:element type="xs:string" name="Addition" minOccurs="0"/>
+                                    </xs:all>
+                                 </xs:complexType>
+                              </xs:element>
+                           </xs:sequence>
+                        </xs:complexType>
+                     </xs:element>
+                  </xs:all>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
+
+
+
+
+     Инструкция по созданию  тестового сертификата в среде Linux
+
+     Основы данной инструкции описаны в статье по адресу  http://blog.pws.ru/2014/05/15/crypto-pro-test-cert/
+      
+     
+     Для процесса создания тестового сертификата понадобятся следующие ресурсы:
+     1) Утилита  cryptcp 
+     https://www.cryptopro.ru/products/other/cryptcp
+     2) Тестовый УЦ
+     Адрес сайта тестового УЦ: http://www.cryptopro.ru/certsrv/
+     
+     Предполагается, что уже созданно хранилище для сертификатов. Проверить наличие хранилища можно с помощью команды
+     /opt/cprocsp/bin/amd64/csptest -keyset -enum_cont -fqcn –verifyc
+     
+     В этом случае будет выведен список сертифкатов в хранилище в следующем формате:
+     \\.\HDIMAGE\cert1
+      \\.\HDIMAGE\cert2
+     
+     Где собственно HDIMAGE название хранилища и обозначает, что сертификаты хранятся на жестком диске.
+     
+     Если такого хранилища не существует, то его можно создать (из под пользователя root):
+     
+/opt/cprocsp/sbin/amd64/cpconfig -hardware reader -add HDIMAGE store
+     
+     Теперь добавляем в хранилище контейнер для сертификата:
+     
+     /opt/cprocsp/bin/amd64/csptest -keyset -newkeyset -cont '\\.\HDIMAGE\cert3'
+     
+
+Утилита попросит понажимать клавиши, для генерации случаных чисел. Так же попросит ввести пароль для доступа к контейнеру. Лучше ввести пустой пароль – нажать Enter два раза. Так проще и меньше проблем будет при дальнейшей работе.
+     Теперь создадим запрос на получение сертификата для созданного контейнера cert3:
+     Внимание!! Значение  OGRN должно содержать ОГРН организации зарегистрированной в системе.
+     
+/opt/cprocsp/bin/amd64/cryptcp -creatrqst -dn "STREET=Ул.Улица д.20 стр.1, O=Организация, L=Город,  E=mail@mail.ru, INN=111111111111, OGRN=1111111111111, C=RU, G=Имя отчество, T=Должность, CN=Информационная система , SN=Фамилия" -nokeygen -both -ku -cont 'cert3' cert3.req
+     
+     В параметре -dn указываются данные, которые будут хранится в поле Subject сертификата. Созданый запрос будет сохранен в файле cert3.req. Эти данные нужны для получения сертификата в удостоверяющем центре. Для тестового сертификата можно воспользоваться тестовым удостоверяющим центром КриптоПро.
+     Адрес сайта тестового УЦ: http://www.cryptopro.ru/certsrv/
+     
+     Нам нужен пункт «Отправить запрос, используя base-64 шифрованный файл PKCS #10 или PKCS #7». 
+     На следующей странице в поле «Сохраненный запрос» вставляем содержимое файла cert3.req и нажимаем кнопку «Выдать».
+     Если все прошло успешно, то будет показано сообщение что сертификат выдан. Выбираем «DER-шифрование» и нажимаем ссылку «Загрузить цепочку сертификатов». Скачанный файл сохраняем с именем cert3.p7b (или любым другим, главное запомнить его, чтобы потом найти для следующей операции).
+     Теперь надо установить полученный сертификат в контейнер:
+     
+/opt/cprocsp/bin/amd64/certmgr -inst -store uMy -file ./cert3.p7b -cont '\\.\HDIMAGE\cert3'
+     
+     Т.е. устанавливаем полученный сертифкат в контейнер cert3. Так как мы выбрали цепочку сертификатов, то при установке утилита попросит ввести номер устанавливаемого сертификата. Смотрим по Subject какой сертификат «наш» и устанавливаем его. Второй сертификат — это корневой сертификат и его надо установить отдельно.
+     Корневой сертификат устанавливается с правами пользователя root:
+     
+sudo /opt/cprocsp/bin/amd64/certmgr -inst -store uRoot -file ./cert3.p7b
+     
+     Проверить, что все установилось корректно и посмотреть список сертификатов можно с помощью команды:
+     
+     /opt/cprocsp/bin/amd64/certmgr –list
+     
+     Особое внимание в данных сертификата следует уделить на поле «PrivateKey Link». Если там значение «No», то значит где-то возникли ошибки и возможно не был добавлен корневой сертификат или еще что-то.
+Работосопобность установленного сертификата можно проверить на следующей странице: 
+
+http://www.cryptopro.ru/sites/default/files/products/cades/demopage/simple.html
+
+     Там используется КриптоПро ЭЦП Browser plug-in. Но раз вы собрались работать с ЭЦП, то либо уже у вас есть, либо понадобится в скором времени. Ставится он довольно легко и существует под все основные браузеры.
+     На данной странице выбираем только что установленный сертификат и пробуем подписать тестовые данные. В результате получаем либо сообщение об ошибке, либо ответ сервера: «Тип подписи: простая. Подпись проверена.». В этом случае можно сказать что плагин установлен и работает нормально, а созданный сертифкат обладает всей функциональностью и может использоваться для тестирования ЭЦП, а также всего что с этим связанно.
+
+

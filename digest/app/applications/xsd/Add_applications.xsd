@@ -1,0 +1,289 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Application" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element type="xs:long" name="SNILS"/>
+                            <xs:element type="xs:boolean" name="FirstHigherEducation"/>
+                            <xs:element type="xs:boolean" name="NeedHostel" minOccurs="0"/>
+                            <xs:element type="xs:boolean" name="Agreed" minOccurs="0"/>
+                            <xs:element type="xs:boolean" name="Original" minOccurs="0"/>
+                            <xs:element type="xs:boolean" name="SpecialConditions"/>
+                            <xs:element type="xs:boolean" name="DistanceTest"/>
+                            <xs:element type="xs:integer" name="UIDCompetitiveGroup"/>
+                            <xs:element type="xs:integer" name="UIDCompetitiveGroupTarget" minOccurs="0"/>
+                            <xs:element type="xs:integer" name="IDStatus"/>
+                            <xs:element type="xs:string"  name="StatusComment" minOccurs="0"/>
+                            <xs:element type="xs:integer" name="IDBenefit" minOccurs="0"/>
+                            <xs:element type="xs:integer" name="IDOrderAdmission" minOccurs="0"/>
+                            <xs:element type="xs:integer" name="Priority"/>
+                            <xs:element type="xs:integer" name="IDViolation" minOccurs="0"/>
+                            <xs:element name="IDDisabledDocumentChoice" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:choice>
+                                        <xs:element type="xs:string" name="UID"/>
+                                        <xs:element type="xs:integer" name="UIDEpgu"/>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:float" name="Rating" minOccurs="0"/>
+                            <xs:element type="xs:integer" name="IDReturnType" minOccurs="0"/>
+                            <xs:element type="xs:string" name="AppNumber"/>
+                            <xs:element type="xs:string" name="DistancePlace" minOccurs="0"/>
+                            <xs:element name="IDApplicationChoice" >
+                                <xs:complexType>
+                                    <xs:choice>
+                                        <xs:element type="xs:string" name="UID"/>
+                                        <xs:element type="xs:integer" name="UIDEpgu"/>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:dateTime" name="RegistrationDate"/>
+                            <xs:element type="xs:dateTime" name="AgreedDate" minOccurs="0"/>
+                            <xs:element type="xs:dateTime" name="DisagreedDate" minOccurs="0"/>
+                            <xs:element type="xs:dateTime" name="OrderAdmissionDate" minOccurs="0"/>
+                            <xs:element type="xs:dateTime" name="ReturnDate" minOccurs="0"/>
+                            <xs:element type="xs:dateTime" name="OriginalDoc" minOccurs="0"/>
+                            <xs:element name="Achievements" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="Achievement" minOccurs="0" >
+                                            <xs:complexType>
+                                                <xs:all>
+                                                <xs:element name="IDAchievementChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:integer" name="IDCategory"/>
+                                                <xs:element type="xs:string" name="Name"/>
+                                                <xs:element type="xs:float" name="Mark" minOccurs="0"/>
+                                                <xs:element name="IDAchievementDocumentChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:string" name="File"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Documents" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:all>
+                                    <xs:element name="Identification">
+                                        <xs:complexType>
+                                            <xs:all>
+                                                <xs:element name="IDDocChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                            </xs:all>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="Educations">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element name="IDDocChoice" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:choice>
+                                                                <xs:element type="xs:string" name="UID"/>
+                                                                <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                            </xs:choice>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    <xs:element name="Ege">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element name="IDDocChoice" minOccurs="0">
+                                                        <xs:complexType>
+                                                            <xs:choice>
+                                                                <xs:element type="xs:string" name="UID"/>
+                                                                <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                            </xs:choice>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    <xs:element name="Compatriot" minOccurs="0" >
+                                        <xs:complexType>
+                                            <xs:all>
+                                                <xs:element name="IDDocChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                            </xs:all>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="Composition" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:all>
+                                                <xs:element name="IDDocChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                            </xs:all>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="Disability" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:all>
+                                                <xs:element name="IDDocChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                            </xs:all>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="Militaries" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:all>
+                                                <xs:element name="IDDocChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                            </xs:all>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="Olympics" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:all>
+                                                <xs:element name="IDDocChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                            </xs:all>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="Orphans" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:all>
+                                                <xs:element name="IDDocChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                            </xs:all>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="Other" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:all>
+                                                <xs:element name="IDDocChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                            </xs:all>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="ParentsLost" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:all>
+                                                <xs:element name="IDDocChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                            </xs:all>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="RadiationWork" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:all>
+                                                <xs:element name="IDDocChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                            </xs:all>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="Veteran" minOccurs="0">
+                                        <xs:complexType>
+                                            <xs:all>
+                                                <xs:element name="IDDocChoice" minOccurs="0">
+                                                    <xs:complexType>
+                                                        <xs:choice>
+                                                            <xs:element type="xs:string" name="UID"/>
+                                                            <xs:element type="xs:integer" name="UIDEpgu"/>
+                                                        </xs:choice>
+                                                    </xs:complexType>
+                                                </xs:element>
+                                                <xs:element type="xs:dateTime" name="OriginalDoc"/>
+                                            </xs:all>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+

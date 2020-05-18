@@ -1,0 +1,46 @@
+<PackageData>
+	<Entrants>
+
+		<SNILS>70123123121</SNILS>
+		<Surname>Тестовой</Surname>
+		<Name>Тест</Name>
+		<Patronymic>Тестович</Patronymic>
+		<IDGender>1</IDGender>
+		<Birthday>2020-07-20T10:00:00+03:00</Birthday>
+		<Birthplace>Тут</Birthplace>
+		<Phone>8-111-111-11-11</Phone>
+		<Email>test@mail.ru</Email>
+		<IDOKCM>12</IDOKCM>
+		<UidEpgu>12</UidEpgu>
+		<RegistrationAddr>
+			<FullAddr>полный аддресс</FullAddr>
+			<IndexAddr>107207</IndexAddr>
+			<IDRegion>20</IDRegion>
+			<Area>Тут</Area>
+			<City>Москва</City>
+			<CityArea>Здесь</CityArea>
+			<Street>Байкальская</Street>
+			<AdditionalArea>20</AdditionalArea>
+			<AdditionalStreet>Байкальская 2</AdditionalStreet>
+			<House>20</House>
+			<Building1>20</Building1>
+			<Building2>20</Building2>
+			<Apartment>98</Apartment>
+		</RegistrationAddr>
+		<FactAddr>
+			<FullAddr>полный аддресс</FullAddr>
+			<IndexAddr>107207</IndexAddr>
+			<IDRegion>20</IDRegion>
+			<Area>Тут</Area>
+			<City>Москва</City>
+			<CityArea>Здесь</CityArea>
+			<Street>Байкальская</Street>
+			<AdditionalArea>20</AdditionalArea>
+			<AdditionalStreet>Байкальская 2</AdditionalStreet>
+			<House>20</House>
+			<Building1>20</Building1>
+			<Building2>20</Building2>
+			<Apartment>98</Apartment>
+		</FactAddr>
+	</Entrants>
+</PackageData>

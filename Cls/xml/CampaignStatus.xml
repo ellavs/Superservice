@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CampaignStatus>
+<Status><ID>1</ID><Name>Набор не начался</Name><Actual>true</Actual></Status><Status><ID>3</ID><Name>Завершена</Name><Actual>true</Actual></Status><Status><ID>2</ID><Name>Идет набор</Name><Actual>true</Actual></Status></CampaignStatus>

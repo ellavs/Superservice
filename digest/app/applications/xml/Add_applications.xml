@@ -1,0 +1,210 @@
+<PackageData>
+  <!--Zero or more repetitions:-->
+  <Application>
+    <SNILS>10</SNILS>
+    <FirstHigherEducation>false</FirstHigherEducation>
+    <!--Optional:-->
+    <NeedHostel>true</NeedHostel>
+    <!--Optional:-->
+    <Agreed>true</Agreed>
+    <!--Optional:-->
+    <Original>true</Original>
+    <SpecialConditions>true</SpecialConditions>
+    <DistanceTest>true</DistanceTest>
+    <UIDCompetitiveGroup>100</UIDCompetitiveGroup>
+    <!--Optional:-->
+    <UIDCompetitiveGroupTarget>100</UIDCompetitiveGroupTarget>
+    <IDStatus>100</IDStatus>
+    <!--Optional:-->
+    <StatusComment>string</StatusComment>
+    <!--Optional:-->
+    <IDBenefit>100</IDBenefit>
+    <!--Optional:-->
+    <IDOrderAdmission>100</IDOrderAdmission>
+    <Priority>100</Priority>
+    <!--Optional:-->
+    <IDViolation>100</IDViolation>
+    <!--Optional:-->
+    <IDDisabledDocumentChoice>
+      <!--You have a CHOICE of the next 2 items at this level-->
+      <UID>string</UID>
+      <UIDEpgu>100</UIDEpgu>
+    </IDDisabledDocumentChoice>
+    <!--Optional:-->
+    <Rating>1.5E2</Rating>
+    <!--Optional:-->
+    <IDReturnType>100</IDReturnType>
+    <AppNumber>string</AppNumber>
+    <!--Optional:-->
+    <DistancePlace>string</DistancePlace>
+    <IDApplicationChoice>
+      <!--You have a CHOICE of the next 2 items at this level-->
+      <UID>string</UID>
+      <UIDEpgu>100</UIDEpgu>
+    </IDApplicationChoice>
+    <RegistrationDate>2006-08-19T21:27:14+04:00</RegistrationDate>
+    <!--Optional:-->
+    <AgreedDate>2009-05-16T16:42:28+04:00</AgreedDate>
+    <!--Optional:-->
+    <DisagreedDate>2003-08-09T04:18:37+04:00</DisagreedDate>
+    <!--Optional:-->
+    <OrderAdmissionDate>2012-09-13T17:00:34+04:00</OrderAdmissionDate>
+    <!--Optional:-->
+    <ReturnDate>2009-10-14T11:16:36</ReturnDate>
+    <!--Optional:-->
+    <OriginalDoc>2010-03-18T19:05:32</OriginalDoc>
+    <!--Optional:-->
+    <Achievements>
+      <!--Optional:-->
+      <Achievement>
+        <!--Optional:-->
+        <IDAchievementChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDAchievementChoice>
+        <IDCategory>100</IDCategory>
+        <Name>string</Name>
+        <!--Optional:-->
+        <Mark>1.5E2</Mark>
+        <!--Optional:-->
+        <IDAchievementDocumentChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDAchievementDocumentChoice>
+        <File>string</File>
+      </Achievement>
+    </Achievements>
+    <!--Optional:-->
+    <Documents>
+      <Identification>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2018-12-28T22:51:14+03:00</OriginalDoc>
+      </Identification>
+      <Educations>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2017-11-01T11:15:53+03:00</OriginalDoc>
+      </Educations>
+      <Ege>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2014-06-10T22:33:25+04:00</OriginalDoc>
+      </Ege>
+      <!--Optional:-->
+      <Compatriot>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2003-11-10T10:56:46+03:00</OriginalDoc>
+      </Compatriot>
+      <!--Optional:-->
+      <Composition>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2000-09-25T10:18:09+04:00</OriginalDoc>
+      </Composition>
+      <!--Optional:-->
+      <Disability>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2015-11-05T07:47:14+04:00</OriginalDoc>
+      </Disability>
+      <!--Optional:-->
+      <Militaries>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2017-10-20T04:04:37+04:00</OriginalDoc>
+      </Militaries>
+      <!--Optional:-->
+      <Olympics>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2000-01-07T00:03:12+04:00</OriginalDoc>
+      </Olympics>
+      <!--Optional:-->
+      <Orphans>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2017-08-18T23:01:40+04:00</OriginalDoc>
+      </Orphans>
+      <!--Optional:-->
+      <Other>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2016-09-12T00:45:33+04:00</OriginalDoc>
+      </Other>
+      <!--Optional:-->
+      <ParentsLost>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2005-01-22T02:35:36+03:00</OriginalDoc>
+      </ParentsLost>
+      <!--Optional:-->
+      <RadiationWork>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2004-01-03T01:23:49+04:00</OriginalDoc>
+      </RadiationWork>
+      <!--Optional:-->
+      <Veteran>
+        <!--Optional:-->
+        <IDDocChoice>
+          <!--You have a CHOICE of the next 2 items at this level-->
+          <UID>string</UID>
+          <UIDEpgu>100</UIDEpgu>
+        </IDDocChoice>
+        <OriginalDoc>2011-06-03T23:00:00+04:00</OriginalDoc>
+      </Veteran>
+    </Documents>
+  </Application>
+</PackageData>

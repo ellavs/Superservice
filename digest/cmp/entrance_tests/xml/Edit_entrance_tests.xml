@@ -1,0 +1,12 @@
+<PackageData>
+	<EntranceTest>
+		<UID>2019-CG-3256-2</UID>
+		<UIDCompetitiveGroup>2019-CG-32562</UIDCompetitiveGroup>
+		<IDEntranceTestType>1</IDEntranceTestType>
+		<TestName>ТестИмя1</TestName>
+		<IsEge>false</IsEge>
+		<MinScore>45</MinScore>
+		<Priority>2</Priority>
+		<IDSubject>1</IDSubject>
+	</EntranceTest>
+</PackageData>

@@ -1,0 +1,25 @@
+<PackageData>
+    <!--Zero or more repetitions:-->
+    <Identification>
+        <SNILS>10</SNILS>
+        <IDDocumentType>3</IDDocumentType>
+        <Surname>string</Surname>
+        <Name>string</Name>
+        <!--Optional:-->
+        <Patronymic>string</Patronymic>
+        <!--Optional:-->
+        <DocSeries>string</DocSeries>
+        <DocNumber>3</DocNumber>
+        <DocOrganization>string</DocOrganization>
+        <IssueDate>2008-09-29T05:49:45</IssueDate>
+        <IDOkcm>3</IDOkcm>
+        <File>3</File>
+        <!--Optional:-->
+        <SubdivisionCode>string</SubdivisionCode>
+        <IDIdentificationChoice>
+            <!--You have a CHOICE of the next 2 items at this level-->
+            <UID>string</UID>
+            <UIDEpgu>3</UIDEpgu>
+        </IDIdentificationChoice>
+    </Identification>
+</PackageData>

@@ -1,0 +1,20 @@
+<PackageData>
+	<DistributedAdmissionVolume>
+		<UID>AV-2-17403-2019-Bak4-1</UID>
+		<UIDAdmissionVolume>AV-2-17403-2019-Bak4</UIDAdmissionVolume>
+		<IDDirection>1594</IDDirection>
+		<IDLevelBudget>3</IDLevelBudget>
+		<Budget_o>17</Budget_o>
+		<Budget_oz>1</Budget_oz>
+		<Budget_z>1</Budget_z>
+		<Quota_o>2</Quota_o>
+		<Quota_oz>1</Quota_oz>
+		<Quota_z>1</Quota_z>
+		<Paid_o>40</Paid_o>
+		<Paid_oz>1</Paid_oz>
+		<Paid_z>1</Paid_z>
+		<Target_o>3</Target_o>
+		<Target_oz>1</Target_oz>
+		<Target_z>1</Target_z>
+	</DistributedAdmissionVolume>
+</PackageData>
