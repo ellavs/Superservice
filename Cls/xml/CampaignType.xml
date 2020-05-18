@@ -1,3 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CampaignType>
-<Type><ID>2</ID><Name>Прием на обучение в магистратуру</Name><Actual>true</Actual></Type><Type><ID>3</ID><Name>Прием на обучение на СПО</Name><Actual>true</Actual></Type><Type><ID>4</ID><Name>Прием на подготовку кадров высшей квалификации</Name><Actual>true</Actual></Type><Type><ID>5</ID><Name>Прием иностранцев по направлениям Минобрнауки</Name><Actual>true</Actual></Type><Type><ID>1</ID><Name>Прием на обучение на бакалавриат/специалитет</Name><Actual>true</Actual></Type></CampaignType>
+    <Type>
+        <ID>2</ID>
+        <Name>Прием на обучение в магистратуру</Name>
+        <Actual>true</Actual>
+    </Type>
+    <Type>
+        <ID>3</ID>
+        <Name>Прием на обучение на СПО</Name>
+        <Actual>true</Actual>
+    </Type>
+    <Type>
+        <ID>4</ID>
+        <Name>Прием на подготовку кадров высшей квалификации</Name>
+        <Actual>true</Actual>
+    </Type>
+    <Type>
+        <ID>5</ID>
+        <Name>Прием иностранцев по направлениям Минобрнауки</Name>
+        <Actual>true</Actual>
+    </Type>
+    <Type>
+        <ID>1</ID>
+        <Name>Прием на обучение на бакалавриат/специалитет</Name>
+        <Actual>true</Actual>
+    </Type>
+</CampaignType>

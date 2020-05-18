@@ -1,3 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OlympicMinEge>
-<MinEge><ID>1</ID><EgeYear>2012</EgeYear><MinScore>65</MinScore></MinEge><MinEge><ID>2</ID><EgeYear>2013</EgeYear><MinScore>65</MinScore></MinEge><MinEge><ID>3</ID><EgeYear>2014</EgeYear><MinScore>65</MinScore></MinEge><MinEge><ID>4</ID><EgeYear>2015</EgeYear><MinScore>65</MinScore></MinEge><MinEge><ID>5</ID><EgeYear>2016</EgeYear><MinScore>75</MinScore></MinEge><MinEge><ID>6</ID><EgeYear>2017</EgeYear><MinScore>75</MinScore></MinEge><MinEge><ID>7</ID><EgeYear>2018</EgeYear><MinScore>75</MinScore></MinEge><MinEge><ID>8</ID><EgeYear>2019</EgeYear><MinScore>75</MinScore></MinEge></OlympicMinEge>
+    <MinEge>
+        <ID>1</ID>
+        <EgeYear>2012</EgeYear>
+        <MinScore>65</MinScore>
+    </MinEge>
+    <MinEge>
+        <ID>2</ID>
+        <EgeYear>2013</EgeYear>
+        <MinScore>65</MinScore>
+    </MinEge>
+    <MinEge>
+        <ID>3</ID>
+        <EgeYear>2014</EgeYear>
+        <MinScore>65</MinScore>
+    </MinEge>
+    <MinEge>
+        <ID>4</ID>
+        <EgeYear>2015</EgeYear>
+        <MinScore>65</MinScore>
+    </MinEge>
+    <MinEge>
+        <ID>5</ID>
+        <EgeYear>2016</EgeYear>
+        <MinScore>75</MinScore>
+    </MinEge>
+    <MinEge>
+        <ID>6</ID>
+        <EgeYear>2017</EgeYear>
+        <MinScore>75</MinScore>
+    </MinEge>
+    <MinEge>
+        <ID>7</ID>
+        <EgeYear>2018</EgeYear>
+        <MinScore>75</MinScore>
+    </MinEge>
+    <MinEge>
+        <ID>8</ID>
+        <EgeYear>2019</EgeYear>
+        <MinScore>75</MinScore>
+    </MinEge>
+</OlympicMinEge>

@@ -1,3 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DocumentCategories>
-<DocumentCategory><ID>7</ID><Name>Тип диплома в области спорта</Name><Actual>true</Actual></DocumentCategory><DocumentCategory><ID>1</ID><Name>﻿Удостоверяющие личность</Name><Actual>true</Actual></DocumentCategory><DocumentCategory><ID>2</ID><Name>Основание для оценки</Name><Actual>true</Actual></DocumentCategory><DocumentCategory><ID>3</ID><Name>Документ об образовании</Name><Actual>true</Actual></DocumentCategory><DocumentCategory><ID>4</ID><Name>Основание для льготы</Name><Actual>true</Actual></DocumentCategory><DocumentCategory><ID>5</ID><Name>Дополнительные сведения</Name><Actual>true</Actual></DocumentCategory><DocumentCategory><ID>6</ID><Name>Иные</Name><Actual>true</Actual></DocumentCategory></DocumentCategories>
+    <DocumentCategory>
+        <ID>7</ID>
+        <Name>Тип диплома в области спорта</Name>
+        <Actual>true</Actual>
+    </DocumentCategory>
+    <DocumentCategory>
+        <ID>1</ID>
+        <Name>﻿Удостоверяющие личность</Name>
+        <Actual>true</Actual>
+    </DocumentCategory>
+    <DocumentCategory>
+        <ID>2</ID>
+        <Name>Основание для оценки</Name>
+        <Actual>true</Actual>
+    </DocumentCategory>
+    <DocumentCategory>
+        <ID>3</ID>
+        <Name>Документ об образовании</Name>
+        <Actual>true</Actual>
+    </DocumentCategory>
+    <DocumentCategory>
+        <ID>4</ID>
+        <Name>Основание для льготы</Name>
+        <Actual>true</Actual>
+    </DocumentCategory>
+    <DocumentCategory>
+        <ID>5</ID>
+        <Name>Дополнительные сведения</Name>
+        <Actual>true</Actual>
+    </DocumentCategory>
+    <DocumentCategory>
+        <ID>6</ID>
+        <Name>Иные</Name>
+        <Actual>true</Actual>
+    </DocumentCategory>
+</DocumentCategories>

@@ -1,3 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EducationSource>
-<Education><ID>1</ID><Code></Code><Name>Бюджетные места</Name><Actual>true</Actual></Education><Education><ID>2</ID><Code></Code><Name>Квота приема лиц, имеющих особое право</Name><Actual>true</Actual></Education><Education><ID>3</ID><Code></Code><Name>С оплатой обучения</Name><Actual>true</Actual></Education><Education><ID>4</ID><Code></Code><Name>Целевой прием</Name><Actual>true</Actual></Education></EducationSource>
+    <Education>
+        <ID>1</ID>
+        <Code></Code>
+        <Name>Бюджетные места</Name>
+        <Actual>true</Actual>
+    </Education>
+    <Education>
+        <ID>2</ID>
+        <Code></Code>
+        <Name>Квота приема лиц, имеющих особое право</Name>
+        <Actual>true</Actual>
+    </Education>
+    <Education>
+        <ID>3</ID>
+        <Code></Code>
+        <Name>С оплатой обучения</Name>
+        <Actual>true</Actual>
+    </Education>
+    <Education>
+        <ID>4</ID>
+        <Code></Code>
+        <Name>Целевой прием</Name>
+        <Actual>true</Actual>
+    </Education>
+</EducationSource>

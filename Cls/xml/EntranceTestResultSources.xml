@@ -1,3 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EntranceTestResultSources>
-<EntranceTestResultSource><ID>1</ID><Name>Свидетельство ЕГЭ</Name><Actual>true</Actual></EntranceTestResultSource><EntranceTestResultSource><ID>2</ID><Name>Вступительное испытание ОО</Name><Actual>true</Actual></EntranceTestResultSource><EntranceTestResultSource><ID>3</ID><Name>Диплом победителя/призера олимпиады</Name><Actual>true</Actual></EntranceTestResultSource><EntranceTestResultSource><ID>4</ID><Name>Справка ГИА</Name><Actual>true</Actual></EntranceTestResultSource></EntranceTestResultSources>
+    <EntranceTestResultSource>
+        <ID>1</ID>
+        <Name>Свидетельство ЕГЭ</Name>
+        <Actual>true</Actual>
+    </EntranceTestResultSource>
+    <EntranceTestResultSource>
+        <ID>2</ID>
+        <Name>Вступительное испытание ОО</Name>
+        <Actual>true</Actual>
+    </EntranceTestResultSource>
+    <EntranceTestResultSource>
+        <ID>3</ID>
+        <Name>Диплом победителя/призера олимпиады</Name>
+        <Actual>true</Actual>
+    </EntranceTestResultSource>
+    <EntranceTestResultSource>
+        <ID>4</ID>
+        <Name>Справка ГИА</Name>
+        <Actual>true</Actual>
+    </EntranceTestResultSource>
+</EntranceTestResultSources>

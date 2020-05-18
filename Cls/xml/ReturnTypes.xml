@@ -1,3 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ReturnTypes>
-<Type><ID>1</ID><Name>Передача лично или через доверенное лицо</Name><Actual>true</Actual></Type><Type><ID>2</ID><Name>Направление через операторов почтовой связи</Name><Actual>true</Actual></Type><Type><ID>3</ID><Name>Направление в электронной форме</Name><Actual>true</Actual></Type></ReturnTypes>
+    <Type>
+        <ID>1</ID>
+        <Name>Передача лично или через доверенное лицо</Name>
+        <Actual>true</Actual>
+    </Type>
+    <Type>
+        <ID>2</ID>
+        <Name>Направление через операторов почтовой связи</Name>
+        <Actual>true</Actual>
+    </Type>
+    <Type>
+        <ID>3</ID>
+        <Name>Направление в электронной форме</Name>
+        <Actual>true</Actual>
+    </Type>
+</ReturnTypes>

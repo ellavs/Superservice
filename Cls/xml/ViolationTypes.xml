@@ -1,3 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ViolationTypes>
-<ViolationType><ID>1</ID><Name>Ожидает проверку</Name><Actual>true</Actual></ViolationType><ViolationType><ID>2</ID><Name>Нет нарушений</Name><Actual>true</Actual></ViolationType><ViolationType><ID>3</ID><Name>Более 5 заявлений</Name><Actual>true</Actual></ViolationType><ViolationType><ID>4</ID><Name>Ошибка проверки</Name><Actual>true</Actual></ViolationType><ViolationType><ID>5</ID><Name>Отклонено сотрудником ОО</Name><Actual>true</Actual></ViolationType><ViolationType><ID>6</ID><Name>Несовпадение результатов ЕГЭ</Name><Actual>true</Actual></ViolationType><ViolationType><ID>7</ID><Name>Свидетельство ЕГЭ просрочено</Name><Actual>true</Actual></ViolationType></ViolationTypes>
+    <ViolationType>
+        <ID>1</ID>
+        <Name>Ожидает проверку</Name>
+        <Actual>true</Actual>
+    </ViolationType>
+    <ViolationType>
+        <ID>2</ID>
+        <Name>Нет нарушений</Name>
+        <Actual>true</Actual>
+    </ViolationType>
+    <ViolationType>
+        <ID>3</ID>
+        <Name>Более 5 заявлений</Name>
+        <Actual>true</Actual>
+    </ViolationType>
+    <ViolationType>
+        <ID>4</ID>
+        <Name>Ошибка проверки</Name>
+        <Actual>true</Actual>
+    </ViolationType>
+    <ViolationType>
+        <ID>5</ID>
+        <Name>Отклонено сотрудником ОО</Name>
+        <Actual>true</Actual>
+    </ViolationType>
+    <ViolationType>
+        <ID>6</ID>
+        <Name>Несовпадение результатов ЕГЭ</Name>
+        <Actual>true</Actual>
+    </ViolationType>
+    <ViolationType>
+        <ID>7</ID>
+        <Name>Свидетельство ЕГЭ просрочено</Name>
+        <Actual>true</Actual>
+    </ViolationType>
+</ViolationTypes>

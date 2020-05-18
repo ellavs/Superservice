@@ -1,3 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EducationForm>
-<Education><ID>1</ID><Code></Code><Name>Очная форма</Name><Actual>true</Actual></Education><Education><ID>2</ID><Code></Code><Name>Очно-заочная (вечерняя)</Name><Actual>true</Actual></Education><Education><ID>3</ID><Code></Code><Name>Заочная форма</Name><Actual>true</Actual></Education></EducationForm>
+    <Education>
+        <ID>1</ID>
+        <Code></Code>
+        <Name>Очная форма</Name>
+        <Actual>true</Actual>
+    </Education>
+    <Education>
+        <ID>2</ID>
+        <Code></Code>
+        <Name>Очно-заочная (вечерняя)</Name>
+        <Actual>true</Actual>
+    </Education>
+    <Education>
+        <ID>3</ID>
+        <Code></Code>
+        <Name>Заочная форма</Name>
+        <Actual>true</Actual>
+    </Education>
+</EducationForm>

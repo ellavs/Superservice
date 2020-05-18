@@ -1,3 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <DisabilityTypes>
-<DisabilityType><ID>1</ID><Name>﻿I</Name><Actual>true</Actual></DisabilityType><DisabilityType><ID>2</ID><Name>II</Name><Actual>true</Actual></DisabilityType><DisabilityType><ID>3</ID><Name>III</Name><Actual>true</Actual></DisabilityType><DisabilityType><ID>4</ID><Name>Ребенок-инвалид</Name><Actual>true</Actual></DisabilityType><DisabilityType><ID>5</ID><Name>Инвалиды с детства</Name><Actual>true</Actual></DisabilityType><DisabilityType><ID>6</ID><Name>Инвалиды вследствие военной травмы</Name><Actual>true</Actual></DisabilityType></DisabilityTypes>
+    <DisabilityType>
+        <ID>1</ID>
+        <Name>﻿I</Name>
+        <Actual>true</Actual>
+    </DisabilityType>
+    <DisabilityType>
+        <ID>2</ID>
+        <Name>II</Name>
+        <Actual>true</Actual>
+    </DisabilityType>
+    <DisabilityType>
+        <ID>3</ID>
+        <Name>III</Name>
+        <Actual>true</Actual>
+    </DisabilityType>
+    <DisabilityType>
+        <ID>4</ID>
+        <Name>Ребенок-инвалид</Name>
+        <Actual>true</Actual>
+    </DisabilityType>
+    <DisabilityType>
+        <ID>5</ID>
+        <Name>Инвалиды с детства</Name>
+        <Actual>true</Actual>
+    </DisabilityType>
+    <DisabilityType>
+        <ID>6</ID>
+        <Name>Инвалиды вследствие военной травмы</Name>
+        <Actual>true</Actual>
+    </DisabilityType>
+</DisabilityTypes>

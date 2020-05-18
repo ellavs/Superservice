@@ -1,3 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EntranceTestType>
-<EntranceTestType><ID>1</ID><Code></Code><Name>Вступительные испытания</Name><Actual>true</Actual></EntranceTestType><EntranceTestType><ID>2</ID><Code></Code><Name>Вступительные испытания творческой и (или) профессиональной направленности</Name><Actual>true</Actual></EntranceTestType><EntranceTestType><ID>3</ID><Code></Code><Name>Вступительные испытания профильной направленности</Name><Actual>true</Actual></EntranceTestType><EntranceTestType><ID>4</ID><Code></Code><Name>Аттестационные испытания</Name><Actual>true</Actual></EntranceTestType></EntranceTestType>
+    <EntranceTestType>
+        <ID>1</ID>
+        <Code></Code>
+        <Name>Вступительные испытания</Name>
+        <Actual>true</Actual>
+    </EntranceTestType>
+    <EntranceTestType>
+        <ID>2</ID>
+        <Code></Code>
+        <Name>Вступительные испытания творческой и (или) профессиональной направленности</Name>
+        <Actual>true</Actual>
+    </EntranceTestType>
+    <EntranceTestType>
+        <ID>3</ID>
+        <Code></Code>
+        <Name>Вступительные испытания профильной направленности</Name>
+        <Actual>true</Actual>
+    </EntranceTestType>
+    <EntranceTestType>
+        <ID>4</ID>
+        <Code></Code>
+        <Name>Аттестационные испытания</Name>
+        <Actual>true</Actual>
+    </EntranceTestType>
+</EntranceTestType>

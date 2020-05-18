@@ -1,3 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EducationLevel>
-<Education><ID>1</ID><Code>17</Code><Name>СПО</Name><Actual>true</Actual></Education><Education><ID>2</ID><Code>2</Code><Name>Бакалавриат</Name><Actual>true</Actual></Education><Education><ID>3</ID><Code>5</Code><Name>Специалитет</Name><Actual>true</Actual></Education><Education><ID>4</ID><Code>4</Code><Name>Магистратура</Name><Actual>true</Actual></Education><Education><ID>5</ID><Code>18</Code><Name>Кадры высшей квалификации</Name><Actual>true</Actual></Education></EducationLevel>
+    <Education>
+        <ID>1</ID>
+        <Code>17</Code>
+        <Name>СПО</Name>
+        <Actual>true</Actual>
+    </Education>
+    <Education>
+        <ID>2</ID>
+        <Code>2</Code>
+        <Name>Бакалавриат</Name>
+        <Actual>true</Actual>
+    </Education>
+    <Education>
+        <ID>3</ID>
+        <Code>5</Code>
+        <Name>Специалитет</Name>
+        <Actual>true</Actual>
+    </Education>
+    <Education>
+        <ID>4</ID>
+        <Code>4</Code>
+        <Name>Магистратура</Name>
+        <Actual>true</Actual>
+    </Education>
+    <Education>
+        <ID>5</ID>
+        <Code>18</Code>
+        <Name>Кадры высшей квалификации</Name>
+        <Actual>true</Actual>
+    </Education>
+</EducationLevel>
