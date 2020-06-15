@@ -1,96 +1,140 @@
-Федеральная информационная система обеспечения проведения государственной итоговой аттестации обучающихся, освоивших основные образовательные программы основного общего и среднего общего образования, и приема граждан в образовательные организации для получения среднего профессионального и высшего образования
-Спецификация взаимодействия 
-Сервиса приема с ИС ООВО посредством API
-Листов 31
+п»їРЎРїРµС†РёС„РёРєР°С†РёСЏ РІР·Р°РёРјРѕРґРµР№СЃС‚РІРёСЏ 
+СЃРµСЂРІРёСЃР° РїСЂРёРµРјР° СЃ РРЎ РћРћР’Рћ
 
-Москва 2020
-Оглавление
 
-Общее описание	4
-Используемые методы	6
-Получение информации (справочников)	6
-Внесение сообщения (данных) в систему	6
-Запрос о наличии обработанных сообщений (данных)	8
-Получение результата обработки сообщения	9
-Отчет о получении результата обработки сообщения	10
-Общий алгоритм действий	11
-1.	Синхронизация справочников	12
-2.	Работа с данными	14
-2.1 Загрузка/редактирование данных	14
-2.1.1 Загрузка данных	14
-2.1.1.1 Загрузка кафедры - описание тэгов xsd-схемы пакета «Add_subdivision_org»	14
-2.1.1.2 Загрузка приемной кампании - описание тэгов xsd-схемы пакета «Add_campaign»	14
-2.1.1.3 Загрузка индивидуального достижения, учитываемого в рамках приемной кампании - описание тэгов xsd-схемы пакета «Add_achievements»	15
-2.1.1.4 Загрузка КЦП - описание тэгов xsd-схемы пакета «Add_admission_volume»	15
-2.1.1.5 Загрузка распределенных КЦП по уровням бюджета - описание тэгов xsd-схемы пакета «Add_distributed_admission_volume»	15
-2.1.1.6 Загрузка конкурсной группы - описание тэгов xsd-схемы пакета «Add_competitive_groups»	16
-2.1.1.7 Загрузка образовательной программы - описание тэгов xsd-схемы пакета «Add_competitive_group_programs»	16
-2.1.1.8 Загрузка льготы учитываемой в рамках конкурсной группы - описание тэгов xsd-схемы пакета «Add_competitive_benefits»	17
-2.1.1.9 Загрузка вступительные испытания в рамках конкурсной группы - описание тэгов xsd-схемы пакета «Add_entrance_tests»	17
-2.1.1.10 Загрузка льготы в рамках вступительного испытания конкурсной группы - описание тэгов xsd-схемы пакета «Add_entrance_test_benefits»	17
-2.1.1.11 Загрузка календаря вступительных испытаний конкурсной группы - описание тэгов xsd-схемы пакета «Add_»	18
-2.1.1.12 Загрузка абитуриента - описание тэгов xsd-схемы пакета «Add_entrants»	18
-2.1.1.13 Загрузка документа соотечественника  - описание тэгов xsd-схемы пакета «Add_compatriot»	18
-2.1.1.14 Загрузка бланка сочинения  - описание тэгов xsd-схемы пакета «Add_composition»	19
-2.1.1.15 Загрузка документа, подтверждающего инвалидность - описание тэгов xsd-схемы пакета «Add_disability»	19
-2.1.1.16 Загрузка документа об образовании  - описание тэгов xsd-схемы пакета «Add_educations»	20
-2.1.1.17 Загрузка результатов ЕГЭ  - описание тэгов xsd-схемы пакета «Add_ege»	20
-2.1.1.18 Загрузка документа, удостоверяющего личность - описание тэгов xsd-схемы пакета «Add_Identification»	21
-2.1.1.19 Загрузка документа военнослужащего - описание тэгов xsd-схемы пакета «Add_militaries»	21
-2.1.1.20 Загрузка документа подтверждающего результат олимпиады - описание тэгов xsd-схемы пакета «Add_olympics»	21
-2.1.1.21 Загрузка документа подтверждающего право детей-сирот - описание тэгов xsd-схемы пакета «Add_orphans»	22
-2.1.1.22 Загрузка документа «другой» - описание тэгов xsd-схемы пакета «Add_other»	22
-2.1.1.27 Загрузка статусов заявления - описание тэгов xsd-схемы пакета «Add_edit_application_status»	28
-2.1.1.28 Загрузка согласий на испытания - описание тэгов xsd-схемы пакета «Add_entrance_test_agreed»	28
-2.1.1.29 Загрузка результатов испытаний - описание тэгов xsd-схемы пакета «Add_entrance_test_result»	28
-2.1.1.30 Загрузка приказа о зачислении - описание тэгов xsd-схемы пакета «Add_order_admission»	29
-2.1.1.31 Загрузка конкурсных/рейтинговых - описание тэгов xsd-схемы пакета «Add_completitive_groups_applications_rating»	30
-2.1.2 Запрос результата обработки	31
-2.1.2	Подтверждение получения результатов обработки	31
-2.2 Удаление данных	31
+РћРіР»Р°РІР»РµРЅРёРµ
+РћРіР»Р°РІР»РµРЅРёРµ	1
+РћР±С‰РёРµ СЃРІРµРґРµРЅРёСЏ	3
+РЎРїРёСЃРѕРє РёСЃРїРѕР»СЊР·СѓРµРјС‹С… РјРµС‚РѕРґРѕРІ	4
+РџРѕР»СѓС‡РµРЅРёРµ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂРѕРІ	4
+Р’РЅРµСЃРµРЅРёСЏ РґР°РЅРЅС‹С… (СЃРѕРѕР±С‰РµРЅРёСЏ) РІ СЃРёСЃС‚РµРјСѓ	4
+Р—Р°РїСЂРѕСЃ РЅР°Р»РёС‡РёСЏ РѕР±СЂР°Р±РѕС‚Р°РЅРЅС‹С… РґР°РЅРЅС‹С… (СЃРѕРѕР±С‰РµРЅРёСЏ) Рё РїРѕР»СѓС‡РµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёСЏ	4
+РћС‚РїСЂР°РІРєРё РѕС‚С‡РµС‚Р° Рѕ СЂРµР·СѓР»СЊС‚Р°С‚Р°С… РѕР±СЂР°Р±РѕС‚РєРё РґР°РЅРЅС‹С… (СЃРѕРѕР±С‰РµРЅРёСЏ)	4
+РћР±С‰РµРµ РѕРїРёСЃР°РЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ	5
+РћРїРёСЃР°РЅРёРµ РјРµС‚РѕРґРѕРІ	7
+РњРµС‚РѕРґ РїРѕР»СѓС‡РµРЅРёСЏ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂРѕРІ Рё СЃРїСЂР°РІРѕС‡РЅРёРєРѕРІ	7
+РњРµС‚РѕРґ - РІРЅРµСЃРµРЅРёСЏ РґР°РЅРЅС‹С… (СЃРѕРѕР±С‰РµРЅРёСЏ) РІ СЃРёСЃС‚РµРјСѓ	9
+РњРµС‚РѕРґ вЂ“ Р—Р°РїСЂРѕСЃ РЅР°Р»РёС‡РёСЏ РѕР±СЂР°Р±РѕС‚Р°РЅРЅС‹С… РґР°РЅРЅС‹С… (СЃРѕРѕР±С‰РµРЅРёСЏ) Рё РїРѕР»СѓС‡РµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёСЏ	14
+РќРµРїРѕРґРїРёСЃР°РЅРЅС‹Р№ Р·Р°РїСЂРѕСЃ Рѕ РЅР°Р»РёС‡РёРё СЃРѕРѕР±С‰РµРЅРёР№ РґР»СЏ РРЎ Р’РЈР—Р°	14
+JWT-Р·Р°РїСЂРѕСЃ РЅР° РїРѕР»СѓС‡РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёСЏ	14
+РњРµС‚РѕРґ - РћС‚С‡РµС‚ Рѕ РїРѕР»СѓС‡РµРЅРёРё СЂРµР·СѓР»СЊС‚Р°С‚Р° РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёСЏ	19
+РћРїРёСЃР°РЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С… РјРµС‚РѕРґР° РїРѕР»СѓС‡РµРЅРёСЏ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂРѕРІ Рё СЃРїСЂР°РІРѕС‡РЅРёРєРѕРІ	21
+XSD-СЃС‚СЂСѓРєС‚СѓСЂР° Рё XML-РїР°РєРµС‚С‹ СЃ РґР°РЅРЅС‹РјРё РїСЂРёР»РѕР¶РµРЅС‹ РІ С„Р°Р№Р»Рµ Cls.rar.	21
+РћРїРёСЃР°РЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С… РјРµС‚РѕРґР° РІРЅРµСЃРµРЅРёРµ РґР°РЅРЅС‹С… (СЃРѕРѕР±С‰РµРЅРёСЏ) РІ СЃРёСЃС‚РµРјСѓ	41
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«CampaignВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ»	41
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«CampaignВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«RemoveВ»	43
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«AchievementsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ»	44
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«AchievementsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В« RemoveВ»	45
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« admission_volumeВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ»	46
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« admission_volumeВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«RemoveВ»	48
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«competitive_groupsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ»	49
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«competitive_groupsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«RemoveВ»	51
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« competitive_benefitsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ»	52
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« competitive_benefitsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«RemoveВ»	54
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« competitive_group_programs В», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ»	55
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« competitive_group_programs В», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В« Remove В»	55
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« entrance_testsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ»	57
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« entrance_testsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«RemoveВ»	58
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«entrance_test_benefitsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ»	59
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«entrance_test_benefitsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«RemoveВ»	61
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«completitive_groups_applications_ratingВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ»	62
+РРЅСЃС‚СЂСѓРєС†РёСЏ РїРѕ СЃРѕР·РґР°РЅРёСЋ  С‚РµСЃС‚РѕРІРѕРіРѕ СЃРµСЂС‚РёС„РёРєР°С‚Р° РІ СЃСЂРµРґРµ Linux	66
 
-?
-Общее описание
 
-В общем случае для обмена сообщениями будет использоваться протокол HTTP, запрос формы POST с заголовком «application/json», тело сообщения должно иметь вид:
 
-{"token":"JWT"}
 
-где JWT состоит из следующих частей: header, payload, verify signarure, представляющих собой строку в формате Base64 и разделенных символом точка. 
- 
 
-Пример сообщения на условных данных (обращаем внимание на разделение частей точкой, для удобства части выделены цветом):
+РћР±С‰РёРµ СЃРІРµРґРµРЅРёСЏ
+
+Р’ СЂР°РјРєР°С… РѕР±РјРµРЅР° СѓСЃС‚Р°РЅРѕРІРёРј, С‡С‚Рѕ РѕРґРЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ (JWT -  Json Web Tocken) РІРєР»СЋС‡Р°РµС‚ РІ СЃРµР±СЏ СЃСѓС‰РЅРѕСЃС‚СЊ (РґР°РЅРЅС‹Рµ) Рё РґРµР№СЃС‚РІРёСЏ РЅР°Рґ РЅРµР№.
+
+Р–РёР·РЅРµРЅРЅС‹Р№ С†РёРєР» СЃРѕРѕР±С‰РµРЅРёСЏ СЃРѕСЃС‚РѕРёС‚ РёР· 4-С… РѕСЃРЅРѕРІРЅС‹С… СЌС‚Р°РїРѕРІ:
+1) РІРЅРµСЃРµРЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ РІ СЃРёСЃС‚РµРјСѓ;
+2) Р·Р°РїСЂРѕСЃ Рѕ РЅР°Р»РёС‡РёРё РѕР±СЂР°Р±РѕС‚Р°РЅРЅС‹С… СЃРѕРѕР±С‰РµРЅРёР№;
+3) РїРѕР»СѓС‡РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёСЏ;
+4) РѕС‚С‡РµС‚ Рѕ РїРѕР»СѓС‡РµРЅРёРё СЂРµР·СѓР»СЊС‚Р°С‚Р° РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёСЏ.
+
+
+
+РЎРїРёСЃРѕРє РёСЃРїРѕР»СЊР·СѓРµРјС‹С… РјРµС‚РѕРґРѕРІ 
+
+Р’РЅРёРјР°РЅРёРµ!!! 
+РђРґСЂРµСЃ 85.142.162.12:8031 вЂ“ СЌС‚Рѕ Р°РґСЂРµСЃ С‚РµСЃС‚РѕРІРѕРіРѕ СЃРµСЂРІРµСЂР° РґР»СЏ РѕС‚Р»Р°РґРєРё РІ РѕС‚РєСЂС‹С‚РѕР№ СЃРµС‚Рё. 
+РђРґСЂРµСЃ РЅР° РїРёР»РѕС‚РЅРѕРµ С‚РµСЃС‚РёСЂРѕРІР°РЅРёРµ Р±СѓРґРµС‚ СѓС‚РѕС‡РЅРµРЅ РїРѕР·Р¶Рµ.
+
+Р”Р»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РјРµС‚РѕРґРѕРІ /token/new, /token/info, /token/confirm  РґР»СЏ РїРѕРґРїРёСЃР°РЅРёСЏ СЃРѕРѕР±С‰РµРЅРёР№ РЅРµРѕР±С…РѕРґРёРј С‚РµСЃС‚РѕРІС‹Р№ СЃРµСЂС‚РёС„РёРєР°С‚, РєРѕС‚РѕСЂС‹Р№ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅ РІ СЃРёСЃС‚РµРјРµ. Р”Р»СЏ СЂРµРіРёСЃС‚СЂР°С†РёРё Р’С‹ РґРѕР»Р¶РЅС‹ РїСЂРёСЃР»Р°С‚СЊ РЅР°Рј РѕС‚РєСЂС‹С‚С‹Р№ РєР»СЋС‡ СЃРµСЂС‚РёС„РёРєР°С‚Р° Р»РёР±Рѕ Р»СЋР±РѕР№ РїРѕРґРїРёСЃР°РЅРЅС‹Р№ СЌС‚РёРј СЃРµСЂС‚РёС„РёРєР°С‚РѕРј С„Р°Р№Р». РРЅСЃС‚СЂСѓРєС†РёСЏ РїРѕ СЃРѕР·РґР°РЅРёСЋ С‚РµСЃС‚РѕРІРѕРіРѕ СЃРµСЂС‚РёС„РёРєР°С‚Р° Р»РїРёСЃР°РЅР° РІ СЃРѕРѕС‚РІРµСЃС‚РІСѓСЋС‰РµРј СЂР°Р·РґРµР»Рµ вЂ“ В«РРЅСЃС‚СЂСѓРєС†РёСЏ РїРѕ СЃРѕР·РґР°РЅРёСЋ  С‚РµСЃС‚РѕРІРѕРіРѕ СЃРµСЂС‚РёС„РёРєР°С‚Р° РІ СЃСЂРµРґРµ LinuxВ».
+
+РџРѕР»СѓС‡РµРЅРёРµ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂРѕРІ
+
+Р’С‹Р·РѕРІ РјРµС‚РѕРґР°:
+
+http://10.10.11.12:8031/api/cls/request
+
+Р’РЅРµСЃРµРЅРёСЏ РґР°РЅРЅС‹С… (СЃРѕРѕР±С‰РµРЅРёСЏ) РІ СЃРёСЃС‚РµРјСѓ 
+
+Р’С‹Р·РѕРІ РјРµС‚РѕРґР°:
+http:// 85.142.162.12:8031/api/token/new 
+
+Р—Р°РїСЂРѕСЃ РЅР°Р»РёС‡РёСЏ РѕР±СЂР°Р±РѕС‚Р°РЅРЅС‹С… РґР°РЅРЅС‹С… (СЃРѕРѕР±С‰РµРЅРёСЏ) Рё РїРѕР»СѓС‡РµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёСЏ 
+
+Р’С‹Р·РѕРІ РјРµС‚РѕРґР°:
+http:// 85.142.162.12:8031/api/token/info
+
+РћС‚РїСЂР°РІРєРё РѕС‚С‡РµС‚Р° Рѕ СЂРµР·СѓР»СЊС‚Р°С‚Р°С… РѕР±СЂР°Р±РѕС‚РєРё РґР°РЅРЅС‹С… (СЃРѕРѕР±С‰РµРЅРёСЏ) 
+
+Р’С‹Р·РѕРІ РјРµС‚РѕРґР°:
+http:// 85.142.162.12:8031/api/token/confirm
+
+
+
+
+РћР±С‰РµРµ РѕРїРёСЃР°РЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ
+
+Р’ РѕР±С‰РµРј СЃР»СѓС‡Р°Рµ РґР»СЏ РѕР±РјРµРЅР° СЃРѕРѕР±С‰РµРЅРёСЏРјРё Р±СѓРґРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РїСЂРѕС‚РѕРєРѕР» http, Р·Р°РїСЂРѕСЃ С„РѕСЂРјС‹ POST СЃ Р·Р°РіРѕР»РѕРІРєРѕРј В«application/jsonВ», С‚РµР»Рѕ СЃРѕРѕР±С‰РµРЅРёСЏ РґРѕР»Р¶РЅРѕ РёРјРµС‚СЊ РІРёРґ:
+     
+     {"token":"JWT"}
+
+РіРґРµ JWT СЃРѕСЃС‚РѕРёС‚ РёР· СЃР»РµРґСѓСЋС‰РёС… С‡Р°СЃС‚РµР№: header, payload, verify signarure, РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёС… СЃРѕР±РѕР№ СЃС‚СЂРѕРєСѓ РІ С„РѕСЂРјР°С‚Рµ Base64 Рё СЂР°Р·РґРµР»РµРЅРЅС‹С… СЃРёРјРІРѕР»РѕРј С‚РѕС‡РєР°. 
+
+РџСЂРёРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ РЅР° СѓСЃР»РѕРІРЅС‹С… РґР°РЅРЅС‹С… (РѕР±СЂР°С‰Р°РµРј РІРЅРёРјР°РЅРёРµ РЅР° СЂР°Р·РґРµР»РµРЅРёРµ С‡Р°СЃС‚РµР№ С‚РѕС‡РєРѕР№, РґР»СЏ СѓРґРѕР±СЃС‚РІР° С‡Р°СЃС‚Рё РІС‹РґРµР»РµРЅС‹ С†РІРµС‚РѕРј):
  ewogICJhY3Rpb24iOiAiIiwKICAiZGF0YV90eXBlIjogIiIsCiAgIk9HUk4iOiAiIiwKICAiS1BQIjogIiIsCiAgImNlcnQ2NCI6ICIiCn0=.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.dXyC5EuKJaerCjbcTQmbCfv+5IyW71RLEYJnx71lZZQVwUmzpcMI/3rMt4mYBCgLhHAaM4s0Jv/2YBjFnEM7tw==
 
 Header
-Header представляет  строку в Base64 (пример представлен выше и выделен соответствующим цветом). При декодировании имеет структуру JSON в виде.  
+Header РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚  СЃС‚СЂРѕРєСѓ РІ Base64 СЃРј. РІС‹С€Рµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ С†РІРµС‚. РџСЂРё РґРµРєРѕРґРёСЂРѕРІР°РЅРёРё РёРјРµРµС‚ СЃС‚СЂСѓРєС‚СѓСЂСѓ JSON РІ РІРёРґРµ.  
 
 { 
-"action": "" , 
-"data_type": "",  
-"OGRN": "",  
-"KPP": "",  
-"cert64": "" 
+     "action": "" , 
+     "data_type": "",  
+     "OGRN": "",  
+     "KPP": "",  
+     "cert64": "" 
 }
 
-
-где:
-action – это будет выполняемое действие - одно из возможных значений:  
-•	Add; 
-•	Edit;
-•	Remove;
-•	GetMessage;
-•	MessageConfirm.
+action вЂ“ СЌС‚Рѕ Р±СѓРґРµС‚ РІС‹РїРѕР»РЅСЏРµРјРѕРµ РґРµР№СЃС‚РІРёРµ - РѕРґРЅРѕ РёР· РІРѕР·РјРѕР¶РЅС‹С… Р·РЅР°С‡РµРЅРёР№:  
+* Add, 
+* Edit,
+* Remove,
+* GetMessage,
+* MessageConfirm.
  
-data_type – тип передаваемых данных
+data_type вЂ“ С‚РёРї РїРµСЂРµРґР°РІР°РµРјС‹С… РґР°РЅРЅС‹С… (РЅР°РїСЂРёРјРµСЂ РїСЂРѕС„РёР»СЊ Р°Р±РёС‚СѓСЂРёРµРЅС‚Р° РёР»Рё Р·Р°СЏРІР»РµРЅРёРµ) вЂ“ РѕРґРЅРѕ РёР· РІРѕР·РјРѕР¶РЅС‹С… Р·РЅР°С‡РµРЅРёР№:
+* campaign,
+* achievements,
+* admission_volume,
+* competitive_groups,
+* competitive_benefits,
+* competitive_group_programs,
+* entrance_tests,
+* entrance_test_benefits
+* completitive_groups_applications_rating
 
 Payload
-Payload – непосредственно сами данные сообщения (приведены данные для примера вида записи) и представляет собой строку в Base64 (пример представлен выше и выделен соответствующим цветом). При декодировании имеет структуру XML в виде (на примере данных о приемной кампании):
+Payload РЅРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅРѕ СЃР°РјРё РґР°РЅРЅС‹Рµ СЃРѕРѕР±С‰РµРЅРёСЏ (РІ СЃС‚Р°РґРёРё СЂР°Р·СЂР°Р±РѕС‚РєРё! -  РїСЂРёРІРµРґРµРЅС‹ РґР°РЅРЅС‹Рµ РґР»СЏ РїСЂРёРјРµСЂР° РІРёРґР° Р·Р°РїРёСЃРё) Рё РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚  СЃС‚СЂРѕРєСѓ РІ Base64 СЃРј. РІС‹С€Рµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ С†РІРµС‚. РџСЂРё РґРµРєРѕРґРёСЂРѕРІР°РЅРёРё РёРјРµРµС‚ СЃС‚СЂСѓРєС‚СѓСЂСѓ XML РІ РІРёРґРµ (РЅР° РїСЂРёРјРµСЂРµ РґР°РЅРЅС‹С… Рѕ РїСЂРёРµРјРЅРѕР№ РєР°РјРїР°РЅРёРё): 
 
 <PackageData>
 	<Campaign>
 		<UID>2019_01</UID>
-		<Name>Бакалавры и специалисты 2019</Name>
+		<Name>Р‘Р°РєР°Р»Р°РІСЂС‹ Рё СЃРїРµС†РёР°Р»РёСЃС‚С‹ 2019</Name>
 		<YearStart>2019</YearStart>
 		<YearEnd>2019</YearEnd>
 		<EducationForms>
@@ -112,89 +156,115 @@ Payload – непосредственно сами данные сообщения (приведены данные для примера ви
 </PackageData>
 
 Verify signarure
-Verify signarure представляет закодированную в Base64 ЭЦП по ГОСТ 34.10-2012 см. выше соответствующий цвет. Подписываемая последовательность представляет собой конкатенацию части Header и Payload разделенных символом точка. 
-Открытый ключ сертификата, которым осуществляется подпись помещается в виде x509 сертификата закодированного в Base64 в Header в поле cert64.
+Verify signarure РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ Р·Р°РєРѕРґРёСЂРѕРІР°РЅРЅСѓСЋ РІ Base64 Р­Р¦Рџ РїРѕ Р“РћРЎРў 34.10-2012 СЃРј. РІС‹С€Рµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёР№ С†РІРµС‚.. РџРѕРґРїРёСЃС‹РІР°РµРјР°СЏ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚СЊ РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ СЃРѕР±РѕР№ РєРѕРЅРєР°С‚РµРЅР°С†РёСЋ С‡Р°СЃС‚Рё Header Рё Payload СЂР°Р·РґРµР»РµРЅРЅС‹С… СЃРёРјРІРѕР»РѕРј С‚РѕС‡РєР°. 
 
+РћС‚РєСЂС‹С‚С‹Р№ РєР»СЋС‡ СЃРµСЂС‚РёС„РёРєР°С‚Р°, РєРѕС‚РѕСЂС‹Рј РѕСЃСѓС‰РµСЃС‚РІР»СЏРµС‚СЃСЏ РїРѕРґРїРёСЃСЊ РїРѕРјРµС‰Р°РµС‚СЃСЏ РІ РІРёРґРµ x509 СЃРµСЂС‚РёС„РёРєР°С‚Р° Р·Р°РєРѕРґРёСЂРѕРІР°РЅРЅРѕРіРѕ РІ Base64 РІ Header РІ РїРѕР»Рµ  cert64.
+РћРїРёСЃР°РЅРёРµ РјРµС‚РѕРґРѕРІ
+РњРµС‚РѕРґ РїРѕР»СѓС‡РµРЅРёСЏ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂРѕРІ Рё СЃРїСЂР°РІРѕС‡РЅРёРєРѕРІ
 
-Используемые методы
+Р’ РѕР±С‰РµРј СЃР»СѓС‡Р°Рµ РґР»СЏ РѕР±РјРµРЅР° СЃРѕРѕР±С‰РµРЅРёСЏРјРё РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РїСЂРѕС‚РѕРєРѕР» http. Р—Р°РїСЂРѕСЃ С„РѕСЂРјС‹ POST СЃ Р·Р°РіРѕР»РѕРІРєРѕРј В«Content-TypeВ» В«application/jsonВ».
+РўРµР»Рѕ СЃРѕРѕР±С‰РµРЅРёСЏ РґРѕР»Р¶РЅРѕ РёРјРµС‚СЊ РІРёРґ:
+     
+     {"OGRN" : "","KPP" : "","CLS" : ""}
 
-В данной спецификации описаны основные методы работы с сообщением на протяжении его жизненного цикла в сети VipNet.
+РіРґРµ OGRN СЌС‚Рѕ РћР“Р Рќ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅРѕР№ РѕСЂРіР°РЅРёР·Р°С†РёРё РІ СЃРёСЃС‚РµРјРµ, РіРґРµ KPP СЌС‚Рѕ РљРџРџ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅРѕР№ РѕСЂРіР°РЅРёР·Р°С†РёРё РІ СЃРёСЃС‚РµРјРµ,  РіРґРµ CLS СЌС‚Рѕ РІРёРґ Р·Р°РїСЂР°С€РёРІР°РµРјРѕРіРѕ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂР°.  CLS РјРѕР¶РµС‚ РїСЂРёРЅРёРјР°С‚СЊ Р·РЅР°С‡РµРЅРёСЏ: 
 
-Для использования методов /token/new, /token/info, /token/confirm  для подписания сообщений необходим сертификат, который зарегистрирован в системе. Для регистрации Вы должны загрузить подписанный сертификатом файл в личный кабинет – раздел Организация-Управление.
+в„–
+Рї/РїР’РёРґ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂР° 
+РІ Р·Р°РїСЂРѕСЃРµРћРїРёСЃР°РЅРёРµ1DirectionsРћР±С‰РµСЂРѕСЃСЃРёР№СЃРєРёР№ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂ СЃРїРµС†РёР°Р»СЊРЅРѕСЃС‚РµР№ РїРѕ РѕР±СЂР°Р·РѕРІР°РЅРёСЋ2CampaignTypeРўРёРїС‹ РїСЂРёРµРјРЅС‹С… РєРѕРјРїР°РЅРёР№3CampaignStatusРЎС‚Р°С‚СѓСЃС‹ РїСЂРёРµРјРЅС‹С… РєРѕРјРїР°РЅРёР№4BenefitРЎРїСЂР°РІРѕС‡РЅРёРє Р»СЊРіРѕС‚5EducationFormР¤РѕСЂРјС‹ РѕР±СЂР°Р·РѕРІР°РЅРёСЏ6EducationLevelРЈСЂРѕРІРЅРё РѕР±СЂР°Р·РѕРІР°РЅРёСЏ РџРљ7EducationSourceРСЃС‚РѕС‡РЅРёРє С„РёРЅР°РЅСЃРёСЂРѕРІР°РЅРёСЏ8EntranceTestTypeРўРёРї РІСЃС‚СѓРїРёС‚РµР»СЊРЅРѕРіРѕ РёСЃРїС‹С‚Р°РЅРёСЏ9LevelBudgetРЈСЂРѕРІРЅРё Р±СЋРґР¶РµС‚Р°10OlympicDiplomaTypeРўРёРїС‹ РґРёРїР»РѕРјРѕРІ РѕР»РёРјРїРёР°Рґ11OlympicLevelРЈСЂРѕРІРЅРё РѕР»РёРјРїРёР°Рґ12SubjectРћР±СЂР°Р·РѕРІР°С‚РµР»СЊРЅС‹Рµ РїСЂРµРґРјРµС‚С‹13EduLevelsCampaignTypesРўРёРїС‹ РџРљ РїРѕ СѓСЂРѕРІРЅСЏРј РѕР±СЂР°Р·РѕРІР°РЅРёСЏ14AchievementCategoryРљР°С‚РµРіРѕСЂРёРё РёРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹С… РґРѕСЃС‚РёР¶РµРЅРёР№15ApplicationStatusesРЎС‚Р°С‚СѓСЃС‹ Р·Р°СЏРІР»РµРЅРёР№16CompatriotCategoriesРљР°С‚РµРіРѕСЂРёРё СЃРѕРѕС‚РµС‡РµСЃС‚РІРµРЅРЅРёРєРѕРІ17CompositionThemesРўРµРјС‹ СЃРѕС‡РёРЅРµРЅРёР№18DisabilityTypesРљР°С‚РµРіРѕСЂРёРё РёРЅРІР°Р»РёРґРЅРѕСЃС‚Рё19DocumentCategoriesРљР°С‚РµРіРѕСЂРёРё РґРѕРєСѓРјРµРЅС‚РѕРІ20DocumentTypesРўРёРїС‹ РґРѕРєСѓРјРµРЅС‚РѕРІ21EntranceTestDocumentTypesРўРёРїС‹ РґРѕРєСѓРјРµРЅС‚РѕРІ РІСЃС‚СѓРїРёС‚РµР»СЊРЅРѕРіРѕ РёСЃРїС‹С‚Р°РЅРёСЏ22EntranceTestResultSourcesРСЃС‚РѕС‡РЅРёРє СЂРµР·СѓР»СЊС‚Р°С‚Р° РІСЃС‚СѓРїРёС‚РµР»СЊРЅРѕРіРѕ РёСЃРїС‹С‚Р°РЅРёСЏ23GenderРџРѕР»24MinScoreSubjectsРњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ Р•Р“Р­ РїРѕ РїСЂРµРґРјРµС‚Р°Рј25OkcmsРћР±С‰РµСЂРѕСЃСЃРёР№СЃРєРёР№ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂ СЃС‚СЂР°РЅ РјРёСЂР°26OktmosРЎРїСЂР°РІРѕС‡РЅРёРє РјСѓРЅРёС†РёРїР°Р»РёС‚РµС‚РѕРІ (РёР· РћРљРўРњРћ)27OlympicMinEgeРњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ Р•Р“Р­ РґР»СЏ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РѕР»РёРјРїРёР°РґС‹28OrderAdmissionStatusesРЎС‚Р°С‚СѓСЃ РїСЂРёРєР°Р·РѕРІ29OrderAdmissionTypesРўРёРїС‹ РїСЂРёРєР°Р·РѕРІ30OrphanCategoriesРљР°С‚РµРіРѕСЂРёСЏ РґРѕРєСѓРјРµРЅС‚РѕРІ РґРµС‚РµР№-СЃРёСЂРѕС‚31ParentsLostCategoriesРљР°С‚РµРіРѕСЂРёРё РіСЂР°Р¶РґР°РЅ, СЂРѕРґРёС‚РµР»Рё Рё РѕРїРµРєСѓРЅС‹ РєРѕС‚РѕСЂС‹С… РїРѕРіРёР±Р»Рё РїСЂРё РёСЃРїРѕР»РЅРµРЅРёРё СЃР»СѓР¶РµР±РЅС‹С… РѕР±СЏР·Р°РЅРЅРѕСЃС‚РµР№32RadiationWorkCategories
+РљР°С‚РµРіРѕСЂРёРё РіСЂР°Р¶РґР°РЅ, СѓС‡Р°СЃС‚РІРѕРІР°РІС€РёС… РІ СЂР°Р±РѕС‚Р°С… РЅР° СЂР°РґРёР°С†РёРѕРЅРЅС‹С… РѕР±СЉРµРєС‚Р°С… РёР»Рё РїРѕРґРІРµСЂРіС€РёС…СЃСЏ РІРѕР·РґРµР№СЃС‚РІРёСЋ СЂР°РґРёР°С†РёРё33RegionsРЎРїСЂР°РІРѕС‡РЅРёРє СЂРµРіРёРѕРЅРѕРІ34ReturnTypesРўРёРїС‹ СЂРµР·СѓР»СЊС‚Р°С‚Р°35VeteranCategoriesРљР°С‚РµРіРѕСЂРёРё РіСЂР°Р¶РґР°РЅ, СѓС‡Р°СЃС‚РІРѕРІР°РІС€РёС… РІ Р±РѕРµРІС‹С… РґРµР№СЃС‚РІРёСЏС…36ViolationTypesРўРёРї РЅР°СЂСѓС€РµРЅРёР№ РІ Р·Р°СЏРІР»РµРЅРёРё37OlympicsProfilesРЎРІРµРґРµРЅРёСЏ РѕР± РѕР»РёРјРїРёР°РґРµ Рё РµРµ РѕСЂРіР°РЅРёР·Р°С‚РѕСЂР°С…38OlyProfilesРџСЂРѕС„РёР»Рё РѕР»РёРјРїРёР°Рґ39OlympicsРћР»РёРјРїРёР°РґС‹*РґР°РЅРЅС‹Рµ СЃ xsd-СЃС…РµРјР°РјРё Рё xml-РїР°РєРµС‚С‹ СЃ РґР°РЅРЅС‹РјРё СЃРїСЂР°РІРѕС‡РЅРёРєРѕРІ РІ РїСЂРёР»Р°РіР°РµРјРѕРј Р°СЂС…РёРІРµ
 
-Получение информации (справочников)
+РџСЂРёРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ СЃ Р·Р°РїСЂРѕСЃРѕРј:
 
-Вызов метода: http://10.3.60.3:8031/api/cls/request
-
-В общем случае для обмена сообщениями используется протокол http. Запрос формы POST с заголовком «Content-Type» «application/json».
-
-Пример сообщения:
 {
 "OGRN" : "1234567890987",
 "KPP" : "123456789",
 "CLS" : "EduLevelsCampaignTypes"
 }
 
+РџСЂРёРјРµСЂ РѕС‚РІРµС‚Р° : 
 
-Внесение сообщения (данных) в систему
+<?xmlВ version="1.0"В encoding="UTF-8"?>
+<EduLevelsCampaignTypes>
+В В В В <EduLevelsCampaignType>
+В В В В В В В В <ID>1</ID>
+В В В В В В В В <IDCampaignTypes>1</IDCampaignTypes>
+В В В В В В В В <IDEducationLevel>1</IDEducationLevel>
+В В В В </EduLevelsCampaignType>
+В В В В <EduLevelsCampaignType>
+В В В В В В В В <ID>2</ID>
+В В В В В В В В <IDCampaignTypes>1</IDCampaignTypes>
+В В В В В В В В <IDEducationLevel>2</IDEducationLevel>
+В В В В </EduLevelsCampaignType>
+В В В В <EduLevelsCampaignType>
+В В В В В В В В <ID>3</ID>
+В В В В В В В В <IDCampaignTypes>2</IDCampaignTypes>
+В В В В В В В В <IDEducationLevel>4</IDEducationLevel>
+В В В В </EduLevelsCampaignType>
+В В В В <EduLevelsCampaignType>
+В В В В В В В В <ID>4</ID>
+В В В В В В В В <IDCampaignTypes>3</IDCampaignTypes>
+В В В В В В В В <IDEducationLevel>1</IDEducationLevel>
+В В В В </EduLevelsCampaignType>
+В В В В <EduLevelsCampaignType>
+В В В В В В В В <ID>5</ID>
+В В В В В В В В <IDCampaignTypes>4</IDCampaignTypes>
+В В В В В В В В <IDEducationLevel>5</IDEducationLevel>
+В В В В </EduLevelsCampaignType>
+В В В В <EduLevelsCampaignType>
+В В В В В В В В <ID>6</ID>
+В В В В В В В В <IDCampaignTypes>5</IDCampaignTypes>
+В В В В В В В В <IDEducationLevel>1</IDEducationLevel>
+В В В В </EduLevelsCampaignType>
+В В В В <EduLevelsCampaignType>
+В В В В В В В В <ID>7</ID>
+В В В В В В В В <IDCampaignTypes>5</IDCampaignTypes>
+В В В В В В В В <IDEducationLevel>2</IDEducationLevel>
+В В В В </EduLevelsCampaignType>
+В В В В <EduLevelsCampaignType>
+В В В В В В В В <ID>8</ID>
+В В В В В В В В <IDCampaignTypes>5</IDCampaignTypes>
+В В В В В В В В <IDEducationLevel>3</IDEducationLevel>
+В В В В </EduLevelsCampaignType>
+В В В В <EduLevelsCampaignType>
+В В В В В В В В <ID>9</ID>
+В В В В В В В В <IDCampaignTypes>5</IDCampaignTypes>
+В В В В В В В В <IDEducationLevel>4</IDEducationLevel>
+В В В В </EduLevelsCampaignType>
+В В В В <EduLevelsCampaignType>
+В В В В В В В В <ID>10</ID>
+В В В В В В В В <IDCampaignTypes>5</IDCampaignTypes>
+В В В В В В В В <IDEducationLevel>5</IDEducationLevel>
+В В В В </EduLevelsCampaignType>
+</EduLevelsCampaignTypes>
 
-Вызов метода: http://10.3.60.3:8031/api/token/new
+РњРµС‚РѕРґ - РІРЅРµСЃРµРЅРёСЏ РґР°РЅРЅС‹С… (СЃРѕРѕР±С‰РµРЅРёСЏ) РІ СЃРёСЃС‚РµРјСѓ 
 
-Допустимые значения полей:
-Header: 
-«action»: 
-•	Add – загрузить; 
-•	Edit – редактировать; 
-•	Remove - удалить;
-«datatype»:
-•	subdivision_org - кафедра;
-•	сampaign – приемная кампания;
-•	achievements – индивидуальное достижение;
-•	admission_volume - КЦП;
-•	distributed_admission_volume – распределение КЦП;
-•	competitive_groupы – конкурсная группа;
-•	competitive_group_programs – образовательная программа;
-•	competitive_benefits – льгота конкурсной группы;
-•	entrance_tests – вступительные испытания конкурсной группы;
-•	entrance_test_benefits – льгота в рамках вступительного испытания;
-•	календарь вступительных испытаний;
-•	entrants – абитуриент;
-•	документы абитуриента:
-o	compatriot – документ, подтверждающий принадлежность к категории соотечественника;
-o	composition – бланк сочинения;
-o	disability – документ подтверждающий инвалидность;
-o	educations – документ об образовании;
-o	ege – результаты ЕГЭ;
-o	identification –  документ, удостоверяющий личность;
-o	militaries – документ, подтверждающий принадлежность к категории граждан-военнослужащих;
-o	olympics – документ, подтверждающий результат олимпиады;
-o	orphans – документ, подтверждающий принадлежность к категории детей-сирот;
-o	other – другой документ;
-o	parents_lost – документ, определяющий принадлежность к категории граждан, родители и опекуны которых погибли при исполнении служебных обязанностей;
-o	radiation_work – документ, определяющий принадлежность к категории граждан, участвовавших в работах на радиационных объектах или подвергшихся воздействию радиации;
-o	veteran – документ, определяющий принадлежность к категории граждан, участвовавших в боевых действиях;
-•	applications – заявление;
-•	edit_application_status – редактирование статуса заявления;
-•	entrance_test_agreed – загрузка согласий на испытание;
-•	entrance_test_result – загрузка результатов испытаний;
-•	order_admission – загрузка приказа о зачислении;
-•	completitive_groups_applications_rating – загрузка конкусрных/рейтинговых списков
-При успешном приеме сообщения ответ будет содержать ID сообщения в сервисе приема. В противном случае ответ будет содержать сообщение об ошибке в формате JSON, например: {"Error": " Текст ошибки"}.
+Р”РѕРїСѓСЃС‚РёРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»РµР№:
 
-Пример Header до кодирования в base64:
+РґР»СЏ Header РґРѕРїСѓСЃС‚РёРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«actionВ»:
+* Add, 
+* Edit,
+* Remove;
+
+РїРѕР»Рµ В«datatypeВ»:
+* РґР°РЅРЅС‹Рµ РґР»СЏ РїСЂРµРґСЃС‚Р°РІР»РµРЅС‹ РІ РїСЂРёР»Р°РіР°РµРјРѕРј Р°СЂС…РёРІРµ (xsd-СЃС…РµРјС‹ Рё РїСЂРёРјРµСЂС‹ xml-РїР°РєРµС‚РѕРІ РЅР° РґРѕР±Р°РІР»РµРЅРёРµ, СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ Рё СѓРґР°Р»РµРЅРёРµ РґР°РЅРЅС‹С….
+
+РџСЂРёРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ:
+РџСЂРёРјРµСЂ Header РґРѕ РєРѕРґРёСЂРѕРІР°РЅРёСЏ РІ base64:
 { 
-"action": "Add",  
-"data_type": "campain",  
-"OGRN": "1234567890987",  
-"KPP": "123456789",  
-"cert64": "MIIEYTCCBBCgAwIBAgITEgBBhm25R8IVG6Fy…………………………." 
+     "action": "Add",  
+     "data_type": "campain",  
+     "OGRN": "1234567890987",  
+     "KPP": "123456789",  
+     "cert64": "MIIEYTCCBBCgAwIBAgITEgBBhm25R8IVG6FyMgABAEGGbTAIBgYqhQMCAgMwfzEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBjcnlwdG9wcm8ucnUxCzAJBgNVBAYTAlJVMQ8wDQYDVQQHEwZNb3Njb3cxFzAVBgNVBAoTDkNSWVBUTy1QUk8gTExDMSEwHwYDVQQDExhDUllQVE8tUFJPIFRlc3QgQ2VudGVyIDIwHhcNMjAwMjI4MTMzMjI0WhcNMjAwNTI4MTM0MjI0WjCCAWgxGDAWBgUqhQNkARINNTA4Nzc0NjY5NzUyODE6MDgGA1UECQwx0KPQuy7Qn9GA0LXRgdC90LXQvdGB0LrQuNC5INCS0LDQuyDQtC4xOSDRgdGC0YAuMTETMBEGA1UECgwK0KHQsNC80YvQuTEVMBMGA1UEBwwM0JzQvtGB0LrQstCwMRowGAYIKoUDA4EDAQESDDAwNzgxNDUwODkyMTEbMBkGCSqGSIb3DQEJARYMbWFpbEBtYWlsLnJ1MRowGAYIKoUDA4EDAQESDDExMTExMTExMTExMTEYMBYGBSqFA2QBEg0xMTExMTExMTExMTExMQswCQYDVQQGEwJSVTEiMCAGA1UEKgwZ0JjQstCw0L0g0JjQstCw0L3QvtCy0LjRhzERMA8GA1UEDAwI0KDRg9C70YwxGjAYBgNVBAMMEdCY0KEg0KHQsNC80L7Qs9C+MRUwEwYDVQQEDAzQmNCy0LDQvdC+0LIwZjAfBggqhQMHAQEBATATBgcqhQMCAiQABggqhQMHAQECAgNDAARA2MWlMDJAQpXr2rSxFAi8PhtQJ36bw4qwaSVq9053YzKPTbh1wU5wF32Y3iEQnkQl3SXbY43ZxWeEPfdvPvaHL6OCAXMwggFvMBMGA1UdJQQMMAoGCCsGAQUFBwMEMAsGA1UdDwQEAwIE8DAdBgNVHQ4EFgQU1xJln3hUeA/fRN6yTyk7OT6DSU0wHwYDVR0jBBgwFoAUToM+FGnv7F16lStfEf43MhZJVSswXAYDVR0fBFUwUzBRoE+gTYZLaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC9DUllQVE8tUFJPJTIwVGVzdCUyMENlbnRlciUyMDIoMSkuY3JsMIGsBggrBgEFBQcBAQSBnzCBnDBkBggrBgEFBQcwAoZYaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC90ZXN0LWNhLTIwMTRfQ1JZUFRPLVBSTyUyMFRlc3QlMjBDZW50ZXIlMjAyKDEpLmNydDA0BggrBgEFBQcwAYYoaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvb2NzcC9vY3NwLnNyZjAIBgYqhQMCAgMDQQBrsvMSbI8zrcGATqppTRcFEBxB9QeT80YoZ+ZmweEZk3tLXFvMQ7ezHogsKW0sL6XDVzJQKzDmHIfO49NbUm7Y" 
 }
 
-Пример Payload до кодирования в base64:
+РџСЂРёРјРµСЂ Payload РґРѕ РєРѕРґРёСЂРѕРІР°РЅРёСЏ РІ base64:
 <PackageData>
 	<Campaign>
 		<UID>2019_06</UID>
-		<Name>Бакалавры и специалисты 2019</Name>
+		<Name>Р‘Р°РєР°Р»Р°РІСЂС‹ Рё СЃРїРµС†РёР°Р»РёСЃС‚С‹ 2019</Name>
 		<YearStart>2019</YearStart>
 		<YearEnd>2019</YearEnd>
 		<EducationForms>
@@ -210,701 +280,1974 @@ o	veteran – документ, определяющий принадлежность к категории граждан, участвова
 	</Campaign>
 </PackageData>
 
-Внимание! xsd-схемы и примеры xml-пакетов в приложенном архиве.
 
-Запрос о наличии обработанных сообщений (данных)
+РџСЂРёРјРµСЂ JWT: 
+eyJJREpXVCI6MCwiUklESldUIjowLCJhY3Rpb24iOiJBZGQiLCJkYXRhX3R5cGUiOiJjYW1wYWlnbiIsIk9HUk4iOiIxMjM0NTY3ODkwOTg3IiwiS1BQIjoiMTIzNDU2Nzg5IiwiQ2VydDY0IjoiTUlJRVlUQ0NCQkNnQXdJQkFnSVRFZ0JCaG0yNVI4SVZHNkZ5TWdBQkFFR0diVEFJQmdZcWhRTUNBZ013ZnpFak1DRUdDU3FHU0liM0RRRUpBUllVYzNWd2NHOXlkRUJqY25sd2RHOXdjbTh1Y25VeEN6QUpCZ05WQkFZVEFsSlZNUTh3RFFZRFZRUUhFd1pOYjNOamIzY3hGekFWQmdOVkJBb1REa05TV1ZCVVR5MVFVazhnVEV4RE1TRXdId1lEVlFRREV4aERVbGxRVkU4dFVGSlBJRlJsYzNRZ1EyVnVkR1Z5SURJd0hoY05NakF3TWpJNE1UTXpNakkwV2hjTk1qQXdOVEk0TVRNME1qSTBXakNDQVdneEdEQVdCZ1VxaFFOa0FSSU5OVEE0TnpjME5qWTVOelV5T0RFNk1EZ0dBMVVFQ1F3eDBLUFF1eTdRbjlHQTBMWFJnZEM5MExYUXZkR0IwTHJRdU5DNUlOQ1MwTERRdXlEUXRDNHhPU0RSZ2RHQzBZQXVNVEVUTUJFR0ExVUVDZ3dLMEtIUXNOQzgwWXZRdVRFVk1CTUdBMVVFQnd3TTBKelF2dEdCMExyUXN0Q3dNUm93R0FZSUtvVURBNEVEQVFFU0REQXdOemd4TkRVd09Ea3lNVEViTUJrR0NTcUdTSWIzRFFFSkFSWU1iV0ZwYkVCdFlXbHNMbkoxTVJvd0dBWUlLb1VEQTRFREFRRVNEREV4TVRFeE1URXhNVEV4TVRFWU1CWUdCU3FGQTJRQkVnMHhNVEV4TVRFeE1URXhNVEV4TVFzd0NRWURWUVFHRXdKU1ZURWlNQ0FHQTFVRUtnd1owSmpRc3RDdzBMMGcwSmpRc3RDdzBMM1F2dEN5MExqUmh6RVJNQThHQTFVRURBd0kwS0RSZzlDNzBZd3hHakFZQmdOVkJBTU1FZENZMEtFZzBLSFFzTkM4MEw3UXM5QytNUlV3RXdZRFZRUUVEQXpRbU5DeTBMRFF2ZEMrMExJd1pqQWZCZ2dxaFFNSEFRRUJBVEFUQmdjcWhRTUNBaVFBQmdncWhRTUhBUUVDQWdOREFBUkEyTVdsTURKQVFwWHIyclN4RkFpOFBodFFKMzZidzRxd2FTVnE5MDUzWXpLUFRiaDF3VTV3RjMyWTNpRVFua1FsM1NYYlk0M1p4V2VFUGZkdlB2YUhMNk9DQVhNd2dnRnZNQk1HQTFVZEpRUU1NQW9HQ0NzR0FRVUZCd01FTUFzR0ExVWREd1FFQXdJRThEQWRCZ05WSFE0RUZnUVUxeEpsbjNoVWVBL2ZSTjZ5VHlrN09UNkRTVTB3SHdZRFZSMGpCQmd3Rm9BVVRvTStGR252N0YxNmxTdGZFZjQzTWhaSlZTc3dYQVlEVlIwZkJGVXdVekJSb0UrZ1RZWkxhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzlEVWxsUVZFOHRVRkpQSlRJd1ZHVnpkQ1V5TUVObGJuUmxjaVV5TURJb01Ta3VZM0pzTUlHc0JnZ3JCZ0VGQlFjQkFRU0JuekNCbkRCa0JnZ3JCZ0VGQlFjd0FvWllhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzkwWlhOMExXTmhMVEl3TVRSZlExSlpVRlJQTFZCU1R5VXlNRlJsYzNRbE1qQkRaVzUwWlhJbE1qQXlLREVwTG1OeWREQTBCZ2dyQmdFRkJRY3dBWVlvYUhSMGNEb3ZMM1JsYzNSallTNWpjbmx3ZEc5d2NtOHVjblV2YjJOemNDOXZZM053TG5OeVpqQUlCZ1lxaFFNQ0FnTURRUUJyc3ZNU2JJOHpyY0dBVHFwcFRSY0ZFQnhCOVFlVDgwWW9aK1ptd2VFWmszdExYRnZNUTdlekhvZ3NLVzBzTDZYRFZ6SlFLekRtSElmTzQ5TmJVbTdZIn0=.PFBhY2thZ2VEYXRhPgoJPENhbXBhaWduPgoJCTxVSUQ+MjAxOV8wNjwvVUlEPgoJCTxOYW1lPtCR0LDQutCw0LvQsNCy0YDRiyDQuCDRgdC/0LXRhtC40LDQu9C40YHRgtGLIDIwMTk8L05hbWU+CgkJPFllYXJTdGFydD4yMDE5PC9ZZWFyU3RhcnQ+CgkJPFllYXJFbmQ+MjAxOTwvWWVhckVuZD4KCQk8RWR1Y2F0aW9uRm9ybXM+CgkJCTxJREVkdWNhdGlvbkZvcm0+MTwvSURFZHVjYXRpb25Gb3JtPgoJCQk8SURFZHVjYXRpb25Gb3JtPjI8L0lERWR1Y2F0aW9uRm9ybT4KCQk8L0VkdWNhdGlvbkZvcm1zPgoJCTxFZHVjYXRpb25MZXZlbHM+CgkJCTxJREVkdWNhdGlvbkxldmVsPjE8L0lERWR1Y2F0aW9uTGV2ZWw+CgkJCTxJREVkdWNhdGlvbkxldmVsPjI8L0lERWR1Y2F0aW9uTGV2ZWw+CgkJPC9FZHVjYXRpb25MZXZlbHM+CgkJPElEQ2FtcGFpZ25UeXBlPjE8L0lEQ2FtcGFpZ25UeXBlPgoJCTxJRENhbXBhaWduU3RhdHVzPjI8L0lEQ2FtcGFpZ25TdGF0dXM+Cgk8L0NhbXBhaWduPgo8L1BhY2thZ2VEYXRhPg==.rF0vM6c/UgRI5LCC9TY7GzOX0OqeDduOOwqFnYdi+NDc5uQCCPmlvcE4shLrq+cHF6bCZC1Tka5i1r3OVICljg== eyJJREpXVCI6MCwiUklESldUIjowLCJhY3Rpb24iOiJBZGQiLCJkYXRhX3R5cGUiOiJjYW1wYWlnbiIsIk9HUk4iOiIxMjM0NTY3ODkwOTg3IiwiS1BQIjoiMTIzNDU2Nzg5IiwiQ2VydDY0IjoiTUlJRVlUQ0NCQkNnQXdJQkFnSVRFZ0JCaG0yNVI4SVZHNkZ5TWdBQkFFR0diVEFJQmdZcWhRTUNBZ013ZnpFak1DRUdDU3FHU0liM0RRRUpBUllVYzNWd2NHOXlkRUJqY25sd2RHOXdjbTh1Y25VeEN6QUpCZ05WQkFZVEFsSlZNUTh3RFFZRFZRUUhFd1pOYjNOamIzY3hGekFWQmdOVkJBb1REa05TV1ZCVVR5MVFVazhnVEV4RE1TRXdId1lEVlFRREV4aERVbGxRVkU4dFVGSlBJRlJsYzNRZ1EyVnVkR1Z5SURJd0hoY05NakF3TWpJNE1UTXpNakkwV2hjTk1qQXdOVEk0TVRNME1qSTBXakNDQVdneEdEQVdCZ1VxaFFOa0FSSU5OVEE0TnpjME5qWTVOelV5T0RFNk1EZ0dBMVVFQ1F3eDBLUFF1eTdRbjlHQTBMWFJnZEM5MExYUXZkR0IwTHJRdU5DNUlOQ1MwTERRdXlEUXRDNHhPU0RSZ2RHQzBZQXVNVEVUTUJFR0ExVUVDZ3dLMEtIUXNOQzgwWXZRdVRFVk1CTUdBMVVFQnd3TTBKelF2dEdCMExyUXN0Q3dNUm93R0FZSUtvVURBNEVEQVFFU0REQXdOemd4TkRVd09Ea3lNVEViTUJrR0NTcUdTSWIzRFFFSkFSWU1iV0ZwYkVCdFlXbHNMbkoxTVJvd0dBWUlLb1VEQTRFREFRRVNEREV4TVRFeE1URXhNVEV4TVRFWU1CWUdCU3FGQTJRQkVnMHhNVEV4TVRFeE1URXhNVEV4TVFzd0NRWURWUVFHRXdKU1ZURWlNQ0FHQTFVRUtnd1owSmpRc3RDdzBMMGcwSmpRc3RDdzBMM1F2dEN5MExqUmh6RVJNQThHQTFVRURBd0kwS0RSZzlDNzBZd3hHakFZQmdOVkJBTU1FZENZMEtFZzBLSFFzTkM4MEw3UXM5QytNUlV3RXdZRFZRUUVEQXpRbU5DeTBMRFF2ZEMrMExJd1pqQWZCZ2dxaFFNSEFRRUJBVEFUQmdjcWhRTUNBaVFBQmdncWhRTUhBUUVDQWdOREFBUkEyTVdsTURKQVFwWHIyclN4RkFpOFBodFFKMzZidzRxd2FTVnE5MDUzWXpLUFRiaDF3VTV3RjMyWTNpRVFua1FsM1NYYlk0M1p4V2VFUGZkdlB2YUhMNk9DQVhNd2dnRnZNQk1HQTFVZEpRUU1NQW9HQ0NzR0FRVUZCd01FTUFzR0ExVWREd1FFQXdJRThEQWRCZ05WSFE0RUZnUVUxeEpsbjNoVWVBL2ZSTjZ5VHlrN09UNkRTVTB3SHdZRFZSMGpCQmd3Rm9BVVRvTStGR252N0YxNmxTdGZFZjQzTWhaSlZTc3dYQVlEVlIwZkJGVXdVekJSb0UrZ1RZWkxhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzlEVWxsUVZFOHRVRkpQSlRJd1ZHVnpkQ1V5TUVObGJuUmxjaVV5TURJb01Ta3VZM0pzTUlHc0JnZ3JCZ0VGQlFjQkFRU0JuekNCbkRCa0JnZ3JCZ0VGQlFjd0FvWllhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzkwWlhOMExXTmhMVEl3TVRSZlExSlpVRlJQTFZCU1R5VXlNRlJsYzNRbE1qQkRaVzUwWlhJbE1qQXlLREVwTG1OeWREQTBCZ2dyQmdFRkJRY3dBWVlvYUhSMGNEb3ZMM1JsYzNSallTNWpjbmx3ZEc5d2NtOHVjblV2YjJOemNDOXZZM053TG5OeVpqQUlCZ1lxaFFNQ0FnTURRUUJyc3ZNU2JJOHpyY0dBVHFwcFRSY0ZFQnhCOVFlVDgwWW9aK1ptd2VFWmszdExYRnZNUTdlekhvZ3NLVzBzTDZYRFZ6SlFLekRtSElmTzQ5TmJVbTdZIn0= PFBhY2thZ2VEYXRhPgoJPENhbXBhaWduPgoJCTxVSUQ+MjAxOV8wNjwvVUlEPgoJCTxOYW1lPtCR0LDQutCw0LvQsNCy0YDRiyDQuCDRgdC/0LXRhtC40LDQu9C40YHRgtGLIDIwMTk8L05hbWU+CgkJPFllYXJTdGFydD4yMDE5PC9ZZWFyU3RhcnQ+CgkJPFllYXJFbmQ+MjAxOTwvWWVhckVuZD4KCQk8RWR1Y2F0aW9uRm9ybXM+CgkJCTxJREVkdWNhdGlvbkZvcm0+MTwvSURFZHVjYXRpb25Gb3JtPgoJCQk8SURFZHVjYXRpb25Gb3JtPjI8L0lERWR1Y2F0aW9uRm9ybT4KCQk8L0VkdWNhdGlvbkZvcm1zPgoJCTxFZHVjYXRpb25MZXZlbHM+CgkJCTxJREVkdWNhdGlvbkxldmVsPjE8L0lERWR1Y2F0aW9uTGV2ZWw+CgkJCTxJREVkdWNhdGlvbkxldmVsPjI8L0lERWR1Y2F0aW9uTGV2ZWw+CgkJPC9FZHVjYXRpb25MZXZlbHM+CgkJPElEQ2FtcGFpZ25UeXBlPjE8L0lEQ2FtcGFpZ25UeXBlPgoJCTxJRENhbXBhaWduU3RhdHVzPjI8L0lEQ2FtcGFpZ25TdGF0dXM+Cgk8L0NhbXBhaWduPgo8L1BhY2thZ2VEYXRhPg== rF0vM6c/UgRI5LCC9TY7GzOX0OqeDduOOwqFnYdi+NDc5uQCCPmlvcE4shLrq+cHF6bCZC1Tka5i1r3OVICljg== 
 
-Вызов метода: http://10.3.60.3:8031/api/token/info
+РџСЂРё СѓСЃРїРµС€РЅРѕРј РїСЂРёРµРјРµ СЃРѕРѕР±С‰РµРЅРёСЏ РѕС‚РІРµС‚ Р±СѓРґРµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ id СЃРѕРѕР±С‰РµРЅРёСЏ РІ СЃРµСЂРІРёСЃРµ РїСЂРёРµРјР°. 
 
-Для проверки наличия сообщений для ИС ООВО используется запрос формы POST с полями, содержащими ОГРН и КПП организации.
+Р’ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ РѕС‚РІРµС‚ Р±СѓРґРµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ РІ С„РѕСЂРјР°С‚Рµ Json, РЅР°РїСЂРёРјРµСЂ: 
 
-В общем случае для обмена сообщениями будет использоваться протокол http, запрос формы POST с заголовком «application/json», тело сообщения должно иметь вид:
+{"Error": " РўРµРєСЃС‚ РѕС€РёР±РєРё"}
+РњРµС‚РѕРґ вЂ“ Р—Р°РїСЂРѕСЃ РЅР°Р»РёС‡РёСЏ РѕР±СЂР°Р±РѕС‚Р°РЅРЅС‹С… РґР°РЅРЅС‹С… (СЃРѕРѕР±С‰РµРЅРёСЏ) Рё РїРѕР»СѓС‡РµРЅРёСЏ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёСЏ 
+РќРµРїРѕРґРїРёСЃР°РЅРЅС‹Р№ Р·Р°РїСЂРѕСЃ Рѕ РЅР°Р»РёС‡РёРё СЃРѕРѕР±С‰РµРЅРёР№ РґР»СЏ РРЎ Р’РЈР—Р°
+Р”Р»СЏ РїСЂРѕРІРµСЂРєРё РЅР°Р»РёС‡РёСЏ СЃРѕРѕР±С‰РµРЅРёР№ РґР»СЏ РРЎ Р’РЈР—Р° РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ Р·Р°РїСЂРѕСЃ С„РѕСЂРјС‹ POST СЃ РїРѕР»СЏРјРё, СЃРѕРґРµСЂР¶Р°С‰РёРјРё РћР“Р Рќ Рё РљРџРџ РѕСЂРіР°РЅРёР·Р°С†РёРё.
 
-Пример сообщения:
+Р’ РѕР±С‰РµРј СЃР»СѓС‡Р°Рµ РґР»СЏ РѕР±РјРµРЅР° СЃРѕРѕР±С‰РµРЅРёСЏРјРё Р±СѓРґРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РїСЂРѕС‚РѕРєРѕР» http, Р·Р°РїСЂРѕСЃ С„РѕСЂРјС‹ POST СЃ Р·Р°РіРѕР»РѕРІРєРѕРј В«application/jsonВ», С‚РµР»Рѕ СЃРѕРѕР±С‰РµРЅРёСЏ РґРѕР»Р¶РЅРѕ РёРјРµС‚СЊ РІРёРґ:
+
+РџСЂРёРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ:
 {
 "OGRN":"1234567890987",
 "KPP":"123456789"
 }
 
-При успешном приеме сообщения ответ будет содержать JSON, например: {"Messages":2}, а при отсутствии сообщений: {"Messages":0}
+РџСЂРё СѓСЃРїРµС€РЅРѕРј РїСЂРёРµРјРµ СЃРѕРѕР±С‰РµРЅРёСЏ РѕС‚РІРµС‚ Р±СѓРґРµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ Json, РЅР°РїСЂРёРјРµСЂ:
 
-В противном случае ответ будет содержать сообщение об ошибке в формате Json, например: {"Error": " Текст ошибки"}.
+{"Messages":2}
 
-Получение результата обработки сообщения
+Р° РїСЂРё РѕС‚СЃСѓС‚СЃС‚РІРёРё СЃРѕРѕР±С‰РµРЅРёР№:
 
-Вызов метода: http://10.3.60.3:8031/api/token/info
+{"Messages":0}
 
-Вид Header:
+Р’ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ РѕС‚РІРµС‚ Р±СѓРґРµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ РІ С„РѕСЂРјР°С‚Рµ Json, РЅР°РїСЂРёРјРµСЂ: 
+
+{"Error": " РўРµРєСЃС‚ РѕС€РёР±РєРё"}
+
+JWT-Р·Р°РїСЂРѕСЃ РЅР° РїРѕР»СѓС‡РµРЅРёРµ СЂРµР·СѓР»СЊС‚Р°С‚Р° РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёСЏ
+
+Р’РёРґ Header:
 { 
-"action": "" , 
-"OGRN": "",  
-"KPP": "",  
-"IDJWT": "",  
-"cert64": "" 
+     "action": "" , 
+     "OGRN": "",  
+     "KPP": "",  
+     "IDJWT": "",  
+     "cert64": "" 
 }
 
-Допустимые значения полей:
-Header: 
-«action»: GetMessage
+Р”РѕРїСѓСЃС‚РёРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»РµР№:
 
-При наличии значения в поле IDJWT – будут отданы данные по заданному IDJWT, в противном случае будут выданы данные, стоящие на первом месте в очереди на отправку в ИС ООВО.
+РґРѕРїСѓСЃС‚РёРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«actionВ»:
+* GetMessage;
 
-При некорректном запросе ответ будет содержать сообщение об ошибке в формате JSON, например: {"Error":"Текст ошибки"}.
-Пример Header до кодирования в base64:
+РџСЂРё РЅР°Р»РёС‡РёРё Р·РЅР°С‡РµРЅРёСЏ РІ РїРѕР»Рµ IDJWT вЂ“ Р±СѓРґСѓС‚ РѕС‚РґР°РЅС‹ РґР°РЅРЅС‹Рµ РїРѕ Р·Р°РґР°РЅРЅРѕРјСѓ IDJWT, РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ Р±СѓРґСѓС‚ РІС‹РґР°РЅС‹ РґР°РЅРЅС‹Рµ, СЃС‚РѕСЏС‰РёРµ РІ РѕС‡РµСЂРµРґРё РЅР° РѕС‚РїСЂР°РІРєСѓ РІ РРЎ РћРћР’Рћ.
+
+РџСЂРёРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ:
+
+РџСЂРёРјРµСЂ Header РґРѕ РєРѕРґРёСЂРѕРІР°РЅРёСЏ РІ base64:
 { 
-"OGRN": "1234567890987",  
-"KPP": "123456789", 
-"IDJWT": "6",  
-"cert64": "MIIEYTCCBBCgAwIBAgITEgBBhm25R8IV………………………….."
+     "OGRN": "1234567890987",  
+     "KPP": "123456789", 
+     "IDJWT": "6",  
+     "cert64": "MIIEYTCCBBCgAwIBAgITEgBBhm25R8IVG6FyMgABAEGGbTAIBgYqhQMCAgMwfzEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBjcnlwdG9wcm8ucnUxCzAJBgNVBAYTAlJVMQ8wDQYDVQQHEwZNb3Njb3cxFzAVBgNVBAoTDkNSWVBUTy1QUk8gTExDMSEwHwYDVQQDExhDUllQVE8tUFJPIFRlc3QgQ2VudGVyIDIwHhcNMjAwMjI4MTMzMjI0WhcNMjAwNTI4MTM0MjI0WjCCAWgxGDAWBgUqhQNkARINNTA4Nzc0NjY5NzUyODE6MDgGA1UECQwx0KPQuy7Qn9GA0LXRgdC90LXQvdGB0LrQuNC5INCS0LDQuyDQtC4xOSDRgdGC0YAuMTETMBEGA1UECgwK0KHQsNC80YvQuTEVMBMGA1UEBwwM0JzQvtGB0LrQstCwMRowGAYIKoUDA4EDAQESDDAwNzgxNDUwODkyMTEbMBkGCSqGSIb3DQEJARYMbWFpbEBtYWlsLnJ1MRowGAYIKoUDA4EDAQESDDExMTExMTExMTExMTEYMBYGBSqFA2QBEg0xMTExMTExMTExMTExMQswCQYDVQQGEwJSVTEiMCAGA1UEKgwZ0JjQstCw0L0g0JjQstCw0L3QvtCy0LjRhzERMA8GA1UEDAwI0KDRg9C70YwxGjAYBgNVBAMMEdCY0KEg0KHQsNC80L7Qs9C+MRUwEwYDVQQEDAzQmNCy0LDQvdC+0LIwZjAfBggqhQMHAQEBATATBgcqhQMCAiQABggqhQMHAQECAgNDAARA2MWlMDJAQpXr2rSxFAi8PhtQJ36bw4qwaSVq9053YzKPTbh1wU5wF32Y3iEQnkQl3SXbY43ZxWeEPfdvPvaHL6OCAXMwggFvMBMGA1UdJQQMMAoGCCsGAQUFBwMEMAsGA1UdDwQEAwIE8DAdBgNVHQ4EFgQU1xJln3hUeA/fRN6yTyk7OT6DSU0wHwYDVR0jBBgwFoAUToM+FGnv7F16lStfEf43MhZJVSswXAYDVR0fBFUwUzBRoE+gTYZLaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC9DUllQVE8tUFJPJTIwVGVzdCUyMENlbnRlciUyMDIoMSkuY3JsMIGsBggrBgEFBQcBAQSBnzCBnDBkBggrBgEFBQcwAoZYaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC90ZXN0LWNhLTIwMTRfQ1JZUFRPLVBSTyUyMFRlc3QlMjBDZW50ZXIlMjAyKDEpLmNydDA0BggrBgEFBQcwAYYoaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvb2NzcC9vY3NwLnNyZjAIBgYqhQMCAgMDQQBrsvMSbI8zrcGATqppTRcFEBxB9QeT80YoZ+ZmweEZk3tLXFvMQ7ezHogsKW0sL6XDVzJQKzDmHIfO49NbUm7Y" 
 }
 
-Отчет о получении результата обработки сообщения
+РџСЂРёРјРµСЂ СЃРѕРѕР±С‰РµРЅРёСЏ:
+РџСЂРёРјРµСЂ JWT : 
+eyJJREpXVCI6NiwiYWN0aW9uIjoiQWRkIiwiZGF0YV90eXBlIjoiY2FtcGFpbiIsIk9HUk4iOiIxMjM0NTY3ODkwOTg3IiwiS1BQIjoiMTIzNDU2Nzg5IiwiQ2VydDY0IjoiTUlJRVlUQ0NCQkNnQXdJQkFnSVRFZ0JCaG0yNVI4SVZHNkZ5TWdBQkFFR0diVEFJQmdZcWhRTUNBZ013ZnpFak1DRUdDU3FHU0liM0RRRUpBUllVYzNWd2NHOXlkRUJqY25sd2RHOXdjbTh1Y25VeEN6QUpCZ05WQkFZVEFsSlZNUTh3RFFZRFZRUUhFd1pOYjNOamIzY3hGekFWQmdOVkJBb1REa05TV1ZCVVR5MVFVazhnVEV4RE1TRXdId1lEVlFRREV4aERVbGxRVkU4dFVGSlBJRlJsYzNRZ1EyVnVkR1Z5SURJd0hoY05NakF3TWpJNE1UTXpNakkwV2hjTk1qQXdOVEk0TVRNME1qSTBXakNDQVdneEdEQVdCZ1VxaFFOa0FSSU5OVEE0TnpjME5qWTVOelV5T0RFNk1EZ0dBMVVFQ1F3eDBLUFF1eTdRbjlHQTBMWFJnZEM5MExYUXZkR0IwTHJRdU5DNUlOQ1MwTERRdXlEUXRDNHhPU0RSZ2RHQzBZQXVNVEVUTUJFR0ExVUVDZ3dLMEtIUXNOQzgwWXZRdVRFVk1CTUdBMVVFQnd3TTBKelF2dEdCMExyUXN0Q3dNUm93R0FZSUtvVURBNEVEQVFFU0REQXdOemd4TkRVd09Ea3lNVEViTUJrR0NTcUdTSWIzRFFFSkFSWU1iV0ZwYkVCdFlXbHNMbkoxTVJvd0dBWUlLb1VEQTRFREFRRVNEREV4TVRFeE1URXhNVEV4TVRFWU1CWUdCU3FGQTJRQkVnMHhNVEV4TVRFeE1URXhNVEV4TVFzd0NRWURWUVFHRXdKU1ZURWlNQ0FHQTFVRUtnd1owSmpRc3RDdzBMMGcwSmpRc3RDdzBMM1F2dEN5MExqUmh6RVJNQThHQTFVRURBd0kwS0RSZzlDNzBZd3hHakFZQmdOVkJBTU1FZENZMEtFZzBLSFFzTkM4MEw3UXM5QytNUlV3RXdZRFZRUUVEQXpRbU5DeTBMRFF2ZEMrMExJd1pqQWZCZ2dxaFFNSEFRRUJBVEFUQmdjcWhRTUNBaVFBQmdncWhRTUhBUUVDQWdOREFBUkEyTVdsTURKQVFwWHIyclN4RkFpOFBodFFKMzZidzRxd2FTVnE5MDUzWXpLUFRiaDF3VTV3RjMyWTNpRVFua1FsM1NYYlk0M1p4V2VFUGZkdlB2YUhMNk9DQVhNd2dnRnZNQk1HQTFVZEpRUU1NQW9HQ0NzR0FRVUZCd01FTUFzR0ExVWREd1FFQXdJRThEQWRCZ05WSFE0RUZnUVUxeEpsbjNoVWVBL2ZSTjZ5VHlrN09UNkRTVTB3SHdZRFZSMGpCQmd3Rm9BVVRvTStGR252N0YxNmxTdGZFZjQzTWhaSlZTc3dYQVlEVlIwZkJGVXdVekJSb0UrZ1RZWkxhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzlEVWxsUVZFOHRVRkpQSlRJd1ZHVnpkQ1V5TUVObGJuUmxjaVV5TURJb01Ta3VZM0pzTUlHc0JnZ3JCZ0VGQlFjQkFRU0JuekNCbkRCa0JnZ3JCZ0VGQlFjd0FvWllhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzkwWlhOMExXTmhMVEl3TVRSZlExSlpVRlJQTFZCU1R5VXlNRlJsYzNRbE1qQkRaVzUwWlhJbE1qQXlLREVwTG1OeWREQTBCZ2dyQmdFRkJRY3dBWVlvYUhSMGNEb3ZMM1JsYzNSallTNWpjbmx3ZEc5d2NtOHVjblV2YjJOemNDOXZZM053TG5OeVpqQUlCZ1lxaFFNQ0FnTURRUUJyc3ZNU2JJOHpyY0dBVHFwcFRSY0ZFQnhCOVFlVDgwWW9aK1ptd2VFWmszdExYRnZNUTdlekhvZ3NLVzBzTDZYRFZ6SlFLekRtSElmTzQ5TmJVbTdZIn0=
 
-Вызов метода: http://10.3.60.3:8031/api/token/confirm
+РџСЂРё РЅРµРєРѕСЂСЂРµРєС‚РЅРѕРј Р·Р°РїСЂРѕСЃРµ РѕС‚РІРµС‚ Р±СѓРґРµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ РІ С„РѕСЂРјР°С‚Рµ Json, РЅР°РїСЂРёРјРµСЂ: 
 
-Вид Header:
+{"Error":"РўРµРєСЃС‚ РѕС€РёР±РєРё"}
+
+РџСЂРё СѓСЃРїРµС€РЅРѕРј РїСЂРёРµРјРµ СЃРѕРѕР±С‰РµРЅРёСЏ РѕС‚РІРµС‚ Р±СѓРґРµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ JWT СЃР»РµРґСѓСЋС‰РµРіРѕ СЃРѕРґРµСЂР¶Р°РЅРёСЏ:
+eyJJRFRva2VuIjoxODAwLCJEYXRhVHlwZSI6IkVycm9yIiwiQ2VydDY0IjoiTUlJRVlUQ0NCQkNnQXdJQkFnSVRFZ0JCaG0yNVI4SVZHNkZ5TWdBQkFFR0diVEFJQmdZcWhRTUNBZ013ZnpFak1DRUdDU3FHU0liM0RRRUpBUllVYzNWd2NHOXlkRUJqY25sd2RHOXdjbTh1Y25VeEN6QUpCZ05WQkFZVEFsSlZNUTh3RFFZRFZRUUhFd1pOYjNOamIzY3hGekFWQmdOVkJBb1REa05TV1ZCVVR5MVFVazhnVEV4RE1TRXdId1lEVlFRREV4aERVbGxRVkU4dFVGSlBJRlJsYzNRZ1EyVnVkR1Z5SURJd0hoY05NakF3TWpJNE1UTXpNakkwV2hjTk1qQXdOVEk0TVRNME1qSTBXakNDQVdneEdEQVdCZ1VxaFFOa0FSSU5OVEE0TnpjME5qWTVOelV5T0RFNk1EZ0dBMVVFQ1F3eDBLUFF1eTdRbjlHQTBMWFJnZEM5MExYUXZkR0IwTHJRdU5DNUlOQ1MwTERRdXlEUXRDNHhPU0RSZ2RHQzBZQXVNVEVUTUJFR0ExVUVDZ3dLMEtIUXNOQzgwWXZRdVRFVk1CTUdBMVVFQnd3TTBKelF2dEdCMExyUXN0Q3dNUm93R0FZSUtvVURBNEVEQVFFU0REQXdOemd4TkRVd09Ea3lNVEViTUJrR0NTcUdTSWIzRFFFSkFSWU1iV0ZwYkVCdFlXbHNMbkoxTVJvd0dBWUlLb1VEQTRFREFRRVNEREV4TVRFeE1URXhNVEV4TVRFWU1CWUdCU3FGQTJRQkVnMHhNVEV4TVRFeE1URXhNVEV4TVFzd0NRWURWUVFHRXdKU1ZURWlNQ0FHQTFVRUtnd1owSmpRc3RDdzBMMGcwSmpRc3RDdzBMM1F2dEN5MExqUmh6RVJNQThHQTFVRURBd0kwS0RSZzlDNzBZd3hHakFZQmdOVkJBTU1FZENZMEtFZzBLSFFzTkM4MEw3UXM5QytNUlV3RXdZRFZRUUVEQXpRbU5DeTBMRFF2ZEMrMExJd1pqQWZCZ2dxaFFNSEFRRUJBVEFUQmdjcWhRTUNBaVFBQmdncWhRTUhBUUVDQWdOREFBUkEyTVdsTURKQVFwWHIyclN4RkFpOFBodFFKMzZidzRxd2FTVnE5MDUzWXpLUFRiaDF3VTV3RjMyWTNpRVFua1FsM1NYYlk0M1p4V2VFUGZkdlB2YUhMNk9DQVhNd2dnRnZNQk1HQTFVZEpRUU1NQW9HQ0NzR0FRVUZCd01FTUFzR0ExVWREd1FFQXdJRThEQWRCZ05WSFE0RUZnUVUxeEpsbjNoVWVBL2ZSTjZ5VHlrN09UNkRTVTB3SHdZRFZSMGpCQmd3Rm9BVVRvTStGR252N0YxNmxTdGZFZjQzTWhaSlZTc3dYQVlEVlIwZkJGVXdVekJSb0UrZ1RZWkxhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzlEVWxsUVZFOHRVRkpQSlRJd1ZHVnpkQ1V5TUVObGJuUmxjaVV5TURJb01Ta3VZM0pzTUlHc0JnZ3JCZ0VGQlFjQkFRU0JuekNCbkRCa0JnZ3JCZ0VGQlFjd0FvWllhSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZRMlZ5ZEVWdWNtOXNiQzkwWlhOMExXTmhMVEl3TVRSZlExSlpVRlJQTFZCU1R5VXlNRlJsYzNRbE1qQkRaVzUwWlhJbE1qQXlLREVwTG1OeWREQTBCZ2dyQmdFRkJRY3dBWVlvYUhSMGNEb3ZMM1JsYzNSallTNWpjbmx3ZEc5d2NtOHVjblV2YjJOemNDOXZZM053TG5OeVpqQUlCZ1lxaFFNQ0FnTURRUUJyc3ZNU2JJOHpyY0dBVHFwcFRSY0ZFQnhCOVFlVDgwWW9aK1ptd2VFWmszdExYRnZNUTdlekhvZ3NLVzBzTDZYRFZ6SlFLekRtSElmTzQ5TmJVbTdZIn0=.PGVycm9yUGF5bG9hZD48RXJyb3JDb2RlPjUwMDwvRXJyb3JDb2RlPjxFcnJvckRlc2NyaXB0aW9uPtCS0L3Rg9GC0YDQtdC90L3Rj9GPINC+0YjQuNCx0LrQsCDRgdC10YDQstC10YDQsDwvRXJyb3JEZXNjcmlwdGlvbj48RW50aXR5VHlwZT5qd3RfdG9rZW48L0VudGl0eVR5cGU+PFVJRD48L1VJRD48VUlEUGFyZW50PjwvVUlEUGFyZW50PjwvZXJyb3JQYXlsb2FkPg==.HpxztRrkcBTi4A90sHZgQvzar+eZFmrC0fQQ7Dh4f2KIApQBCvz3XCzhOUd64Fdn6ynVcHfLYlmSCz/lvP3Yrw==
+
+{"IDJWT":6,"DataType":"Error","Cert64":"MIIEYTCCBBCgAwIBAgITEgBBhm25R8IVG6FyMgABAEGGbTAIBgYqhQMCAgMwfzEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBjcnlwdG9wcm8ucnUxCzAJBgNVBAYTAlJVMQ8wDQYDVQQHEwZNb3Njb3cxFzAVBgNVBAoTDkNSWVBUTy1QUk8gTExDMSEwHwYDVQQDExhDUllQVE8tUFJPIFRlc3QgQ2VudGVyIDIwHhcNMjAwMjI4MTMzMjI0WhcNMjAwNTI4MTM0MjI0WjCCAWgxGDAWBgUqhQNkARINNTA4Nzc0NjY5NzUyODE6MDgGA1UECQwx0KPQuy7Qn9GA0LXRgdC90LXQvdGB0LrQuNC5INCS0LDQuyDQtC4xOSDRgdGC0YAuMTETMBEGA1UECgwK0KHQsNC80YvQuTEVMBMGA1UEBwwM0JzQvtGB0LrQstCwMRowGAYIKoUDA4EDAQESDDAwNzgxNDUwODkyMTEbMBkGCSqGSIb3DQEJARYMbWFpbEBtYWlsLnJ1MRowGAYIKoUDA4EDAQESDDExMTExMTExMTExMTEYMBYGBSqFA2QBEg0xMTExMTExMTExMTExMQswCQYDVQQGEwJSVTEiMCAGA1UEKgwZ0JjQstCw0L0g0JjQstCw0L3QvtCy0LjRhzERMA8GA1UEDAwI0KDRg9C70YwxGjAYBgNVBAMMEdCY0KEg0KHQsNC80L7Qs9C+MRUwEwYDVQQEDAzQmNCy0LDQvdC+0LIwZjAfBggqhQMHAQEBATATBgcqhQMCAiQABggqhQMHAQECAgNDAARA2MWlMDJAQpXr2rSxFAi8PhtQJ36bw4qwaSVq9053YzKPTbh1wU5wF32Y3iEQnkQl3SXbY43ZxWeEPfdvPvaHL6OCAXMwggFvMBMGA1UdJQQMMAoGCCsGAQUFBwMEMAsGA1UdDwQEAwIE8DAdBgNVHQ4EFgQU1xJln3hUeA/fRN6yTyk7OT6DSU0wHwYDVR0jBBgwFoAUToM+FGnv7F16lStfEf43MhZJVSswXAYDVR0fBFUwUzBRoE+gTYZLaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC9DUllQVE8tUFJPJTIwVGVzdCUyMENlbnRlciUyMDIoMSkuY3JsMIGsBggrBgEFBQcBAQSBnzCBnDBkBggrBgEFBQcwAoZYaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC90ZXN0LWNhLTIwMTRfQ1JZUFRPLVBSTyUyMFRlc3QlMjBDZW50ZXIlMjAyKDEpLmNydDA0BggrBgEFBQcwAYYoaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvb2NzcC9vY3NwLnNyZjAIBgYqhQMCAgMDQQBrsvMSbI8zrcGATqppTRcFEBxB9QeT80YoZ+ZmweEZk3tLXFvMQ7ezHogsKW0sL6XDVzJQKzDmHIfO49NbUm7Y"}
+
+<errorPayload><ErrorCode>500</ErrorCode><ErrorDescription>Р’РЅСѓС‚СЂРµРЅРЅСЏСЏ РѕС€РёР±РєР° СЃРµСЂРІРµСЂР°</ErrorDescription><EntityType>jwt_token</EntityType><UID></UID><UIDParent></UIDParent></errorPayload>
+
+Р”РµРєРѕРґРёСЂРѕРІР°РЅРЅС‹Р№ Payload РѕС‚РІРµС‚Р° 
+1. РїСЂРё СѓСЃРїРµС€РЅРѕР№ РѕР±СЂР°Р±РѕС‚РєРµ СЃРѕРѕР±С‰РµРЅРёСЏ:
+<PackageData><UID></UID></PackageData>
+
+2. РїСЂРё РѕС€РёР±РєРµ:
+<errorPayload><ErrorCode>500</ErrorCode><ErrorDescription>Р’РЅСѓС‚СЂРµРЅРЅСЏСЏ РѕС€РёР±РєР° СЃРµСЂРІРµСЂР°</ErrorDescription><EntityType>jwt_token</EntityType><UID></UID><UIDParent></UIDParent></errorPayload>
+
+
+
+
+РњРµС‚РѕРґ - РћС‚С‡РµС‚ Рѕ РїРѕР»СѓС‡РµРЅРёРё СЂРµР·СѓР»СЊС‚Р°С‚Р° РѕР±СЂР°Р±РѕС‚РєРё СЃРѕРѕР±С‰РµРЅРёСЏ
+
+РРјРµРµС‚ РІРёРґ JWT, РЅР°РїСЂРёРјРµСЂ:
+
 { 
-"action": "" , 
-"OGRN": "",  
-"KPP": "",  
-"IDJWT": "",  
-"cert64": "" 
+     "action": "MessageConfirm",  
+     "OGRN": "1234567890987",  
+     "KPP": "123456789", 
+     "IDJWT": "6",  
+     "cert64": "MIIEYTCCBBCgAwIBAgITEgBBhm25R8IVG6FyMgABAEGGbTAIBgYqhQMCAgMwfzEjMCEGCSqGSIb3DQEJARYUc3VwcG9ydEBjcnlwdG9wcm8ucnUxCzAJBgNVBAYTAlJVMQ8wDQYDVQQHEwZNb3Njb3cxFzAVBgNVBAoTDkNSWVBUTy1QUk8gTExDMSEwHwYDVQQDExhDUllQVE8tUFJPIFRlc3QgQ2VudGVyIDIwHhcNMjAwMjI4MTMzMjI0WhcNMjAwNTI4MTM0MjI0WjCCAWgxGDAWBgUqhQNkARINNTA4Nzc0NjY5NzUyODE6MDgGA1UECQwx0KPQuy7Qn9GA0LXRgdC90LXQvdGB0LrQuNC5INCS0LDQuyDQtC4xOSDRgdGC0YAuMTETMBEGA1UECgwK0KHQsNC80YvQuTEVMBMGA1UEBwwM0JzQvtGB0LrQstCwMRowGAYIKoUDA4EDAQESDDAwNzgxNDUwODkyMTEbMBkGCSqGSIb3DQEJARYMbWFpbEBtYWlsLnJ1MRowGAYIKoUDA4EDAQESDDExMTExMTExMTExMTEYMBYGBSqFA2QBEg0xMTExMTExMTExMTExMQswCQYDVQQGEwJSVTEiMCAGA1UEKgwZ0JjQstCw0L0g0JjQstCw0L3QvtCy0LjRhzERMA8GA1UEDAwI0KDRg9C70YwxGjAYBgNVBAMMEdCY0KEg0KHQsNC80L7Qs9C+MRUwEwYDVQQEDAzQmNCy0LDQvdC+0LIwZjAfBggqhQMHAQEBATATBgcqhQMCAiQABggqhQMHAQECAgNDAARA2MWlMDJAQpXr2rSxFAi8PhtQJ36bw4qwaSVq9053YzKPTbh1wU5wF32Y3iEQnkQl3SXbY43ZxWeEPfdvPvaHL6OCAXMwggFvMBMGA1UdJQQMMAoGCCsGAQUFBwMEMAsGA1UdDwQEAwIE8DAdBgNVHQ4EFgQU1xJln3hUeA/fRN6yTyk7OT6DSU0wHwYDVR0jBBgwFoAUToM+FGnv7F16lStfEf43MhZJVSswXAYDVR0fBFUwUzBRoE+gTYZLaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC9DUllQVE8tUFJPJTIwVGVzdCUyMENlbnRlciUyMDIoMSkuY3JsMIGsBggrBgEFBQcBAQSBnzCBnDBkBggrBgEFBQcwAoZYaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvQ2VydEVucm9sbC90ZXN0LWNhLTIwMTRfQ1JZUFRPLVBSTyUyMFRlc3QlMjBDZW50ZXIlMjAyKDEpLmNydDA0BggrBgEFBQcwAYYoaHR0cDovL3Rlc3RjYS5jcnlwdG9wcm8ucnUvb2NzcC9vY3NwLnNyZjAIBgYqhQMCAgMDQQBrsvMSbI8zrcGATqppTRcFEBxB9QeT80YoZ+ZmweEZk3tLXFvMQ7ezHogsKW0sL6XDVzJQKzDmHIfO49NbUm7Y" 
 }
 
-Допустимые значения полей:
-Header: 
-«action»: MessageConfirm;
-«IDJWT»: должен содержать ID для которого запрашивается результат обработки сообщения.
+РџСЂРё СѓСЃРїРµС€РЅРѕРј РїСЂРёРµРјРµ СЃРѕРѕР±С‰РµРЅРёСЏ РѕС‚РІРµС‚ Р±СѓРґРµС‚ СЃРѕРґРµСЂР¶Р°С‚СЊ JWT СЃР»РµРґСѓСЋС‰РµРіРѕ СЃРѕРґРµСЂР¶Р°РЅРёСЏ:  
 
-Пример сообщения:
-{ 
-"action": "MessageConfirm",  
-"OGRN": "1234567890987",  
-"KPP": "123456789", 
-"IDJWT": "6",  
-"cert64": "MIIEYTCCBBCgAwIBAgITEgBBhm25R8IVG6FyMgABAEGG……………..…………." 
-}
-
-?
-Общий алгоритм действий
-
-до начала приемной кампании
-1	Скачивание справочников
-2	Загрузка данных о кафедрах
-3	Загрузка приемной кампании
-4	Загрузка учитываемых в рамках приемной кампании индивидуальных достижений
-5	Загрузка контрольных цифр приема
-6	Загрузка распределение контрольных цифр приема по уровням бюджета
-7	Загрузка конкурсных групп
-8	Загрузка образовательной программы
-9	Загрузка льгот на конкурсную группу
-10	Загрузка вступительных испытаний
-11	Загрузка льгот на вступительное испытание
-12	Загрузка календаря вступительных испытаний
-после старта приемной кампании
-13	Загрузка профиля абитуриента
-14	Загрузка документов абитуриента
-15	Загрузка заявления
-16	Загрузка индивидуальных достижений
-17	Изменение статуса заявления в зависимости от этапа жизненного цикла заявления
-18	Загрузка согласия на даты испытаний
-19	Загрузка результатов испытаний
-20	Изменение статуса заявления абитуриента на согласие зачисления/отзыв заявления и др. статусы
-21	Загрузка рейтинга заявлений
-22	Загрузка приказа о зачислении, или приказа об отказе от зачислении
-23	Загрузка конкурсных списков и рейтингов
-
-?
-1.	Синхронизация справочников
-
-Для получения справочников используется метод 1 - получение информации (справочников).
-
-Тело сообщения должно иметь вид:
-
-{"OGRN" : "","KPP" : "","CLS" : ""}
-
-где OGRN это ОГРН зарегистрированной организации в системе, где KPP это КПП зарегистрированной организации в системе,  где CLS это вид запрашиваемого классификатора.  CLS может принимать значения: 
-
-Список справочников
-№
-п/п	Наименование классификатора 
-в запросе	Описание
-1	Directions	Общероссийский классификатор специальностей по образованию
-2	CampaignType	Типы приемных компаний
-3	CampaignStatus	Статусы приемных компаний
-4	Benefit	Справочник льгот
-5	EducationForm	Формы образования
-6	EducationLevel	Уровни образования ПК
-7	EducationSource	Источник финансирования
-8	EntranceTestType	Тип вступительного испытания
-9	LevelBudget	Уровни бюджета
-10	OlympicDiplomaType	Типы дипломов олимпиад
-11	OlympicLevel	Уровни олимпиад
-12	Subject	Образовательные предметы
-13	EduLevelsCampaignTypes	Типы ПК по уровням образования
-14	AchievementCategory	Категории индивидуальных достижений
-15	ApplicationStatuses	Статусы заявлений
-16	CompatriotCategories	Категории соотечественников
-17	CompositionThemes	Темы сочинений
-18	DisabilityTypes	Категории инвалидности
-19	DocumentCategories	Категории документов
-20	DocumentTypes	Типы документов
-21	EntranceTestDocumentTypes	Типы документов вступительного испытания
-22	EntranceTestResultSources	Источник результата вступительного испытания
-23	Genders	Пол
-24	MinScoreSubjects	Минимальное значение ЕГЭ по предметам
-25	Okcms	Общероссийский классификатор стран мира
-26	Oktmos	Справочник муниципалитетов (из ОКТМО)
-27	OlympicMinEge	Минимальное значение ЕГЭ для подтверждения олимпиады
-28	OrderAdmissionStatuses	Статус приказов
-29	OrderAdmissionTypes	Типы приказов
-30	OrphanCategories	Категория документов детей-сирот
-31	ParentsLostCategories	Категории граждан, родители и опекуны которых погибли при исполнении служебных обязанностей
-32	RadiationWorkCategories
-	Категории граждан, участвовавших в работах на радиационных объектах или подвергшихся воздействию радиации
-33	Regions	Справочник регионов
-34	ReturnTypes	Типы результата
-35	VeteranCategories	Категории граждан, участвовавших в боевых действиях
-36	ViolationTypes	Тип нарушений в заявлении
-37	OlympicsProfiles	Сведения об олимпиаде и ее организаторах
-38	OlyProfiles	Профили олимпиад
-39	Olympics	Олимпиады
-40	AppealStatuses	Статус апелляции
-41	MilitaryCategories	Категории военнослужащих
-
-Пример сообщения с запросом:
-{
-"OGRN" : "1234567890987",
-"KPP" : "123456789",
-"CLS" : " Directions"
-}
-
-?
-2.	Работа с данными
-
-2.1 Загрузка/редактирование данных
-
-Последовательность операций: 2.1.1, 2.1.2, 2.1.3
-
-2.1.1 Загрузка данных
-
-Осуществляется вызовом метода 2 - Внесение сообщения (данных) в систему (загрузка сформированного JWT, содержащего данные о ПК; получение IDJWT).
-
-Header:
-"action": "Add"(для редактирования - "action": "Edit")
-
-Пример:
-{ 
-"action": "Add",  
-"data_type": "campaign",  
-"OGRN": "1234567890987",  
-"KPP": "123456789",  
-"cert64": "MIIEYTCCBBCgAwIBAgITEgBBhm25NydDA0BggrBgEFBQc……….." 
-}
-
-Payload должен содержать xml_пакет.
-
-2.1.1.1 Загрузка кафедры - описание тэгов xsd-схемы пакета «Add_subdivision_org» 
-UID	Уникальный идентификатор кафедры ВУЗа
-Name	Наименование кафедры
-
-2.1.1.2 Загрузка приемной кампании - описание тэгов xsd-схемы пакета «Add_campaign» 
-UID	Уникальный идентификатор приемной кампании ВУЗа
-Name	Наименование ПК
-YearStart	Год начала
-YearEnd	Год окончания
-EducationForms	Форма обучения - комплексный тип – содержит ссылку на id справочника EducationForm
-EducationLevels	Уровень образования - комплексный тип - содержит ссылку на id справочника EducationLevel
-IDCampaignType	Тип ПК - содержит ссылку на id справочника CampaignType
-IDCampaignStatus	Статус ПК - содержит ссылку на id справочника CampaignStatus
-
-2.1.1.3 Загрузка индивидуального достижения, учитываемого в рамках приемной кампании - описание тэгов xsd-схемы пакета «Add_achievements» 
-UIDCampaign	Уникальный идентификатор приемной кампании ВУЗа
-UID	Уникальный идентификатор индивидуального достижения ВУЗа
-IDCategory	Идентификатор категория индивидуального достижения - содержит ссылку на id справочника AchievementCategory
-Name	Наименование индивидуального достижения
-MaxValue	Балл
-
-2.1.1.4 Загрузка КЦП - описание тэгов xsd-схемы пакета «Add_admission_volume» 
-UID	Уникальный идентификатор записи КЦП ВУЗа
-UIDCampaign	Уникальный идентификатор приемной кампании ВУЗа
-IDDirection	Идентификатор направления подготовки - содержит ссылку на id справочника Directions
-IDEducationLevel	Идентификатор уровня образования - содержит ссылку на id справочника EducationLevel
-Budget_o	Значение в разрезе бюджет/очно
-Budget_oz	Значение в разрезе бюджет/очно-заочно
-Budget_z	Значение в разрезе бюджет/заочно
-Quota_o	Значение в разрезе квота/очно
-Quota_oz	Значение в разрезе квота /очно-заочно
-Quota_z	Значение в разрезе квота т/заочно
-Paid_o	Значение в разрезе платно/очно
-Paid_oz	Значение в разрезе платно/очно-заочно
-Paid_z	Значение в разрезе платно/заочно
-Target_o	Значение в разрезе целевое/очно
-Target_oz	Значение в разрезе целевое/очно-заочно
-Target_z	Значение в разрезе целевое/заочно
-                            
-2.1.1.5 Загрузка распределенных КЦП по уровням бюджета - описание тэгов xsd-схемы пакета «Add_distributed_admission_volume» 
-UID	Уникальный идентификатор распределенной записи КЦП ВУЗа
-UIDAdmissionVolume	Уникальный идентификатор записи КЦП ВУЗа
-IDDirection	Идентификатор направления подготовки - содержит ссылку на id справочника Directions
-IDEducationLevel	Идентификатор уровня образования - содержит ссылку на id справочника EducationLevel
-Budget_o	Значение в разрезе бюджет/очно
-Budget_oz	Значение в разрезе бюджет/очно-заочно
-Budget_z	Значение в разрезе бюджет/заочно
-Quota_o	Значение в разрезе квота/очно
-Quota_oz	Значение в разрезе квота /очно-заочно
-Quota_z	Значение в разрезе квота т/заочно
-Paid_o	Значение в разрезе платно/очно
-Paid_oz	Значение в разрезе платно/очно-заочно
-Paid_z	Значение в разрезе платно/заочно
-Target_o	Значение в разрезе целевое/очно
-Target_oz	Значение в разрезе целевое/очно-заочно
-Target_z	Значение в разрезе целевое/заочно
-
-2.1.1.6 Загрузка конкурсной группы - описание тэгов xsd-схемы пакета «Add_competitive_groups»
-UID	Уникальный идентификатор КГ ВУЗа
-UIDCampaign	Уникальный идентификатор ПК ВУЗа
-Name	Наименование КГ
-IDLevelBudget	Идентификатор уровня бюджета - содержит ссылку на id справочника LevelBudget
-IDEducationLevel	Идентификатор уровня образования - содержит ссылку на id справочника EducationLevel
-IDEducationSource	Идентификатор - содержит ссылку на id справочника EducationSource
-IDEducationForm	Идентификатор формы обучения - содержит ссылку на id справочника EducationForm
-Budget_o	Значение в разрезе бюджет/очно
-Budget_oz	Значение в разрезе бюджет/очно-заочно
-Budget_z	Значение в разрезе бюджет/заочно
-Quota_o	Значение в разрезе квота/очно
-Quota_oz	Значение в разрезе квота /очно-заочно
-Quota_z	Значение в разрезе квота т/заочно
-Paid_o	Значение в разрезе платно/очно
-Paid_oz	Значение в разрезе платно/очно-заочно
-Paid_z	Значение в разрезе платно/заочно
-Target_o	Значение в разрезе целевое/очно
-Target_oz	Значение в разрезе целевое/очно-заочно
-Target_z	Значение в разрезе целевое/заочно
-Comment	Комментарий с наименованием КГ, которое увидит абитуриент в ЛК на ЕПГУ
-
-2.1.1.7 Загрузка образовательной программы - описание тэгов xsd-схемы пакета «Add_competitive_group_programs» 
-UIDCompetitiveGroup	Уникальный идентификатор КГ ВУЗа
-UIDSubdivisionOrg	Уникальный идентификатор кафедры ВУЗа
-Name	Наименование образовательной программы
-UID	Уникальный идентификатор образовательной программы ВУЗа
-
-2.1.1.8 Загрузка льготы учитываемой в рамках конкурсной группы - описание тэгов xsd-схемы пакета «Add_competitive_benefits» 
-UIDCompetitiveGroup	Уникальный идентификатор КГ ВУЗа
-Creative	Признак творческая олимпиада
-Athletic	Признак олимпиада в области спорта
-IDBenefit	Идентификатор учитываемого достижения - содержит ссылку на id справочника Benefit
-IDOlympicDiplomaType	Идентификатор типа диплома олимпиады - содержит ссылку на id справочника OlympicDiplomaType
-EgeMinValue	Минимальное значение ЕГЭ подтверждающее льготу
-OlympicProfiles	Профиль олимпиады - комплексный тип - содержит ссылку на id справочника OlympicsProfiles
-UID	Уникальный идентификатор льготы в КГ ВУЗа
-
-2.1.1.9 Загрузка вступительные испытания в рамках конкурсной группы - описание тэгов xsd-схемы пакета «Add_entrance_tests» 
-UID	Уникальный идентификатор вступительного испытания в КГ ВУЗа
-UIDCompetitiveGroup	Уникальный идентификатор КГ ВУЗа
-IDEntranceTestType	Идентификатор типа вступительного испытания - содержит ссылку на id справочника EntranceTestType
-TestName	Наименование вступительного испытания
-IsEge	Признак результата ЕГЭ
-MinScore	Минимальный балл
-Priority	Приоритет
-IDSubject	Идентификатор предмета вступительного испытания - содержит ссылку на id справочника Subject
-UIDReplaceEntranceTest	Уникальный идентификатор заменяемого вступительного испытания в КГ ВУЗа
-
-2.1.1.10 Загрузка льготы в рамках вступительного испытания конкурсной группы - описание тэгов xsd-схемы пакета «Add_entrance_test_benefits» 
-UID	Уникальный идентификатор льготы в рамках вступительного испытания в КГ
-UIDEntranceTest	Уникальный идентификатор вступительного испытания в КГ ВУЗа
-IDBenefit	Идентификатор учитываемого достижения - содержит ссылку на id справочника Benefit
-IDOlympicDiplomaType	Идентификатор типа диплома олимпиады - содержит ссылку на id справочника OlympicDiplomaType
-IDOlympicLevel	Идентификатор уровня олимпиады - содержит ссылку на id справочника OlympicLevel
-OlympicProfiles	Профиль олимпиады - комплексный тип - содержит ссылку на id справочника OlympicsProfiles
-EgeMinValue	Минимальное значение ЕГЭ подтверждающее льготу
+eyJJREpXVCI6NiwiYWN0aW9uIjoiTWVzc2FnZUNvbmZpcm0iLCJkYXRhX3R5cGUiOiJjYW1wYWluIiwiT0dSTiI6IjEyMzQ1Njc4OTA5ODciLCJLUFAiOiIxMjM0NTY3ODkiLCJDZXJ0NjQiOiJNSUlFWVRDQ0JCQ2dBd0lCQWdJVEVnQkJobTI1UjhJVkc2RnlNZ0FCQUVHR2JUQUlCZ1lxaFFNQ0FnTXdmekVqTUNFR0NTcUdTSWIzRFFFSkFSWVVjM1Z3Y0c5eWRFQmpjbmx3ZEc5d2NtOHVjblV4Q3pBSkJnTlZCQVlUQWxKVk1ROHdEUVlEVlFRSEV3Wk5iM05qYjNjeEZ6QVZCZ05WQkFvVERrTlNXVkJVVHkxUVVrOGdURXhETVNFd0h3WURWUVFERXhoRFVsbFFWRTh0VUZKUElGUmxjM1FnUTJWdWRHVnlJREl3SGhjTk1qQXdNakk0TVRNek1qSTBXaGNOTWpBd05USTRNVE0wTWpJMFdqQ0NBV2d4R0RBV0JnVXFoUU5rQVJJTk5UQTROemMwTmpZNU56VXlPREU2TURnR0ExVUVDUXd4MEtQUXV5N1FuOUdBMExYUmdkQzkwTFhRdmRHQjBMclF1TkM1SU5DUzBMRFF1eURRdEM0eE9TRFJnZEdDMFlBdU1URVRNQkVHQTFVRUNnd0swS0hRc05DODBZdlF1VEVWTUJNR0ExVUVCd3dNMEp6UXZ0R0IwTHJRc3RDd01Sb3dHQVlJS29VREE0RURBUUVTRERBd056Z3hORFV3T0RreU1URWJNQmtHQ1NxR1NJYjNEUUVKQVJZTWJXRnBiRUJ0WVdsc0xuSjFNUm93R0FZSUtvVURBNEVEQVFFU0RERXhNVEV4TVRFeE1URXhNVEVZTUJZR0JTcUZBMlFCRWcweE1URXhNVEV4TVRFeE1URXhNUXN3Q1FZRFZRUUdFd0pTVlRFaU1DQUdBMVVFS2d3WjBKalFzdEN3MEwwZzBKalFzdEN3MEwzUXZ0Q3kwTGpSaHpFUk1BOEdBMVVFREF3STBLRFJnOUM3MFl3eEdqQVlCZ05WQkFNTUVkQ1kwS0VnMEtIUXNOQzgwTDdRczlDK01SVXdFd1lEVlFRRURBelFtTkN5MExEUXZkQyswTEl3WmpBZkJnZ3FoUU1IQVFFQkFUQVRCZ2NxaFFNQ0FpUUFCZ2dxaFFNSEFRRUNBZ05EQUFSQTJNV2xNREpBUXBYcjJyU3hGQWk4UGh0UUozNmJ3NHF3YVNWcTkwNTNZektQVGJoMXdVNXdGMzJZM2lFUW5rUWwzU1hiWTQzWnhXZUVQZmR2UHZhSEw2T0NBWE13Z2dGdk1CTUdBMVVkSlFRTU1Bb0dDQ3NHQVFVRkJ3TUVNQXNHQTFVZER3UUVBd0lFOERBZEJnTlZIUTRFRmdRVTF4SmxuM2hVZUEvZlJONnlUeWs3T1Q2RFNVMHdId1lEVlIwakJCZ3dGb0FVVG9NK0ZHbnY3RjE2bFN0ZkVmNDNNaFpKVlNzd1hBWURWUjBmQkZVd1V6QlJvRStnVFlaTGFIUjBjRG92TDNSbGMzUmpZUzVqY25sd2RHOXdjbTh1Y25VdlEyVnlkRVZ1Y205c2JDOURVbGxRVkU4dFVGSlBKVEl3VkdWemRDVXlNRU5sYm5SbGNpVXlNRElvTVNrdVkzSnNNSUdzQmdnckJnRUZCUWNCQVFTQm56Q0JuREJrQmdnckJnRUZCUWN3QW9aWWFIUjBjRG92TDNSbGMzUmpZUzVqY25sd2RHOXdjbTh1Y25VdlEyVnlkRVZ1Y205c2JDOTBaWE4wTFdOaExUSXdNVFJmUTFKWlVGUlBMVkJTVHlVeU1GUmxjM1FsTWpCRFpXNTBaWElsTWpBeUtERXBMbU55ZERBMEJnZ3JCZ0VGQlFjd0FZWW9hSFIwY0RvdkwzUmxjM1JqWVM1amNubHdkRzl3Y204dWNuVXZiMk56Y0M5dlkzTndMbk55WmpBSUJnWXFoUU1DQWdNRFFRQnJzdk1TYkk4enJjR0FUcXBwVFJjRkVCeEI5UWVUODBZb1orWm13ZUVaazN0TFhGdk1RN2V6SG9nc0tXMHNMNlhEVnpKUUt6RG1ISWZPNDlOYlVtN1kifQ==..HjvemZjdHdfKJeVWAkjuw1UVm3X4BnX21h30l1IIyu3J+b16bzcBgT2BRjifNT85NwZ/p1URhbVRmnUeEHbifA==
 
 
-2.1.1.11 Загрузка календаря вступительных испытаний конкурсной группы - описание тэгов xsd-схемы пакета «Add_» 
 
 
-2.1.1.12 Загрузка абитуриента - описание тэгов xsd-схемы пакета «Add_entrants» 
-SNILS	СНИЛС
-Surname	Фамилия
-Name	Имя
-Patronymic	Отчество
-IDGender	Пол - содержит ссылку на id справочника Genders
-Birthday	Дата рождения
-Birthplace	Место рождения
-Phone	Контактный телефон
-Email	Адрес электронной почты
-IDOKCM	Гражданство - содержит ссылку на id справочника Okcms
-UidEpgu	Уникальный идентификатор ЕПГУ при наличии (при получении данных с ЕПГУ)
-FullAddr	Полный адрес
-IndexAddr	Индекс
-IDRegion	Регион - содержит ссылку на id справочника Regions
-Area	Область
-City	Город
-CityArea	Район
-Street	Улица
-House	Дом
-Apartment	Квартира
 
-2.1.1.13 Загрузка документа соотечественника  - описание тэгов xsd-схемы пакета «Add_compatriot» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-DocName	Наименование документа
-DocOrg	Выдавшая организация
-IDCompatriotCategory	Категория соотечественника - содержит ссылку на id справочника CompatriotCategories
-File	Файл
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
+РћРїРёСЃР°РЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С… РјРµС‚РѕРґР° РїРѕР»СѓС‡РµРЅРёСЏ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂРѕРІ Рё СЃРїСЂР°РІРѕС‡РЅРёРєРѕРІ
+XSD-СЃС‚СЂСѓРєС‚СѓСЂР° Рё XML-РїР°РєРµС‚С‹ СЃ РґР°РЅРЅС‹РјРё РїСЂРёР»РѕР¶РµРЅС‹ РІ С„Р°Р№Р»Рµ Cls.rar.
 
-2.1.1.14 Загрузка бланка сочинения  - описание тэгов xsd-схемы пакета «Add_composition» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-DocName	Наименование документа
-DocOrg	Выдавшая организация
-IDCompositionTheme	Тема сочинения - содержит ссылку на id справочника CompositionThemes
-IssueDate	Дата выдачи
-Result	Признак результата
-DocYear	Год выдачи документа
-HasAppealed	Признак апелляции
-IDAppealStatus	Статус апелляции - содержит ссылку на id справочника AppealStatuses
-File	Файл
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
+в„–
+Рї/РїР’РёРґ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂР° 
+РІ Р·Р°РїСЂРѕСЃРµ/
+XSD/XMLРћРїРёСЃР°РЅРёРµ1DirectionsРћР±С‰РµСЂРѕСЃСЃРёР№СЃРєРёР№ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂ СЃРїРµС†РёР°Р»СЊРЅРѕСЃС‚РµР№ РїРѕ РѕР±СЂР°Р·РѕРІР°РЅРёСЋXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Directions">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Direction" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:short" name="IDDirection"/>
+              <xs:element type="xs:byte" name="section"/>
+              <xs:element type="xs:string" name="code"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="CodeMcko2011"/>
+              <xs:element type="xs:string" name="CodeMcko2013"/>
+              <xs:element type="xs:dateTime" name="Created"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+              <xs:element type="xs:short" name="IDParent"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Directions>
+    <Direction>
+    <IDDirection>1195</IDDirection>
+    <section>3</section>
+    <code>1.04.00.00</code>
+    <name>РҐРёРјРёСЏ</name>
+    <CodeMcko2011/>
+    <CodeMcko2013/>
+    <Created>2020-02-14T14:25:20.454604+03:00</Created>
+    <IDAuthor>0</IDAuthor>
+    <Actual>true</Actual>
+    <IDParent>1179</IDParent>
+    </Direction>
+  </Directions>2CampaignTypeРўРёРїС‹ РїСЂРёРµРјРЅС‹С… РєРѕРјРїР°РЅРёР№XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CampaignType">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Type" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDCampaignType"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+<CampaignType>
+  <Type>
+    <IDCampaignType>2</IDCampaignType>
+    <Name>РџСЂРёРµРј РЅР° РѕР±СѓС‡РµРЅРёРµ РІ РјР°РіРёСЃС‚СЂР°С‚СѓСЂСѓ</Name>
+    <IDAuthor>0</IDAuthor>
+    <Actual>true</Actual>
+  </Type>
+  <Type>
+</CampaignType>3CampaignStatusРЎС‚Р°С‚СѓСЃС‹ РїСЂРёРµРјРЅС‹С… РєРѕРјРїР°РЅРёР№XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CampaignStatus">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Status" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDCampaignStatus"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <CampaignStatus>
+    <Status>
+      <IDCampaignStatus>1</IDCampaignStatus>
+      <Name>РќР°Р±РѕСЂ РЅРµ РЅР°С‡Р°Р»СЃСЏ</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </Status>
+  </CampaignStatus>4BenefitРЎРїСЂР°РІРѕС‡РЅРёРє Р»СЊРіРѕС‚XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Benefit">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Benefit" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDBenefit"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+              <xs:element type="xs:string" name="ShortName"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Benefit>
+    <Benefit>
+      <IDBenefit>1</IDBenefit>
+      <Name>Р—Р°С‡РёСЃР»РµРЅРёРµ Р±РµР· РІСЃС‚СѓРїРёС‚РµР»СЊРЅС‹С… РёСЃРїС‹С‚Р°РЅРёР№</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+      <ShortName>Р‘РµР· РІСЃС‚СѓРї. РёСЃРїС‹С‚Р°РЅРёР№</ShortName>
+    </Benefit>
+  </Benefit>5EducationFormР¤РѕСЂРјС‹ РѕР±СЂР°Р·РѕРІР°РЅРёСЏXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EducationForm">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Education" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDEducationForm"/>
+              <xs:element type="xs:string" name="Code"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EducationForm>
+    <Education>
+      <IDEducationForm>1</IDEducationForm>
+      <Code/>
+      <Name>РћС‡РЅР°СЏ С„РѕСЂРјР°</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </Education>
+  </EducationForm>6EducationLevelРЈСЂРѕРІРЅРё РѕР±СЂР°Р·РѕРІР°РЅРёСЏ РџРљXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EducationLevel">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Education" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDEducationLevel"/>
+              <xs:element type="xs:byte" name="Code"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EducationLevel>
+    <Education>
+      <IDEducationLevel>1</IDEducationLevel>
+      <Code>17</Code>
+      <Name>РЎРџРћ</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </Education>
+  </EducationLevel>7EducationSourceРСЃС‚РѕС‡РЅРёРє С„РёРЅР°РЅСЃРёСЂРѕРІР°РЅРёСЏXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EducationSource">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Education" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDEducationSource"/>
+              <xs:element type="xs:string" name="Code"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EducationSource>
+    <Education>
+      <IDEducationSource>1</IDEducationSource>
+      <Code/>
+      <Name>Р‘СЋРґР¶РµС‚РЅС‹Рµ РјРµСЃС‚Р°</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </Education>
+  </EducationSource>8EntranceTestTypeРўРёРї РІСЃС‚СѓРїРёС‚РµР»СЊРЅРѕРіРѕ РёСЃРїС‹С‚Р°РЅРёСЏXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EntranceTestType">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="EntranceTestType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDEntranceTestType"/>
+              <xs:element type="xs:string" name="Code"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EntranceTestType>
+    <EntranceTestType>
+      <IDEntranceTestType>1</IDEntranceTestType>
+      <Code/>
+      <Name>Р’СЃС‚СѓРїРёС‚РµР»СЊРЅС‹Рµ РёСЃРїС‹С‚Р°РЅРёСЏ</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </EntranceTestType>
+  </EntranceTestType>9LevelBudgetРЈСЂРѕРІРЅРё Р±СЋРґР¶РµС‚Р°XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="LevelBudget">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Budget" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDLevelBudget"/>
+              <xs:element type="xs:string" name="Code"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <LevelBudget>
+    <Budget>
+      <IDLevelBudget>1</IDLevelBudget>
+      <Code/>
+      <Name>Р¤РµРґРµСЂР°Р»СЊРЅС‹Р№</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </Budget>
+  </LevelBudget>10OlympicDiplomaTypeРўРёРїС‹ РґРёРїР»РѕРјРѕРІ РѕР»РёРјРїРёР°РґXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OlympicDiplomaType">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DiplomType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDOlympicDiplomType"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <OlympicDiplomaType>
+    <DiplomType>
+      <IDOlympicDiplomType>1</IDOlympicDiplomType>
+      <Name>РїРѕР±РµРґРёС‚РµР»СЊ</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </DiplomType>
+  </OlympicDiplomaType>11OlympicLevelРЈСЂРѕРІРЅРё РѕР»РёРјРїРёР°РґXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OlympicLevel">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Level" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="IDOlympicLevel"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <OlympicLevel>
+    <Level>
+      <IDOlympicLevel>1</IDOlympicLevel>
+      <Name>Р’СЃРµ СѓСЂРѕРІРЅРё</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+    </Level>
+  </OlympicLevel>12SubjectРћР±СЂР°Р·РѕРІР°С‚РµР»СЊРЅС‹Рµ РїСЂРµРґРјРµС‚С‹XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Subject">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Subj" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:short" name="IDSubject"/>
+              <xs:element type="xs:string" name="Code"/>
+              <xs:element type="xs:string" name="Name"/>
+              <xs:element type="xs:byte" name="IDAuthor"/>
+              <xs:element type="xs:string" name="Actual"/>
+              <xs:element type="xs:string" name="Olympic"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Subject>
+    <Subj>
+      <IDSubject>1</IDSubject>
+      <Code/>
+      <Name>?Р СѓСЃСЃРєРёР№ СЏР·С‹Рє</Name>
+      <IDAuthor>0</IDAuthor>
+      <Actual>true</Actual>
+      <Olympic>true</Olympic>
+    </Subj>
+  </Subject>13EduLevelsCampaignTypesРўРёРїС‹ РџРљ РїРѕ СѓСЂРѕРІРЅСЏРј РѕР±СЂР°Р·РѕРІР°РЅРёСЏXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EduLevelsCampaignTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="EduLevelsCampaignType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="ID"/>
+              <xs:element type="xs:byte" name="IDCampaignTypes"/>
+              <xs:element type="xs:byte" name="IDEducationLevel"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EduLevelsCampaignTypes>
+    <EduLevelsCampaignType>
+      <ID>1</ID>
+      <IDCampaignTypes>1</IDCampaignTypes>
+      <IDEducationLevel>1</IDEducationLevel>
+    </EduLevelsCampaignType>
+  </EduLevelsCampaignTypes>14AchievementCategoryРљР°С‚РµРіРѕСЂРёРё РёРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹С… РґРѕСЃС‚РёР¶РµРЅРёР№XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="AchievementCategory">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Category" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="ID"/>
+              <xs:element type="xs:string" name="Actual"/>
+              <xs:element type="xs:string" name="Name"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <AchievementCategory>
+    <Category>
+      <ID>1</ID>
+      <Actual>true</Actual>
+      <Name>?РЎС‚Р°С‚СѓСЃ С‡РµРјРїРёРѕРЅР° Рё РїСЂРёР·РµСЂР° РћР»РёРјРїРёР№СЃРєРёС… РёРіСЂ</Name>
+    </Category>
+  </AchievementCategory>15ApplicationStatusesРЎС‚Р°С‚СѓСЃС‹ Р·Р°СЏРІР»РµРЅРёР№XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ApplicationStatuses">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="ApplicationStatus" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <ApplicationStatuses>
+    <ApplicationStatus>
+      <id>1</id>
+      <name>РќРѕРІРѕРµ</name>
+      <actual>true</actual>
+    </ApplicationStatus>
+  </ApplicationStatuses>16CompatriotCategoriesРљР°С‚РµРіРѕСЂРёРё СЃРѕРѕС‚РµС‡РµСЃС‚РІРµРЅРЅРёРєРѕРІXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CompatriotCategories">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="CompatriotCategory" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <CompatriotCategories>
+    <CompatriotCategory>
+      <id>1</id>
+      <name>Р”РѕРєСѓРјРµРЅС‚, РїРѕРґС‚РІРµСЂР¶РґР°СЋС‰РёР№ РЅР°Р»РёС‡РёРµ РіСЂР°Р¶РґР°РЅСЃС‚РІР°    РЎРЎРЎР </name>
+      <actual>true</actual>
+    </CompatriotCategory>
+  </CompatriotCategories>17CompositionThemesРўРµРјС‹ СЃРѕС‡РёРЅРµРЅРёР№XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CompositionThemes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="CompositionThem" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:short" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:short" name="year_theme"/>
+              <xs:element type="xs:string" name="actual"/>
+              <xs:element type="xs:short" name="number_theme"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <CompositionThemes>
+    <CompositionThem>
+      <id>1</id>
+      <name>?РљР°РєРѕРіРѕ С‡РµР»РѕРІРµРєР° РјРѕР¶РЅРѕ РЅР°Р·РІР°С‚СЊ РіРµСЂРѕРµРј СЃРІРѕРµРіРѕ РІСЂРµРјРµРЅРё?</name>
+      <year_theme>2016</year_theme>
+      <actual>true</actual>
+      <number_theme>101</number_theme>
+    </CompositionThem>
+  </CompositionThemes>18DisabilityTypesРљР°С‚РµРіРѕСЂРёРё РёРЅРІР°Р»РёРґРЅРѕСЃС‚РёXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DisabilityTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DisabilityType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <DisabilityTypes>
+    <DisabilityType>
+      <id>1</id>
+      <name>?I</name>
+      <actual>true</actual>
+    </DisabilityType>
+  </DisabilityTypes>19DocumentCategoriesРљР°С‚РµРіРѕСЂРёРё РґРѕРєСѓРјРµРЅС‚РѕРІXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DocumentCategories">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DocumentCategory" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <DocumentCategories>
+    <DocumentCategory>
+      <id>7</id>
+      <name>РўРёРї РґРёРїР»РѕРјР° РІ РѕР±Р»Р°СЃС‚Рё СЃРїРѕСЂС‚Р°</name>
+      <actual>true</actual>
+    </DocumentCategory>
+  </DocumentCategories>20DocumentTypesРўРёРїС‹ РґРѕРєСѓРјРµРЅС‚РѕРІXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DocumentTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="DocumentType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:byte" name="IDCategory"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <DocumentTypes>
+    <DocumentType>
+      <id>3</id>
+      <name>?РЎРІРёРґРµС‚РµР»СЊСЃС‚РІРѕ Рѕ СЂРµР·СѓР»СЊС‚Р°С‚Р°С… Р•Р“Р­</name>
+      <IDCategory>2</IDCategory>
+      <actual>true</actual>
+    </DocumentType>
+  </DocumentTypes>21EntranceTestDocumentTypesРўРёРїС‹ РґРѕРєСѓРјРµРЅС‚РѕРІ РІСЃС‚СѓРїРёС‚РµР»СЊРЅРѕРіРѕ РёСЃРїС‹С‚Р°РЅРёСЏXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EntranceTestDocumentTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="EntranceTestDocumentType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EntranceTestDocumentTypes>
+    <EntranceTestDocumentType>
+      <id>1</id>
+      <name>Р­РєР·Р°РјРµРЅР°С†РёРѕРЅРЅР°СЏ РІРµРґРѕРјРѕСЃС‚СЊ</name>
+      <actual>true</actual>
+    </EntranceTestDocumentType>
+  </EntranceTestDocumentTypes>22EntranceTestResultSourcesРСЃС‚РѕС‡РЅРёРє СЂРµР·СѓР»СЊС‚Р°С‚Р° РІСЃС‚СѓРїРёС‚РµР»СЊРЅРѕРіРѕ РёСЃРїС‹С‚Р°РЅРёСЏXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="EntranceTestResultSources">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="EntranceTestResultSource" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <EntranceTestResultSources>
+    <EntranceTestResultSource>
+      <id>1</id>
+      <name>РЎРІРёРґРµС‚РµР»СЊСЃС‚РІРѕ Р•Р“Р­</name>
+      <actual>true</actual>
+    </EntranceTestResultSource>
+  </EntranceTestResultSources>23GenderРџРѕР»XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Gender">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Gender" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Gender>
+    <Gender>
+      <id>1</id>
+      <name>РњСѓР¶СЃРєРѕР№</name> 
+      <actual>true</actual>
+    </Gender>
+  </Gender>24MinScoreSubjectsРњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ Р•Р“Р­ РїРѕ РїСЂРµРґРјРµС‚Р°РјXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="MinScoreSubjects">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="MinScoreSubject" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:byte" name="id_subject"/>
+              <xs:element type="xs:short" name="ege_year"/>
+              <xs:element type="xs:byte" name="min_score"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <MinScoreSubjects>
+    <MinScoreSubject>
+      <id>1</id>
+      <id_subject>0</id_subject>
+      <ege_year>2015</ege_year>
+      <min_score>36</min_score>
+    </MinScoreSubject>
+  </MinScoreSubjects>25OkcmsРћР±С‰РµСЂРѕСЃСЃРёР№СЃРєРёР№ РєР»Р°СЃСЃРёС„РёРєР°С‚РѕСЂ СЃС‚СЂР°РЅ РјРёСЂР°XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Okcm">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Okcm" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:short" name="id"/>
+              <xs:element type="xs:short" name="code"/>
+              <xs:element type="xs:string" name="short_name"/>
+              <xs:element type="xs:string" name="full_name"/>
+              <xs:element type="xs:string" name="af"/>
+              <xs:element type="xs:string" name="afg"/>
+              <xs:element type="xs:dateTime" name="utv_date"/>
+              <xs:element type="xs:dateTime" name="vved_date"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Okcm>
+    <Okcm>
+      <id>1</id>
+      <code>004</code>
+      <short_name>РђР¤Р“РђРќРРЎРўРђРќ</short_name>
+      <full_name>РџРµСЂРµС…РѕРґРЅРѕРµ РСЃР»Р°РјСЃРєРѕРµ Р“РѕСЃСѓРґР°СЂСЃС‚РІРѕ РђС„РіР°РЅРёСЃС‚Р°РЅ</full_name>
+      <af>AF</af>
+      <afg>AFG</afg>
+      <utv_date>2004-07-16T00:00:00Z</utv_date>
+      <vved_date>2004-10-01T00:00:00Z</vved_date>
+      <actual>true</actual>
+    </Okcm>
+  </Okcm>26OktmosРЎРїСЂР°РІРѕС‡РЅРёРє РјСѓРЅРёС†РёРїР°Р»РёС‚РµС‚РѕРІ (РёР· РћРљРўРњРћ)XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Oktmo">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Oktmo" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:short" name="id"/>
+              <xs:element type="xs:byte" name="ter"/>
+              <xs:element type="xs:short" name="kod1"/>
+              <xs:element type="xs:short" name="kod2"/>
+              <xs:element type="xs:byte" name="kod3"/>
+              <xs:element type="xs:byte" name="kc"/>
+              <xs:element type="xs:byte" name="section"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:dateTime" name="utv_date"/>
+              <xs:element type="xs:dateTime" name="vved_date"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Oktmo>
+    <Oktmo>
+      <id>2</id>
+      <ter>97</ter>
+      <kod1>629</kod1>
+      <kod2>425</kod2>
+      <kod3>000</kod3>
+      <kc>7</kc>
+      <section>1</section>
+      <name>РџСЂРёРІРѕР»Р¶СЃРєРѕРµ</name>
+      <utv_date>2013-06-14T00:00:00Z</utv_date>
+      <vved_date>2014-01-01T00:00:00Z</vved_date>
+    </Oktmo>
+  </Oktmo>27OlympicMinEgeРњРёРЅРёРјР°Р»СЊРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ Р•Р“Р­ РґР»СЏ РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РѕР»РёРјРїРёР°РґС‹XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OlympicMinEge">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="MinEge" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:short" name="ege_year"/>
+              <xs:element type="xs:byte" name="min_score"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <OlympicMinEge>
+    <MinEge>
+      <id>1</id>
+      <ege_year>2012</ege_year>
+      <min_score>65</min_score>
+    </MinEge>
+  </OlympicMinEge>28OrderAdmissionStatusesРЎС‚Р°С‚СѓСЃ РїСЂРёРєР°Р·РѕРІXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OrderAdmissionStatuses">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OrderAdmissionStatus" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <OrderAdmissionStatuses>
+    <OrderAdmissionStatus>
+      <id>1</id>
+      <name>РќРµС‚ Р·Р°СЏРІР»РµРЅРёР№</name>
+      <actual>true</actual>
+    </OrderAdmissionStatus>
+  </OrderAdmissionStatuses>29OrderAdmissionTypesРўРёРїС‹ РїСЂРёРєР°Р·РѕРІXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OrderAdmissionTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OrderAdmissionType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <OrderAdmissionTypes>
+    <OrderAdmissionType>
+      <id>1</id>
+      <name>РџСЂРёРєР°Р· Рѕ Р·Р°С‡РёСЃР»РµРЅРёРё</name>
+      <actual>true</actual>
+    </OrderAdmissionType>
+  </OrderAdmissionTypes>30OrphanCategoriesРљР°С‚РµРіРѕСЂРёСЏ РґРѕРєСѓРјРµРЅС‚РѕРІ РґРµС‚РµР№-СЃРёСЂРѕС‚XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="OrphanCategories">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="OrphanCategory" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <OrphanCategories>
+    <OrphanCategory>
+      <id>1</id>
+      <name>?РЎРІРёРґРµС‚РµР»СЊСЃС‚РІРѕ Рѕ СЃРјРµСЂС‚Рё РѕР±РѕРёС… РёР»Рё РµРґРёРЅСЃС‚РІРµРЅРЅРѕРіРѕ СЂРѕРґРёС‚РµР»СЏ</name>
+      <actual>true</actual>
+    </OrphanCategory>
+  </OrphanCategories>31ParentsLostCategoriesРљР°С‚РµРіРѕСЂРёРё РіСЂР°Р¶РґР°РЅ, СЂРѕРґРёС‚РµР»Рё Рё РѕРїРµРєСѓРЅС‹ РєРѕС‚РѕСЂС‹С… РїРѕРіРёР±Р»Рё РїСЂРё РёСЃРїРѕР»РЅРµРЅРёРё СЃР»СѓР¶РµР±РЅС‹С… РѕР±СЏР·Р°РЅРЅРѕСЃС‚РµР№XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ParentsLostCategories">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="ParentsLostCategory" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <ParentsLostCategories>
+    <ParentsLostCategory>
+      <id>1</id>
+      <name>?Р’РѕРµРЅРЅРѕСЃР»СѓР¶Р°С‰РёРµ</name>
+      <actual>true</actual>
+    </ParentsLostCategory>
+  </ParentsLostCategories>32RadiationWorkCategories
+РљР°С‚РµРіРѕСЂРёРё РіСЂР°Р¶РґР°РЅ, СѓС‡Р°СЃС‚РІРѕРІР°РІС€РёС… РІ СЂР°Р±РѕС‚Р°С… РЅР° СЂР°РґРёР°С†РёРѕРЅРЅС‹С… РѕР±СЉРµРєС‚Р°С… РёР»Рё РїРѕРґРІРµСЂРіС€РёС…СЃСЏ РІРѕР·РґРµР№СЃС‚РІРёСЋ СЂР°РґРёР°С†РёРёXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="RadiationWorkCategories">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="RadiationWorkCategory" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <RadiationWorkCategories>
+    <RadiationWorkCategory>
+      <id>1</id>
+      <name>?РџРѕРґРІРµСЂР¶РµРЅРЅРѕСЃС‚СЊ РІРѕР·РґРµР№СЃС‚РІРёСЋ СЂР°РґРёР°С†РёРё РІСЃР»РµРґСЃС‚РІРёРµ РєР°С‚Р°СЃС‚СЂРѕС„С‹ РЅР° Р§РµСЂРЅРѕР±С‹Р»СЊСЃРєРѕР№ РђР­РЎ</name>
+      <actual>true</actual>
+    </RadiationWorkCategory>
+  </RadiationWorkCategories>33RegionsРЎРїСЂР°РІРѕС‡РЅРёРє СЂРµРіРёРѕРЅРѕРІXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Regions">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Region" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <Regions>
+    <Region>
+      <id>1</id>
+      <name>Р РµСЃРїСѓР±Р»РёРєР° РђРґС‹РіРµСЏ (РђРґС‹РіРµСЏ)</name>
+      <actual>true</actual>
+    </Region>
+  </Regions>34ReturnTypesРўРёРїС‹ СЂРµР·СѓР»СЊС‚Р°С‚Р°XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ReturnTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="Type" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <ReturnTypes>
+    <Type>
+      <id>1</id>
+      <name>РџРµСЂРµРґР°С‡Р° Р»РёС‡РЅРѕ РёР»Рё С‡РµСЂРµР· РґРѕРІРµСЂРµРЅРЅРѕРµ Р»РёС†Рѕ</name>
+      <actual>true</actual>
+    </Type>
+  </ReturnTypes>35VeteranCategoriesРљР°С‚РµРіРѕСЂРёРё РіСЂР°Р¶РґР°РЅ, СѓС‡Р°СЃС‚РІРѕРІР°РІС€РёС… РІ Р±РѕРµРІС‹С… РґРµР№СЃС‚РІРёСЏС…XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="VeteranCategories">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="VeteranCategory" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <VeteranCategories>
+    <VeteranCategory>
+      <id>1</id>
+      <name>?Р’РѕРµРЅРЅРѕСЃР»СѓР¶Р°С‰РёРµ, СѓС‡Р°СЃС‚РІРѕРІР°РІС€РёРµ РІ Р±РѕРµРІС‹С… РґРµР№СЃС‚РІРёСЏС…</name>
+      <actual>true</actual>
+    </VeteranCategory>
+  </VeteranCategories>36ViolationTypesРўРёРї РЅР°СЂСѓС€РµРЅРёР№ РІ Р·Р°СЏРІР»РµРЅРёРёXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ViolationTypes">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="ViolationType" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:byte" name="id"/>
+              <xs:element type="xs:string" name="name"/>
+              <xs:element type="xs:string" name="actual"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<?xml version="1.0" encoding="UTF-8"?>
+  <ViolationTypes>
+    <ViolationType>
+      <id>1</id>
+      <name>РћР¶РёРґР°РµС‚ РїСЂРѕРІРµСЂРєСѓ</name>
+      <actual>true</actual>
+    </ViolationType>
+  </ViolationTypes>37OlympicsProfilesРЎРІРµРґРµРЅРёСЏ РѕР± РѕР»РёРјРїРёР°РґРµ Рё РµРµ РѕСЂРіР°РЅРёР·Р°С‚РѕСЂР°С…XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="OlympicsProfiles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="OlympicProfiles" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="Actual"/>
+                            <xs:element type="xs:integer" name="ID"/>
+                            <xs:element type="xs:integer" name="IDOlympic"/>
+                            <xs:element type="xs:integer" name="IDProfile"/>
+                            <xs:element type="xs:integer" name="IDOlympicLevel"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+РїСЂРёРјРµСЂ XML:<OlympicsProfiles>
+<OlympicProfiles><Actual>true</Actual>
+<ID>2</ID>
+<IDOlympic>614</IDOlympic>
+<IDProfile>14</IDProfile>
+<IDOlympicLevel>4</IDOlympicLevel>
+</OlympicProfiles>
+</OlympicsProfiles>
+38OlyProfilesРџСЂРѕС„РёР»Рё РѕР»РёРјРїРёР°РґXSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="OlyProfiles">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Profiles" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="Actual"/>
+                            <xs:element type="xs:integer" name="ID"/>
+                            <xs:element type="xs:string" name="Name"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>РїСЂРёРјРµСЂ XML:<OlyProfiles>
+<Profiles><Actual>true</Actual>
+<ID>2</ID>
+<Name>?РµСЃС‚РµСЃС‚РІРµРЅРЅС‹Рµ РЅР°СѓРєРё</Name></Profiles>
+</OlyProfiles>
+39OlympicsРћР»РёРјРїРёР°РґС‹XSD:<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Olympics">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Olympic" maxOccurs="unbounded" minOccurs="0">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="Actual"/>
+                            <xs:element type="xs:integer" name="ID"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:integer" name="OrderNumber"/>
+                            <xs:element type="xs:integer" name="OlympYear"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+РїСЂРёРјРµСЂ XML:<Olympics>
+<Olympic>
+<Actual>true</Actual>
+<ID>1</ID>
+<Name>IV Р®Р¶РЅРѕ-Р РѕСЃСЃРёР№СЃРєР°СЏ РјРµР¶СЂРµРіРёРѕРЅР°Р»СЊРЅР°СЏ РѕР»РёРјРїРёР°РґР° С€РєРѕР»СЊРЅРёРєРѕРІ &#34;РђСЂС…РёС‚РµРєС‚СѓСЂР° Рё РёСЃРєСѓСЃСЃС‚РІРѕ&#34;</Name>
+<OrderNumber>0</OrderNumber>
+<OlympYear>2012</OlympYear>
+</Olympic>
+</Olympics>
+
 
-2.1.1.15 Загрузка документа, подтверждающего инвалидность - описание тэгов xsd-схемы пакета «Add_disability» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-DocName	Наименование документа
-DocOrg	Выдавшая организация
-DocNumber	Номер документа
-IssueDate	Дата выдачи
-IDDisabilityType	Идентификатор группы инвалидности - содержит ссылку на id справочника DisabilityTypes
-File	Файл
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
+РћРїРёСЃР°РЅРёРµ СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С… РјРµС‚РѕРґР° РІРЅРµСЃРµРЅРёРµ РґР°РЅРЅС‹С… (СЃРѕРѕР±С‰РµРЅРёСЏ) РІ СЃРёСЃС‚РµРјСѓ 
 
-2.1.1.16 Загрузка документа об образовании  - описание тэгов xsd-схемы пакета «Add_educations» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-DocName	Наименование документа
-DocOrg	Выдавшая организация
-DocSeries	Серия документа
-DocNumber	Номер документа
-RegisterNumber	Регистрационный номер документа
-IDDirection	Идентификатор направления подготовки/специальности - содержит ссылку на id справочника Directions
-IDEducationLevel	Идентификатор уровня образования - содержит ссылку на id справочника EducationLevel
-IssueDate	Дата выдачи
-File	Файл
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«CampaignВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ» 
 
-2.1.1.17 Загрузка результатов ЕГЭ  - описание тэгов xsd-схемы пакета «Add_ege» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-DocName	Наименование документа
-DocOrg	Выдавшая организация
-DocSeries	Серия документа
-RegisterNumber	Регистрационный номер документа
-IDRegion	Идентификатор региона - содержит ссылку на id справочника Regions
-IDSubject	Идентификатор предмета - содержит ссылку на id справочника Subject
-Mark	Балл
-ResultDate	Дата сдачи
-IssueDate	Дата выдачи
-File	Файл
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
+XML
 
-2.1.1.18 Загрузка документа, удостоверяющего личность - описание тэгов xsd-схемы пакета «Add_Identification» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-Surname	Фамилия
-Name	Имя
-Patronymic	Отчество
-DocSeries	Серия документа
-DocNumber	Номер документа
-DocOrganization	Организация, выдавшая документ
-IssueDate	Дата выдачи
-IDOKCM	Гражданство - содержит ссылку на id справочника Okcms
-File	Файл
-SubdivisionCode	Код подразделения
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
+<PackageData>
+	<Campaign>
+		<UID>2019_06</UID>
+		<Name>Р‘Р°РєР°Р»Р°РІСЂС‹ Рё СЃРїРµС†РёР°Р»РёСЃС‚С‹ 2019</Name>
+		<YearStart>2019</YearStart>
+		<YearEnd>2019</YearEnd>
+		<EducationForms>
+			<IDEducationForm>1</IDEducationForm>
+			<IDEducationForm>2</IDEducationForm>
+		</EducationForms>
+		<EducationLevels>
+			<IDEducationLevel>1</IDEducationLevel>
+			<IDEducationLevel>2</IDEducationLevel>
+		</EducationLevels>
+		<IDCampaignType>1</IDCampaignType>
+		<IDCampaignStatus>2</IDCampaignStatus>
+	</Campaign>
+</PackageData>
 
-2.1.1.19 Загрузка документа военнослужащего - описание тэгов xsd-схемы пакета «Add_militaries» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-Name	Наименование документа
-DocOrg	Организация, выдавшая документ
-DocNumber	Номер документа
-IssueDate	Дата выдачи
-IDCategory	Категория военнослужащего - содержит ссылку на id справочника MilitaryCategories
-DocSeries	Серия документа
-File	Файл
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
 
-2.1.1.20 Загрузка документа подтверждающего результат олимпиады - описание тэгов xsd-схемы пакета «Add_olympics» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-DocName	Наименование документа
-DocOrg	Организация, выдавшая документ
-DocSeries	Серия документа
-DocNumber	Номер документа
-IssueDate	Дата выдачи
-IDOlympic	Идентификатор олимпиады - содержит ссылку на id справочника Olympics
-File	Файл
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
+XSD
 
-2.1.1.21 Загрузка документа подтверждающего право детей-сирот - описание тэгов xsd-схемы пакета «Add_orphans» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-DocName	Наименование документа
-DocOrg	Организация, выдавшая документ
-DocSeries	Серия документа
-DocNumber	Номер документа
-IssueDate	Дата выдачи
-IDCategory	Идентификатор категории - содержит ссылку на id справочника OrphanCategories
-File	Файл
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
 
-2.1.1.22 Загрузка документа «другой» - описание тэгов xsd-схемы пакета «Add_other» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-DocName	Наименование документа
-DocOrg	Организация, выдавшая документ
-DocSeries	Серия документа
-DocNumber	Номер документа
-IssueDate	Дата выдачи
-File	Файл
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Campaign">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UID"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:integer" name="YearStart"/>
+                            <xs:element type="xs:integer" name="YearEnd"/>
+                            <xs:element name="EducationForms">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="IDEducationForm" maxOccurs="unbounded" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="EducationLevels">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:integer" name="IDEducationLevel" maxOccurs="unbounded" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:integer" name="IDCampaignType"/>
+                            <xs:element type="xs:integer" name="IDCampaignStatus"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
 
-2.1.1.23 Загрузка документа определяющего принадлежность к категории граждан, родители и опекуны которых погибли при исполнении служебных обязанностей - описание тэгов xsd-схемы пакета «Add_parents_lost» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-DocName	Наименование документа
-DocOrg	Организация, выдавшая документ
-DocSeries	Серия документа
-DocNumber	Номер документа
-IssueDate	Дата выдачи
-IDCategory	Идентификатор категории - содержит ссылку на id справочника ParentsLostCategories
-File	Файл
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
 
-2.1.1.24 Загрузка документа определяющего принадлежность к категории граждан, участвовавших в работах на радиационных объектах или подвергшихся воздействию радиации - описание тэгов xsd-схемы пакета «Add_radiation_work» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-DocName	Наименование документа
-DocOrg	Организация, выдавшая документ
-DocSeries	Серия документа
-DocNumber	Номер документа
-IssueDate	Дата выдачи
-IDCategory	Идентификатор категории - содержит ссылку на id справочника RadiationWorkCategories
-File	Файл
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
 
-2.1.1.25 Загрузка документа определяющего принадлежность к категории граждан, участвовавших в боевых действиях - описание тэгов xsd-схемы пакета «Add_veteran» 
-SNILS	СНИЛС
-IDDocumentType	Тип документа - содержит ссылку на id справочника DocumentTypes
-DocName	Наименование документа
-DocOrg	Организация, выдавшая документ
-DocSeries	Серия документа
-DocNumber	Номер документа
-IssueDate	Дата выдачи
-IDCategory	Идентификатор категории - содержит ссылку на id справочника VeteranCategories
-File	Файл
-IDDocChoice/UID	Уникальный идентификатор документа ВУЗа
-IDDocChoice/UIDEpgu	Уникальный идентификатор документа ЕПГУ (при наличии)
 
-2.1.1.26 Загрузка заявления - описание тэгов xsd-схемы пакета   «Add_application» 
-SNILS	СНИЛС
-FirstHigherEducation	Признак первого высшего образования
-NeedHostel	Признак потребности общежития
-Agreed	Признак согласия на зачисление
-Original	Признак представления оригинала документов
-SpecialConditions	Признак сдачи ВИ с созданием специальных условий
-DistanceTest	Признак ВИ с использованием дистанционных технологий
-UIDCompetitiveGroup	Идентификатор КГ - содержит ссылку на id справочника CompetitiveGroup
-IDStatus	Статус заяления
-IDBenefit	Идентификатор указанного в заявлении достижения - содержит ссылку на id справочника Benefit
-Priority	Приоритет
-<IDDisabledDocumentChoice><UID>	Уникальный идентификатор документа льготы ВУЗа
-<IIDDisabledDocumentChoice><UIDEpgu>	Уникальный идентификатор документа льготы ЕПГУ 
-Rating	Рейтинг
-IDReturnType	Идентификатор способа возврата документов - содержит ссылку на id справочника ReturnTypes
-AppNumber	Номер заявления
-DistancePlace	Место проведения ВИ с использованием дистанционных технологий
-<IDApplicationChoice><UID>	Уникальный идентификатор заявления ВУЗа
-<IDApplicationChoice><UIDEpgu>	Уникальный идентификатор заявления ЕПГУ 
-RegistrationDate	Дата регистрации заявления
-AgreedDate	Дата согласия на зачисление
-DisagreedDate	Дата отзыва согласия на зачисление
-OrderAdmissionDate	Дата приказа о зачислении
-ReturnDate	Дата возврата документа
-OriginalDoc	Дата предоставления оригиналов документов
-<IDAchievementChoice><UID>	Уникальный идентификатор ИД ВУЗа
-<IDAchievementChoice><UIDEpgu>	Уникальный идентификатор ИД ЕПГУ 
-IDCategory	Идентификатор категория индивидуального достижения - содержит ссылку на id справочника AchievementCategory
-Name	Наименование индивидуального достижения
-Mark	Балл
-<IDApplicationChoice><UID>	Уникальный идентификатор ИД ВУЗа
-<IDApplicationChoice><UIDEpgu>	Уникальный идентификатор ИД ЕПГУ 
-<IDAchievementDocumentChoice><UID>	Уникальный идентификатор документа ИД ВУЗа
-<IDAchievementDocumentChoice><UIDEpgu>	Уникальный идентификатор документа ИД ЕПГУ 
-File	Файл документа
-<Identification><IDDocChoice><UID>	Уникальный идентификатор документа удостоверяющего личность ВУЗа
-<Identification><IDDocChoice><UIDEpgu	Уникальный идентификатор документа удостоверяющего личность ЕПГУ
-<Identification><OriginalDoc>	Дата предоставления оригинала документа удостоверяющего личность
-<Educations><IDDocChoice><UID>	Уникальный идентификатор документа об образовании ВУЗа
-<Educations><IDDocChoice><UIDEpgu	Уникальный идентификатор документа об образовании ЕПГУ
-<Educations><OriginalDoc>	Дата предоставления оригинала документа об образовании личность
-<Ege><IDDocChoice><UID>	Уникальный идентификатор результатов ЕГЭ ВУЗа
-<Ege><IDDocChoice><UIDEpgu	Уникальный идентификатор результатов ЕГЭ ЕПГУ
-<Ege><OriginalDoc>	Дата предоставления результатов ЕГЭ
-<Compatriot><IDDocChoice><UID>	Уникальный идентификатор документа соотечественника  ВУЗа
-<Compatriot><IDDocChoice><UIDEpgu	Уникальный идентификатор документа соотечественника ЕПГУ
-<Compatriot><OriginalDoc>	Дата предоставления оригинала документа соотечественника личность
-<Composition><IDDocChoice><UID>	Уникальный идентификатор сочинения  ВУЗа
-<Composition><IDDocChoice><UIDEpgu	Уникальный идентификатор сочинения ЕПГУ
-<Composition><OriginalDoc>	Дата предоставления сочинения
-<Disability><IDDocChoice><UID>	Уникальный идентификатор документа инвалида  ВУЗа
-<Disability><IDDocChoice><UIDEpgu	Уникальный идентификатор идентификатор документа инвалида ЕПГУ
-<Disability><OriginalDoc>	Дата предоставления оригинала документа удостоверяющего личность
-<Militaries><IDDocChoice><UID>	Уникальный идентификатор документа военнослужащего   ВУЗа
-<Militaries><IDDocChoice><UIDEpgu	Уникальный идентификатор документа военнослужащего   ЕПГУ
-<Militaries><OriginalDoc>	Дата предоставления оригинала документа военнослужащего
-<Olympics><IDDocChoice><UID>	Уникальный идентификатор документа подтверждающего олимпиаду   ВУЗа
-<Olympics><IDDocChoice><UIDEpgu	Уникальный идентификатор документа подтверждающего олимпиаду   ЕПГУ
-<Olympics><OriginalDoc>	Дата предоставления оригинала документа подтверждающего олимпиаду
-<Orphans><IDDocChoice><UID>	Уникальный идентификатор документа подтверждающего статус детей-сирот   ВУЗа
-<Orphans><IDDocChoice><UIDEpgu	Уникальный идентификатор документа подтверждающего статус детей-сирот      ЕПГУ
-<Orphans><OriginalDoc>	Дата предоставления оригинала документа подтверждающего статус детей-сирот   
-<Orphans><IDDocChoice><UID>	Уникальный идентификатор документа подтверждающего статус детей-сирот   ВУЗа
-<Orphans><IDDocChoice><UIDEpgu>	Уникальный идентификатор документа подтверждающего статус детей-сирот      ЕПГУ
-<Orphans><OriginalDoc>	Дата предоставления оригинала документа подтверждающего статус детей-сирот   
-<Other><IDDocChoice><UID>	Уникальный идентификатор документа другой ВУЗа
-<Other><IDDocChoice><UIDEpgu>	Уникальный идентификатор  документа другой      ЕПГУ
-<Other><OriginalDoc>	Дата предоставления оригинала документа другой   
-<ParentsLost><IDDocChoice><UID>	Уникальный идентификатор документа подтверждающий категорию погибших родителей ВУЗа
-<ParentsLost><IDDocChoice><UIDEpgu>	Уникальный идентификатор документа подтверждающий категорию погибших родителей      ЕПГУ
-<ParentsLost><OriginalDoc>	Дата предоставления оригинала документа подтверждающий категорию погибших родителей 
-<RadiationWork><IDDocChoice><UID>	Уникальный идентификатор документа подтверждающий категорию работ с радиацией ВУЗа
-<RadiationWork><IDDocChoice><UIDEpgu>	Уникальный идентификатор документа подтверждающий категорию погибших родителей      ЕПГУ
-<RadiationWork><OriginalDoc>	Дата предоставления оригинала документа подтверждающий категорию работ с радиацией 
-<Veteran><IDDocChoice><UID>	Уникальный идентификатор документа подтверждающий категорию ветерана ВУЗа
-<Veteran><IDDocChoice><UIDEpgu>	Уникальный идентификатор документа подтверждающий категорию ветерана      ЕПГУ
-<Veteran><OriginalDoc>	Дата предоставления оригинала документа подтверждающий категорию ветерана 
 
-2.1.1.27 Загрузка статусов заявления - описание тэгов xsd-схемы пакета «Add_edit_application_status» 
-IDStatus	Идентификатор категории - содержит ссылку на id справочника ApplicationStatuses
-UID	Уникальный идентификатор статуса заявления ВУЗа
-UIDEpgu	Уникальный идентификатор статуса заявления ЕПГУ
 
-2.1.1.28 Загрузка согласий на испытания - описание тэгов xsd-схемы пакета «Add_entrance_test_agreed» 
-<IDEntranceTestAgreedChoice><UID>	Уникальный идентификатор согласия ВУЗа
-<IDEntranceTestAgreedChoice><UIDEpgu>	Уникальный идентификатор согласия  ЕПГУ
-<IDApplicationChoice><UID>	Уникальный идентификатор заявления к согласию ВУЗа
-<IDApplicationChoice><UIDEpgu>	Уникальный идентификатор заявления к согласию ЕПГУ
-<IDEntranceTestCalendarChoice><UID>	Уникальный идентификатор заявления к согласию ВУЗа
-<IDEntranceTestCalendarChoice><UIDEpgu>	Уникальный идентификатор испытания к заявлению и согласию ЕПГУ
-<IDEntranceTestCalendarChoice><UID>	Уникальный идентификатор испытания к заявлению и согласию ВУЗа
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«CampaignВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«RemoveВ»
 
-2.1.1.29 Загрузка результатов испытаний - описание тэгов xsd-схемы пакета «Add_entrance_test_result» 
-< IDApplicationChoice ><UID>	Уникальный идентификатор заявления ВУЗа
-< IDApplicationChoice ><UIDEpgu>	Уникальный идентификатор заявления  ЕПГУ
-UID	Уникальный идентификатор результата ВУЗа
-IDEntranceTest	Идентификатор испытания - содержит ссылку на id справочника Entrance_Tests (загружается ВУЗом)
-IDEntranceTestDocumentType	Идентификатор документа, подтверждающего результат - содержит ссылку на id справочника EntranceTestDocumentTypes
-DocNumber	Номер документа
-IssueDate	Дата выдачи
-IdResultSource	Идентификатор источника результата - содержит ссылку на id справочника EntranceTestResultSources
-ResultValue	Значение результата - балл
-IdBenefit	Идентификатор указанного в заявлении достижения - содержит ссылку на id справочника Benefit
-IdAppealStatus	Статус апелляции - содержит ссылку на id справочника AppealStatuses
-HasEge	Признак наличия ЕГЭ
-EgeValue	Результат ЕГЭ
+XML
 
-2.1.1.30 Загрузка приказа о зачислении - описание тэгов xsd-схемы пакета «Add_order_admission» 
-<IDOrderAdmissionChoice><UID>	Уникальный идентификатор приказа ВУЗа
-<IDOrderAdmissionChoice><UIDEpgu>	Уникальный идентификатор приказа ЕПГУ
-UIDCampaign	Идентификатор ПК - содержит ссылку на id справочника Campaign
-IDEducationForm	Идентификатор формы обучения - содержит ссылку на id справочника education_forms
-IDEducationSource	Идентификатор источника финансирования - содержит ссылку на id справочника education_sources
-IDEducationLevel	Идентификатор уровня образования - содержит ссылку на id справочника education_levels
-OrderName	Наименование приказа
-OrderNumber	Номер приказа
-OrderDate	Дата приказа
-Published	Дата публикации приказа
-IDOrderAdmissionStatus	Идентификатор статуса приказа о зачислении - содержит ссылку на id справочника OrderAdmissionStatuses
-IdOrderAdmissionType	Идентификатор типа приказа о зачислении - содержит ссылку на id справочника OrderAdmissionTypes
-PreferentialOrder	
-Foreigners	
-<IDApplicationChoice><UID>	Уникальный идентификатор заявления ВУЗа
-<IDApplicationChoice><UIDEpgu>	Уникальный идентификатор заявления ЕПГУ
-
-2.1.1.31 Загрузка конкурсных/рейтинговых - описание тэгов xsd-схемы пакета «Add_completitive_groups_applications_rating» 
-<IDApplicationChoice><UID>	Уникальный идентификатор заявления ВУЗа
-<IDApplicationChoice><UIDEpgu>	Уникальный идентификатор заявления ЕПГУ
-AdmissionVolume	Цифра КЦП 
-Changed	Дата изменения
-UIDCompetitiveGroup	Идентификатор КГ - содержит ссылку на id справочника CompetitiveGroup
-CountFirstStep	Количество мест первой волны
-CountSecondStep	Количество мест второй волны
-AgreedRating	Рейтинг с учетом согласия на зачисление
-CommonRating	Рейтинг на момент подачи заявления
-FirstRating	Рейтинг рекомендованный к зачислению
-ChangeRating	Позиция в рейтинге относительно первого места
-CountApplication	Общее количество заявлений
-CountAgreed	Общее количество поданных согласий
-FIO	ФИО
-WithoutTests	Признак о поступлении без вступительных испытаний
-ReasonWithoutTests	Основание приема без вступительных испытаний
-EntranceTest1	Название ВИ 1
-Result1	Полученный балл по ВИ 1
-EntranceTest2	Название ВИ 2
-Result2	Полученный балл по ВИ 2
-EntranceTest3	Название ВИ 3
-Result3	Полученный балл по ВИ 3
-EntranceTest4	Название ВИ 4
-Result4	Полученный балл по ВИ 4
-EntranceTest5	Название ВИ 5
-Result5	Полученный балл по ВИ 5
-Benefit	Признак преимущественного права
-ReasonBenefit	Основание преимущественного права
-Mark	Балл
-SumMark	Суммарный балл по ВИ
-Agreed	Признак наличия заявления о согласии на зачисление
-Original	Признак наличия оригиналов документов
-Addition	Наименование олимпиады
-
-При успешном приеме сообщения ответ будет содержать IDJWT сообщения в сервисе приема. 
-В противном случае ответ будет содержать сообщение об ошибке в формате Json, например:
-{"Error": " Текст ошибки"}
- 
-2.1.2 Запрос результата обработки 
-
-Осуществляется вызовом методов 3 - Запрос о наличии обработанных сообщений (данных) (запрос результата обработки) и 4 – Получение результата обработки сообщения.
-
-2.1.2	 Подтверждение получения результатов обработки
- 
-Осуществляется вызовом метода 5 - Отчет о получении результата обработки сообщения.
-
-2.2 Удаление данных
-
-Вызов метода 2 - Внесение сообщения (данных) в систему (для удаления данных о приемной кампании).
-
-Header:
-"action": "Remove"
-
-Payload:
-Для удаления приемной кампании в Payload необходимо записать пакет «campaign» с указанием только тэга <UID> удаляемого элемента
-
-Пример XML-пакета «campaign» с данными с данными для удаления до кодирования в base64
 <PackageData>
    <Campaign>
       <UID>2019_03</UID>
    </Campaign>
 </PackageData>
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:sequence>
+                    <xs:element name="Campaign">
+                        <xs:complexType>
+                            <xs:sequence>
+                                <xs:element type="xs:string" name="UID"/>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«AchievementsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ» 
+
+XML
+<PackageData>
+	<Achievement>
+		<UIDCampaign>2019_04</UIDCampaign>
+		<UID>JHDM-LJDH-SJDBHDq</UID>
+		<IDCategory>1</IDCategory>
+		<Name>Name</Name>
+		<MaxValue>3</MaxValue>
+	</Achievement>
+</PackageData>
+
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Achievement">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UIDCampaign"/>
+                            <xs:element type="xs:string" name="UID"/>
+                            <xs:element type="xs:integer" name="IDCategory"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:integer" name="MaxValue"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«AchievementsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В« RemoveВ» 
+
+XML
+<PackageData>
+	<Achievement>
+		<UID>JHDM-LJDH-SJDBHDq</UID>
+	</Achievement>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Achievement">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UID"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+
+
+
+
+
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« admission_volumeВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ» 
+
+XML
+<PackageData>
+	<AdmissionVolume>
+		<UID>AV-2-17403-2019-Bak4</UID>
+		<UIDCampaign>2019_06</UIDCampaign>
+		<IDDirection>1593</IDDirection>
+		<IDEducationLevel>2</IDEducationLevel>
+		<Budget_o>175</Budget_o>
+		<Budget_oz>15</Budget_oz>
+		<Budget_z>15</Budget_z>
+		<Quota_o>24</Quota_o>
+		<Quota_oz>15</Quota_oz>
+		<Quota_z>15</Quota_z>
+		<Paid_o>400</Paid_o>
+		<Paid_oz>15</Paid_oz>
+		<Paid_z>15</Paid_z>
+		<Target_o>36</Target_o>
+		<Target_oz>15</Target_oz>
+		<Target_z>15</Target_z>
+	</AdmissionVolume>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="AdmissionVolume">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UID" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:string" name="UIDCampaign" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="IDDirection" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="IDEducationLevel" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Budget_o" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Budget_oz" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Budget_z" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Quota_o" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Quota_oz" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Quota_z" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Paid_o" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Paid_oz" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Paid_z" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Target_o" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Target_oz" minOccurs="0" maxOccurs="1"/>
+                            <xs:element type="xs:integer" name="Target_z" minOccurs="0" maxOccurs="1"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« admission_volumeВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«RemoveВ»
+
+XML
+<PackageData>
+   <AdmissionVolume>
+      <UID>AV-2-17403-2019-Bak4</UID>
+   </AdmissionVolume>
+</PackageData>
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:sequence>
+                        <xs:element name="AdmissionVolume">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element type="xs:string" name="UID"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«competitive_groupsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ» 
+
+
+XML
+<PackageData>
+	<CompetitiveGroup>
+		<UID>2019-CG-3256-22</UID>
+		<UIDCampaign>2019_06</UIDCampaign>
+		<Name>Р‘Р°РєР°Р»Р°РІСЂРёР°С‚-Р­РєРѕРЅРѕРјРёРєР°-РѕС‡РЅР°СЏ-Р±СЋРґР¶РµС‚-2019-2</Name>
+		<IDLevelBudget>1</IDLevelBudget>
+		<IDEducationLevel>1</IDEducationLevel>
+		<IDEducationSource>1</IDEducationSource>
+		<IDEducationForm>1</IDEducationForm>
+		<IDDirection>1594</IDDirection>
+		<Budget_o>22</Budget_o>
+		<Budget_oz>1</Budget_oz>
+		<Budget_z>1</Budget_z>
+		<Quota_o>1</Quota_o>
+		<Quota_oz>1</Quota_oz>
+		<Quota_z>1</Quota_z>
+		<Paid_o>1</Paid_o>
+		<Paid_oz>1</Paid_oz>
+		<Paid_z>1</Paid_z>
+		<Target_o>1</Target_o>
+		<Target_oz>1</Target_oz>
+		<Target_z>1</Target_z>
+	</CompetitiveGroup>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CompetitiveGroup">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UID"/>
+                            <xs:element type="xs:string" name="UIDCampaign"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:integer" name="IDLevelBudget" minOccurs="0"/>
+                            <xs:element type="xs:integer" name="IDEducationLevel"/>
+                            <xs:element type="xs:integer" name="IDEducationSource"/>
+                            <xs:element type="xs:integer" name="IDEducationForm"/>
+                            <xs:element type="xs:integer" name="IDDirection"/>
+                            <xs:element type="xs:integer" name="Budget_o"/>
+                            <xs:element type="xs:integer" name="Budget_oz"/>
+                            <xs:element type="xs:integer" name="Budget_z"/>
+                            <xs:element type="xs:integer" name="Quota_o"/>
+                            <xs:element type="xs:integer" name="Quota_oz"/>
+                            <xs:element type="xs:integer" name="Quota_z"/>
+                            <xs:element type="xs:integer" name="Paid_o"/>
+                            <xs:element type="xs:integer" name="Paid_oz"/>
+                            <xs:element type="xs:integer" name="Paid_z"/>
+                            <xs:element type="xs:integer" name="Target_o"/>
+                            <xs:element type="xs:integer" name="Target_oz"/>
+                            <xs:element type="xs:integer" name="Target_z"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«competitive_groupsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«RemoveВ» 
+
+XML
+<PackageData>
+   <CompetitiveGroup>
+      <UID>2019-CG-3256-22</UID>
+   </CompetitiveGroup>
+</PackageData>
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:sequence>
+                        <xs:element name="CompetitiveGroup">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element type="xs:string" name="UID"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                </xs:sequence>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« competitive_benefitsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ» 
+
+XML
+<PackageData>
+	<CompetitiveBenefit>
+		<UIDCompetitiveGroup>2019-CG-32562</UIDCompetitiveGroup>
+		<Creative>false</Creative>
+		<Athletic>false</Athletic>
+		<IDBenefit>1</IDBenefit>
+		<IDOlympicDiplomaType>3</IDOlympicDiplomaType>
+		<EgeMinValue>75</EgeMinValue>
+		<OlympicProfiles>
+			<IDOlympicProfile>2</IDOlympicProfile>
+		</OlympicProfiles>
+		<UID>D47C38AB-2BBC-4997-9006-8811BC8C79A1</UID>
+	</CompetitiveBenefit>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CompetitiveBenefit">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UIDCompetitiveGroup"/>
+                            <xs:element type="xs:string" name="Creative"/>
+                            <xs:element type="xs:string" name="Athletic"/>
+                            <xs:element type="xs:integer" name="IDBenefit"/>
+                            <xs:element type="xs:integer" name="IDOlympicDiplomaType"/>
+                            <xs:element type="xs:integer" name="EgeMinValue"/>
+                            <xs:element name="OlympicProfiles">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element type="xs:byte" name="IDOlympicProfile" maxOccurs="unbounded" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:string" name="UID"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« competitive_benefitsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«RemoveВ» 
+
+XML
+<PackageData>
+	<CompetitiveBenefit>
+		<UID>D47C38AB-2BBC-4997-9006-881D1BC8C79A</UID>
+	</CompetitiveBenefit>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CompetitiveBenefit">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UID"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« competitive_group_programs В», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ» 
+
+XML
+<PackageData>
+	<CompetitiveGroupProgram>
+		<UIDCompetitiveGroup>2019-CG-32562</UIDCompetitiveGroup>
+		<UIDSubdivisionOrg>YHSV-PP</UIDSubdivisionOrg>
+		<Name>РќР°РёРјРµРЅРѕРІР°РЅРёРµ РїСЂРѕРіСЂР°РјРјС‹1</Name>
+		<UID>YHWB-DKMKSJI-KMNNV1</UID>
+	</CompetitiveGroupProgram>
+</PackageData>
+
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CompetitiveGroupProgram">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UIDCompetitiveGroup"/>
+                            <xs:element type="xs:string" name="UIDSubdivisionOrg"/>
+                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element type="xs:string" name="UID"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« competitive_group_programs В», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В« Remove В» 
+
+
+XML
+<PackageData>
+	<CompetitiveGroupProgram>
+		<UID>YHWB-DKMKSJI-K1MNNV</UID>
+	</CompetitiveGroupProgram>
+</PackageData>
+
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CompetitiveGroupProgram">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element type="xs:string" name="UID"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
+
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« entrance_testsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ» 
+
+XML
+<PackageData>
+	<EntranceTest>
+		<UID>2019-CG-3256-1</UID>
+		<UIDCompetitiveGroup>2019-CG-3256</UIDCompetitiveGroup>
+		<IDEntranceTestType>1</IDEntranceTestType>
+		<TestName>РўРµСЃС‚РРјСЏ</TestName>
+		<IsEge>false</IsEge>
+		<MinScore>45</MinScore>
+		<Priority>2</Priority>
+		<IDSubject>1</IDSubject>
+	</EntranceTest>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="PackageData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="EntranceTest">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element type="xs:string" name="UID"/>
+							<xs:element type="xs:string" name="UIDCompetitiveGroup"/>
+							<xs:element type="xs:integer" name="IDEntranceTestType"/>
+							<xs:element type="xs:string" name="TestName"/>
+							<xs:element type="xs:boolean" name="IsEge"/>
+							<xs:element type="xs:integer" name="MinScore"/>
+							<xs:element type="xs:integer" name="Priority"/>
+							<xs:element type="xs:integer" name="IDSubject"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В« entrance_testsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«RemoveВ» 
+
+XML
+<PackageData>
+   <EntranceTest>
+      <UID>2019-CG-3256-1</UID>
+   </EntranceTest>
+</PackageData>
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="PackageData">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="EntranceTest">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element type="xs:string" name="UID"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
+
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«entrance_test_benefitsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» Рё В«EditВ» 
+
+XML
+<PackageData>
+	<EntranceTestBenefit>
+		<UID>2019-CG-3256-isp0_cb_0</UID>
+		<UIDEntranceTest>2019-CG-3256-1</UIDEntranceTest>
+		<IDBenefit>3</IDBenefit>
+		<IDOlympicDiplomaType>1</IDOlympicDiplomaType>
+		<IDOlympicLevel>3</IDOlympicLevel>
+		<OlympicProfiles>
+			<IDOlympicProfile>3</IDOlympicProfile>
+			<IDOlympicProfile>2</IDOlympicProfile>
+		</OlympicProfiles>
+		<EgeMinValue>75</EgeMinValue>
+	</EntranceTestBenefit>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="PackageData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="EntranceTestBenefit">
+					<xs:complexType>
+						<xs:all>
+							<xs:element type="xs:string" name="UID"/>
+							<xs:element type="xs:string" name="UIDEntranceTest"/>
+							<xs:element type="xs:integer" name="IDBenefit"/>
+							<xs:element type="xs:integer" name="IDOlympicDiplomaType"/>
+							<xs:element type="xs:integer" name="IDOlympicLevel"/>
+							<xs:element name="OlympicProfiles">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type="xs:integer" name="IDOlympicProfile" maxOccurs="unbounded" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element type="xs:integer" name="EgeMinValue"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+
+
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«entrance_test_benefitsВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«RemoveВ» 
+
+XML
+<PackageData>
+   <EntranceTestBenefit>
+      <UID>2019-CG-3256-isp0_cb_0</UID>
+   </EntranceTestBenefit>
+</PackageData>
+
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="PackageData">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="EntranceTestBenefit">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element type="xs:string" name="UID"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
+
+
+РџСЂРё Р·РЅР°С‡РµРЅРёРё РїРѕР»СЏ data_type = В«completitive_groups_applications_ratingВ», РґР»СЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»СЏ В«ActionВ» = В«AddВ» 
+
+XML
+<PackageData>
+   <CompletitiveGroupsApplications>
+      <UIDCompetitiveGroup>1225</UIDCompetitiveGroup>
+      <AdmissionVolume>70</AdmissionVolume>
+      <CommonRating>50</CommonRating>
+      <FirstRating>50</FirstRating>
+      <AgreedRating>50</AgreedRating>
+      <ChangeRating>50</ChangeRating>
+      <CountFirstStep>50</CountFirstStep>
+      <CountSecondStep>20</CountSecondStep>
+      <CountApplication>20</CountApplication>
+      <CountAgreed>20</CountAgreed>
+      <Changed>2020-07-20T10:00:00+03:00</Changed>
+      <Applications>
+      <Application>
+         <IDApplicationChoice>
+            <IDApplication>55331</IDApplication>
+            <OrderID>100001</OrderID>
+         </IDApplicationChoice>
+         <FIO>РўРµСЃС‚РѕРІ1 Рђ.Рђ.</FIO>
+         <Rating>1</Rating>
+         <EithoutTests>false</EithoutTests>
+         <EntranceTest1>РўРµСЃС‚1</EntranceTest1>
+         <Result1>15.5</Result1>
+         <EntranceTest2>РўРµСЃС‚2</EntranceTest2>
+         <Result2>10.5</Result2>
+         <EntranceTest3>РўРµСЃС‚3</EntranceTest3>
+         <Result3>22.7</Result3>
+         <EntranceTest4>РўРµСЃС‚4</EntranceTest4>
+         <Result4>9.2</Result4>
+         <EntranceTest5>РўРµСЃС‚5</EntranceTest5>
+         <Result5>30</Result5>
+         <Benefit>false</Benefit>
+         <SumMark>87.9</SumMark>
+         <Agreed>true</Agreed>
+         <Original>false</Original>
+      </Application>
+      <Application>
+         <IDApplicationChoice>
+            <IDApplication>55332</IDApplication>
+         </IDApplicationChoice>
+         <FIO>РўРµСЃС‚РѕРІ2 Рђ.Рђ.</FIO>
+         <Rating>2</Rating>
+         <WithoutTests>true</WithoutTests>
+         <ReasonWithoutTests>РџРѕР±РµРґРёС‚РµР»СЊ РѕР»РёРјРїРёР°РґС‹</ReasonWithoutTests>
+         <EntranceTest1>РўРµСЃС‚1</EntranceTest1>
+         <Result1>0</Result1>
+         <EntranceTest2>РўРµСЃС‚2</EntranceTest2>
+         <Result2>0</Result2>
+         <EntranceTest3>РўРµСЃС‚3</EntranceTest3>
+         <Result3>0</Result3>
+         <Benefit>false</Benefit>
+         <SumMark>80</SumMark>
+         <Agreed>true</Agreed>
+         <Original>true</Original>
+         <Addition>Р’СЃРµСЂРѕСЃСЃРёР№СЃРєР°СЏ РѕР»РёРјРїРёР°РґР° РїРѕ С„РёР·РёРєРµ</Addition>
+      </Application>
+      <Application>
+         <IDApplicationChoice>
+            <IDApplication>55333</IDApplication>
+            <OrderID>100002</OrderID>
+         </IDApplicationChoice>
+         <FIO>РўРµСЃС‚РѕРІ3 Рђ.Рђ.</FIO>
+         <Rating>3</Rating>
+         <WithoutTests>false</WithoutTests>
+         <EntranceTest1>РўРµСЃС‚1</EntranceTest1>
+         <result1>15.5</result1>
+         <EntranceTest2>РўРµСЃС‚2</EntranceTest2>
+         <Result2>10.5</Result2>
+         <EntranceTest3>РўРµСЃС‚3</EntranceTest3>
+         <Result3>15.4</Result3>
+         <EntranceTest4>РўРµСЃС‚4</EntranceTest4>
+         <Result4>9.2</Result4>
+         <EntranceTest5>РўРµСЃС‚5</EntranceTest5>
+         <Result5>25</Result5>
+         <Benefit>true</Benefit>
+         <ReasonBenefit>РРЅРІР°Р»РёРґРЅРѕСЃС‚СЊ</ReasonBenefit>
+         <SumMark>75.6</SumMark>
+         <Agreed>false</Agreed>
+         <Original>false</Original>
+      </Application>
+      </Applications>
+   </CompletitiveGroupsApplications>
+</PackageData>
+XSD
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="PackageData">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="CompletitiveGroupsApplications">
+               <xs:complexType>
+                  <xs:all>
+                     <xs:element type="xs:string" name="UIDCompetitiveGroup"/>
+                     <xs:element type="xs:integer" name="AdmissionVolume"/>
+                     <xs:element type="xs:integer" name="CommonRating"/>
+                     <xs:element type="xs:integer" name="FirstRating"/>
+                     <xs:element type="xs:integer" name="AgreedRating"/>
+                     <xs:element type="xs:integer" name="ChangeRating"/>
+                     <xs:element type="xs:integer" name="CountFirstStep"/>
+                     <xs:element type="xs:integer" name="CountSecondStep"/>
+                     <xs:element type="xs:integer" name="CountApplication"/>
+                     <xs:element type="xs:integer" name="CountAgreed"/>
+                     <xs:element type="xs:dateTime" name="Changed"/>
+                     <xs:element name="Applications">
+                        <xs:complexType>
+                           <xs:sequence>
+                              <xs:element name="Application" maxOccurs="unbounded" minOccurs="0">
+                                 <xs:complexType>
+                                    <xs:all>
+                                       <xs:element name="IDApplicationChoice">
+                                          <xs:complexType>
+                                             <xs:choice>
+                                                <xs:element type="xs:int" name="IDApplication"/>
+                                                <xs:element type="xs:int" name="OrderID" minOccurs="0"/>
+                                             </xs:choice>
+                                          </xs:complexType>
+                                       </xs:element>
+                                       <xs:element type="xs:string" name="FIO"/>
+                                       <xs:element type="xs:integer" name="Rating"/>
+                                       <xs:element type="xs:string" name="EithoutTests" minOccurs="0"/>
+                                       <xs:element type="xs:string" name="WithoutTests" minOccurs="0"/>
+                                       <xs:element type="xs:string" name="ReasonWithoutTests" minOccurs="0"/>
+                                       <xs:element type="xs:string" name="EntranceTest1"/>
+                                       <xs:element type="xs:float" name="Result1" minOccurs="0"/>
+                                       <xs:element type="xs:string" name="EntranceTest2"/>
+                                       <xs:element type="xs:float" name="Result2"/>
+                                       <xs:element type="xs:string" name="EntranceTest3"/>
+                                       <xs:element type="xs:float" name="Result3"/>
+                                       <xs:element type="xs:string" name="EntranceTest4" minOccurs="0"/>
+                                       <xs:element type="xs:float" name="Result4" minOccurs="0"/>
+                                       <xs:element type="xs:string" name="EntranceTest5" minOccurs="0"/>
+                                       <xs:element type="xs:integer" name="Result5" minOccurs="0"/>
+                                       <xs:element type="xs:string" name="Benefit"/>
+                                       <xs:element type="xs:string" name="ReasonBenefit" minOccurs="0"/>
+                                       <xs:element type="xs:float" name="SumMark"/>
+                                       <xs:element type="xs:string" name="Agreed"/>
+                                       <xs:element type="xs:string" name="Original"/>
+                                       <xs:element type="xs:string" name="Addition" minOccurs="0"/>
+                                    </xs:all>
+                                 </xs:complexType>
+                              </xs:element>
+                           </xs:sequence>
+                        </xs:complexType>
+                     </xs:element>
+                  </xs:all>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
+
+
+
+
+     РРЅСЃС‚СЂСѓРєС†РёСЏ РїРѕ СЃРѕР·РґР°РЅРёСЋ  С‚РµСЃС‚РѕРІРѕРіРѕ СЃРµСЂС‚РёС„РёРєР°С‚Р° РІ СЃСЂРµРґРµ Linux
+
+     РћСЃРЅРѕРІС‹ РґР°РЅРЅРѕР№ РёРЅСЃС‚СЂСѓРєС†РёРё РѕРїРёСЃР°РЅС‹ РІ СЃС‚Р°С‚СЊРµ РїРѕ Р°РґСЂРµСЃСѓ  http://blog.pws.ru/2014/05/15/crypto-pro-test-cert/
+      
+     
+     Р”Р»СЏ РїСЂРѕС†РµСЃСЃР° СЃРѕР·РґР°РЅРёСЏ С‚РµСЃС‚РѕРІРѕРіРѕ СЃРµСЂС‚РёС„РёРєР°С‚Р° РїРѕРЅР°РґРѕР±СЏС‚СЃСЏ СЃР»РµРґСѓСЋС‰РёРµ СЂРµСЃСѓСЂСЃС‹:
+     1) РЈС‚РёР»РёС‚Р°  cryptcp 
+     https://www.cryptopro.ru/products/other/cryptcp
+     2) РўРµСЃС‚РѕРІС‹Р№ РЈР¦
+     РђРґСЂРµСЃ СЃР°Р№С‚Р° С‚РµСЃС‚РѕРІРѕРіРѕ РЈР¦:В http://www.cryptopro.ru/certsrv/
+     
+     РџСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ, С‡С‚Рѕ СѓР¶Рµ СЃРѕР·РґР°РЅРЅРѕ С…СЂР°РЅРёР»РёС‰Рµ РґР»СЏ СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ. РџСЂРѕРІРµСЂРёС‚СЊ РЅР°Р»РёС‡РёРµ С…СЂР°РЅРёР»РёС‰Р° РјРѕР¶РЅРѕ СЃ РїРѕРјРѕС‰СЊСЋ РєРѕРјР°РЅРґС‹
+     /opt/cprocsp/bin/amd64/csptest -keyset -enum_cont -fqcn вЂ“verifyc
+     
+     Р’ СЌС‚РѕРј СЃР»СѓС‡Р°Рµ Р±СѓРґРµС‚ РІС‹РІРµРґРµРЅ СЃРїРёСЃРѕРє СЃРµСЂС‚РёС„РєР°С‚РѕРІ РІ С…СЂР°РЅРёР»РёС‰Рµ РІ СЃР»РµРґСѓСЋС‰РµРј С„РѕСЂРјР°С‚Рµ:
+     \\.\HDIMAGE\cert1
+      \\.\HDIMAGE\cert2
+     
+     Р“РґРµ СЃРѕР±СЃС‚РІРµРЅРЅРѕВ HDIMAGEВ РЅР°Р·РІР°РЅРёРµ С…СЂР°РЅРёР»РёС‰Р° Рё РѕР±РѕР·РЅР°С‡Р°РµС‚, С‡С‚Рѕ СЃРµСЂС‚РёС„РёРєР°С‚С‹ С…СЂР°РЅСЏС‚СЃСЏ РЅР° Р¶РµСЃС‚РєРѕРј РґРёСЃРєРµ.
+     
+     Р•СЃР»Рё С‚Р°РєРѕРіРѕ С…СЂР°РЅРёР»РёС‰Р° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚, С‚Рѕ РµРіРѕ РјРѕР¶РЅРѕ СЃРѕР·РґР°С‚СЊ (РёР· РїРѕРґ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏВ root):
+     
+/opt/cprocsp/sbin/amd64/cpconfig -hardware reader -add HDIMAGE store
+     
+     РўРµРїРµСЂСЊ РґРѕР±Р°РІР»СЏРµРј РІ С…СЂР°РЅРёР»РёС‰Рµ РєРѕРЅС‚РµР№РЅРµСЂ РґР»СЏ СЃРµСЂС‚РёС„РёРєР°С‚Р°:
+     
+     /opt/cprocsp/bin/amd64/csptest -keyset -newkeyset -cont '\\.\HDIMAGE\cert3'
+     
+
+РЈС‚РёР»РёС‚Р° РїРѕРїСЂРѕСЃРёС‚ РїРѕРЅР°Р¶РёРјР°С‚СЊ РєР»Р°РІРёС€Рё, РґР»СЏ РіРµРЅРµСЂР°С†РёРё СЃР»СѓС‡Р°РЅС‹С… С‡РёСЃРµР». РўР°Рє Р¶Рµ РїРѕРїСЂРѕСЃРёС‚ РІРІРµСЃС‚Рё РїР°СЂРѕР»СЊ РґР»СЏ РґРѕСЃС‚СѓРїР° Рє РєРѕРЅС‚РµР№РЅРµСЂСѓ. Р›СѓС‡С€Рµ РІРІРµСЃС‚Рё РїСѓСЃС‚РѕР№ РїР°СЂРѕР»СЊ вЂ“ РЅР°Р¶Р°С‚СЊ Enter РґРІР° СЂР°Р·Р°. РўР°Рє РїСЂРѕС‰Рµ Рё РјРµРЅСЊС€Рµ РїСЂРѕР±Р»РµРј Р±СѓРґРµС‚ РїСЂРё РґР°Р»СЊРЅРµР№С€РµР№ СЂР°Р±РѕС‚Рµ.
+     РўРµРїРµСЂСЊ СЃРѕР·РґР°РґРёРј Р·Р°РїСЂРѕСЃ РЅР° РїРѕР»СѓС‡РµРЅРёРµ СЃРµСЂС‚РёС„РёРєР°С‚Р° РґР»СЏ СЃРѕР·РґР°РЅРЅРѕРіРѕ РєРѕРЅС‚РµР№РЅРµСЂР° cert3:
+     Р’РЅРёРјР°РЅРёРµ!! Р—РЅР°С‡РµРЅРёРµ  OGRN РґРѕР»Р¶РЅРѕ СЃРѕРґРµСЂР¶Р°С‚СЊ РћР“Р Рќ РѕСЂРіР°РЅРёР·Р°С†РёРё Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅРѕР№ РІ СЃРёСЃС‚РµРјРµ.
+     
+/opt/cprocsp/bin/amd64/cryptcp -creatrqst -dn "STREET=РЈР».РЈР»РёС†Р° Рґ.20 СЃС‚СЂ.1, O=РћСЂРіР°РЅРёР·Р°С†РёСЏ, L=Р“РѕСЂРѕРґ,  E=mail@mail.ru, INN=111111111111, OGRN=1111111111111, C=RU, G=РРјСЏ РѕС‚С‡РµСЃС‚РІРѕ, T=Р”РѕР»Р¶РЅРѕСЃС‚СЊ, CN=РРЅС„РѕСЂРјР°С†РёРѕРЅРЅР°СЏ СЃРёСЃС‚РµРјР° , SN=Р¤Р°РјРёР»РёСЏ" -nokeygen -both -ku -cont 'cert3' cert3.req
+     
+     Р’ РїР°СЂР°РјРµС‚СЂРµ -dn СѓРєР°Р·С‹РІР°СЋС‚СЃСЏ РґР°РЅРЅС‹Рµ, РєРѕС‚РѕСЂС‹Рµ Р±СѓРґСѓС‚ С…СЂР°РЅРёС‚СЃСЏ РІ РїРѕР»Рµ Subject СЃРµСЂС‚РёС„РёРєР°С‚Р°. РЎРѕР·РґР°РЅС‹Р№ Р·Р°РїСЂРѕСЃ Р±СѓРґРµС‚ СЃРѕС…СЂР°РЅРµРЅ РІ С„Р°Р№Р»Рµ cert3.req. Р­С‚Рё РґР°РЅРЅС‹Рµ РЅСѓР¶РЅС‹ РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ СЃРµСЂС‚РёС„РёРєР°С‚Р° РІ СѓРґРѕСЃС‚РѕРІРµСЂСЏСЋС‰РµРј С†РµРЅС‚СЂРµ. Р”Р»СЏ С‚РµСЃС‚РѕРІРѕРіРѕ СЃРµСЂС‚РёС„РёРєР°С‚Р° РјРѕР¶РЅРѕ РІРѕСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ С‚РµСЃС‚РѕРІС‹Рј СѓРґРѕСЃС‚РѕРІРµСЂСЏСЋС‰РёРј С†РµРЅС‚СЂРѕРј РљСЂРёРїС‚РѕРџСЂРѕ.
+     РђРґСЂРµСЃ СЃР°Р№С‚Р° С‚РµСЃС‚РѕРІРѕРіРѕ РЈР¦:В http://www.cryptopro.ru/certsrv/
+     
+     РќР°Рј РЅСѓР¶РµРЅ РїСѓРЅРєС‚ В«РћС‚РїСЂР°РІРёС‚СЊ Р·Р°РїСЂРѕСЃ, РёСЃРїРѕР»СЊР·СѓСЏ base-64 С€РёС„СЂРѕРІР°РЅРЅС‹Р№ С„Р°Р№Р» PKCS #10 РёР»Рё PKCS #7В». 
+     РќР° СЃР»РµРґСѓСЋС‰РµР№ СЃС‚СЂР°РЅРёС†Рµ РІ РїРѕР»Рµ В«РЎРѕС…СЂР°РЅРµРЅРЅС‹Р№ Р·Р°РїСЂРѕСЃВ» РІСЃС‚Р°РІР»СЏРµРј СЃРѕРґРµСЂР¶РёРјРѕРµ С„Р°Р№Р»Р° cert3.req Рё РЅР°Р¶РёРјР°РµРј РєРЅРѕРїРєСѓ В«Р’С‹РґР°С‚СЊВ».
+     Р•СЃР»Рё РІСЃРµ РїСЂРѕС€Р»Рѕ СѓСЃРїРµС€РЅРѕ, С‚Рѕ Р±СѓРґРµС‚ РїРѕРєР°Р·Р°РЅРѕ СЃРѕРѕР±С‰РµРЅРёРµ С‡С‚Рѕ СЃРµСЂС‚РёС„РёРєР°С‚ РІС‹РґР°РЅ. Р’С‹Р±РёСЂР°РµРј В«DER-С€РёС„СЂРѕРІР°РЅРёРµВ» Рё РЅР°Р¶РёРјР°РµРј СЃСЃС‹Р»РєСѓ В«Р—Р°РіСЂСѓР·РёС‚СЊ С†РµРїРѕС‡РєСѓ СЃРµСЂС‚РёС„РёРєР°С‚РѕРІВ». РЎРєР°С‡Р°РЅРЅС‹Р№ С„Р°Р№Р» СЃРѕС…СЂР°РЅСЏРµРј СЃ РёРјРµРЅРµРј cert3.p7b (РёР»Рё Р»СЋР±С‹Рј РґСЂСѓРіРёРј, РіР»Р°РІРЅРѕРµ Р·Р°РїРѕРјРЅРёС‚СЊ РµРіРѕ, С‡С‚РѕР±С‹ РїРѕС‚РѕРј РЅР°Р№С‚Рё РґР»СЏ СЃР»РµРґСѓСЋС‰РµР№ РѕРїРµСЂР°С†РёРё).
+     РўРµРїРµСЂСЊ РЅР°РґРѕ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР»СѓС‡РµРЅРЅС‹Р№ СЃРµСЂС‚РёС„РёРєР°С‚ РІ РєРѕРЅС‚РµР№РЅРµСЂ:
+     
+/opt/cprocsp/bin/amd64/certmgr -inst -store uMy -file ./cert3.p7b -cont '\\.\HDIMAGE\cert3'
+     
+     Рў.Рµ. СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїРѕР»СѓС‡РµРЅРЅС‹Р№ СЃРµСЂС‚РёС„РєР°С‚ РІ РєРѕРЅС‚РµР№РЅРµСЂ cert3. РўР°Рє РєР°Рє РјС‹ РІС‹Р±СЂР°Р»Рё С†РµРїРѕС‡РєСѓ СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ, С‚Рѕ РїСЂРё СѓСЃС‚Р°РЅРѕРІРєРµ СѓС‚РёР»РёС‚Р° РїРѕРїСЂРѕСЃРёС‚ РІРІРµСЃС‚Рё РЅРѕРјРµСЂ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРјРѕРіРѕ СЃРµСЂС‚РёС„РёРєР°С‚Р°. РЎРјРѕС‚СЂРёРј РїРѕ Subject РєР°РєРѕР№ СЃРµСЂС‚РёС„РёРєР°С‚ В«РЅР°С€В» Рё СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РµРіРѕ. Р’С‚РѕСЂРѕР№ СЃРµСЂС‚РёС„РёРєР°С‚ вЂ” СЌС‚Рѕ РєРѕСЂРЅРµРІРѕР№ СЃРµСЂС‚РёС„РёРєР°С‚ Рё РµРіРѕ РЅР°РґРѕ СѓСЃС‚Р°РЅРѕРІРёС‚СЊ РѕС‚РґРµР»СЊРЅРѕ.
+     РљРѕСЂРЅРµРІРѕР№ СЃРµСЂС‚РёС„РёРєР°С‚ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ СЃ РїСЂР°РІР°РјРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ root:
+     
+sudo /opt/cprocsp/bin/amd64/certmgr -inst -store uRoot -file ./cert3.p7b
+     
+     РџСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ РІСЃРµ СѓСЃС‚Р°РЅРѕРІРёР»РѕСЃСЊ РєРѕСЂСЂРµРєС‚РЅРѕ Рё РїРѕСЃРјРѕС‚СЂРµС‚СЊ СЃРїРёСЃРѕРє СЃРµСЂС‚РёС„РёРєР°С‚РѕРІ РјРѕР¶РЅРѕ СЃ РїРѕРјРѕС‰СЊСЋ РєРѕРјР°РЅРґС‹:
+     
+     /opt/cprocsp/bin/amd64/certmgr вЂ“list
+     
+     РћСЃРѕР±РѕРµ РІРЅРёРјР°РЅРёРµ РІ РґР°РЅРЅС‹С… СЃРµСЂС‚РёС„РёРєР°С‚Р° СЃР»РµРґСѓРµС‚ СѓРґРµР»РёС‚СЊ РЅР° РїРѕР»Рµ В«PrivateKey LinkВ». Р•СЃР»Рё С‚Р°Рј Р·РЅР°С‡РµРЅРёРµ В«NoВ», С‚Рѕ Р·РЅР°С‡РёС‚ РіРґРµ-С‚Рѕ РІРѕР·РЅРёРєР»Рё РѕС€РёР±РєРё Рё РІРѕР·РјРѕР¶РЅРѕ РЅРµ Р±С‹Р» РґРѕР±Р°РІР»РµРЅ РєРѕСЂРЅРµРІРѕР№ СЃРµСЂС‚РёС„РёРєР°С‚ РёР»Рё РµС‰Рµ С‡С‚Рѕ-С‚Рѕ.
+Р Р°Р±РѕС‚РѕСЃРѕРїРѕР±РЅРѕСЃС‚СЊ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅРѕРіРѕ СЃРµСЂС‚РёС„РёРєР°С‚Р° РјРѕР¶РЅРѕ РїСЂРѕРІРµСЂРёС‚СЊ РЅР° СЃР»РµРґСѓСЋС‰РµР№ СЃС‚СЂР°РЅРёС†Рµ:В 
+
+http://www.cryptopro.ru/sites/default/files/products/cades/demopage/simple.html
+
+     РўР°Рј РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РљСЂРёРїС‚РѕРџСЂРѕ Р­Р¦Рџ Browser plug-in. РќРѕ СЂР°Р· РІС‹ СЃРѕР±СЂР°Р»РёСЃСЊ СЂР°Р±РѕС‚Р°С‚СЊ СЃ Р­Р¦Рџ, С‚Рѕ Р»РёР±Рѕ СѓР¶Рµ Сѓ РІР°СЃ РµСЃС‚СЊ, Р»РёР±Рѕ РїРѕРЅР°РґРѕР±РёС‚СЃСЏ РІ СЃРєРѕСЂРѕРј РІСЂРµРјРµРЅРё. РЎС‚Р°РІРёС‚СЃСЏ РѕРЅ РґРѕРІРѕР»СЊРЅРѕ Р»РµРіРєРѕ Рё СЃСѓС‰РµСЃС‚РІСѓРµС‚ РїРѕРґ РІСЃРµ РѕСЃРЅРѕРІРЅС‹Рµ Р±СЂР°СѓР·РµСЂС‹.
+     РќР° РґР°РЅРЅРѕР№ СЃС‚СЂР°РЅРёС†Рµ РІС‹Р±РёСЂР°РµРј С‚РѕР»СЊРєРѕ С‡С‚Рѕ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Р№ СЃРµСЂС‚РёС„РёРєР°С‚ Рё РїСЂРѕР±СѓРµРј РїРѕРґРїРёСЃР°С‚СЊ С‚РµСЃС‚РѕРІС‹Рµ РґР°РЅРЅС‹Рµ. Р’ СЂРµР·СѓР»СЊС‚Р°С‚Рµ РїРѕР»СѓС‡Р°РµРј Р»РёР±Рѕ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ, Р»РёР±Рѕ РѕС‚РІРµС‚ СЃРµСЂРІРµСЂР°: В«РўРёРї РїРѕРґРїРёСЃРё: РїСЂРѕСЃС‚Р°СЏ. РџРѕРґРїРёСЃСЊ РїСЂРѕРІРµСЂРµРЅР°.В». Р’ СЌС‚РѕРј СЃР»СѓС‡Р°Рµ РјРѕР¶РЅРѕ СЃРєР°Р·Р°С‚СЊ С‡С‚Рѕ РїР»Р°РіРёРЅ СѓСЃС‚Р°РЅРѕРІР»РµРЅ Рё СЂР°Р±РѕС‚Р°РµС‚ РЅРѕСЂРјР°Р»СЊРЅРѕ, Р° СЃРѕР·РґР°РЅРЅС‹Р№ СЃРµСЂС‚РёС„РєР°С‚ РѕР±Р»Р°РґР°РµС‚ РІСЃРµР№ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕСЃС‚СЊСЋ Рё РјРѕР¶РµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ Р­Р¦Рџ, Р° С‚Р°РєР¶Рµ РІСЃРµРіРѕ С‡С‚Рѕ СЃ СЌС‚РёРј СЃРІСЏР·Р°РЅРЅРѕ.
+
+
