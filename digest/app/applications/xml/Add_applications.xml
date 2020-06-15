@@ -23,8 +23,6 @@
     <IDOrderAdmission>100</IDOrderAdmission>
     <Priority>100</Priority>
     <!--Optional:-->
-    <IDViolation>100</IDViolation>
-    <!--Optional:-->
     <IDDisabledDocumentChoice>
       <!--You have a CHOICE of the next 2 items at this level-->
       <UID>string</UID>

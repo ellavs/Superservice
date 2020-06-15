@@ -14,6 +14,7 @@
         <IDCategory>100</IDCategory>
         <!--Optional:-->
         <DocSeries>string</DocSeries>
+
         <File>string</File>
         <IDDocChoice>
             <!--You have a CHOICE of the next 2 items at this level-->

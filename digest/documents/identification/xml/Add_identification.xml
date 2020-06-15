@@ -12,10 +12,11 @@
         <DocNumber>3</DocNumber>
         <DocOrganization>string</DocOrganization>
         <IssueDate>2008-09-29T05:49:45</IssueDate>
-        <IDOkcm>3</IDOkcm>
+        <IDOKCM>3</IDOKCM>
         <File>3</File>
         <!--Optional:-->
         <SubdivisionCode>string</SubdivisionCode>
+
         <IDIdentificationChoice>
             <!--You have a CHOICE of the next 2 items at this level-->
             <UID>string</UID>

@@ -13,7 +13,7 @@
                             <xs:element type="xs:string" name="DocNumber" minOccurs="0"/>
                             <xs:element type="xs:dateTime" name="IssueDate" minOccurs="0"/>
                             <xs:element type="xs:integer" name="IDOlympic" minOccurs="0"/>
-                            <xs:element type="xs:integer" name="IDOlympicDiplomants" minOccurs="0"/>
+
                             <xs:element type="xs:string" name="File"/>
                             <xs:element name="IDDocChoice">
                                 <xs:complexType>

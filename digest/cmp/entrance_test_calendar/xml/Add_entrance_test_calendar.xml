@@ -1,0 +1,12 @@
+<PackageData>
+  <EntranceTestCalendar>
+    <UIDEntranceTest>2</UIDEntranceTest>
+    <ExamLocation>string</ExamLocation>
+    <EntranceTestDate>2008-09-29T05:49:45+04:00</EntranceTestDate>
+    <IDEntranceTestCalendarChoice>
+      <!--You have a CHOICE of the next 2 items at this level-->
+      <UID>string</UID>
+      <UIDEpgu>100</UIDEpgu>
+    </IDEntranceTestCalendarChoice>
+  </EntranceTestCalendar>
+</PackageData>

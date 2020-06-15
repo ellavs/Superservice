@@ -18,7 +18,6 @@
                             <xs:element type="xs:integer" name="Mark" minOccurs="0"/>
                             <xs:element type="xs:dateTime" name="ResultDate" minOccurs="0"/>
                             <xs:element type="xs:dateTime" name="IssueDate" minOccurs="0" />
-                            <xs:element type="xs:integer" name="IDExam" minOccurs="0"/>
                             <xs:element type="xs:string" name="File"/>
                             <xs:element name="IDDocChoice">
                             <xs:complexType>

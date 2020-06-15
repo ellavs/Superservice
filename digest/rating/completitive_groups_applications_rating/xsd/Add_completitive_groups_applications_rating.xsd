@@ -1,62 +1,59 @@
-
-
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<xs:element name="PackageData">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="CompletitiveGroupsApplications">
+				<xs:element name="RatingApplications" minOccurs="0">
 					<xs:complexType>
 						<xs:all>
-							<xs:element type="xs:string" name="UIDCompetitiveGroup"/>
+							<xs:element name="IDApplicationChoice">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element type="xs:string" name="UID"/>
+										<xs:element type="xs:int" name="UIDEpgu"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
 							<xs:element type="xs:integer" name="AdmissionVolume"/>
-							<xs:element type="xs:integer" name="CommonRating"/>
-							<xs:element type="xs:integer" name="FirstRating"/>
-							<xs:element type="xs:integer" name="AgreedRating"/>
-							<xs:element type="xs:integer" name="ChangeRating"/>
+							<xs:element type="xs:dateTime" name="Changed"/>
+							<xs:element type="xs:string" name="UIDCompetitiveGroup"/>
 							<xs:element type="xs:integer" name="CountFirstStep"/>
 							<xs:element type="xs:integer" name="CountSecondStep"/>
-							<xs:element type="xs:integer" name="CountApplication"/>
-							<xs:element type="xs:integer" name="CountAgreed"/>
-							<xs:element type="xs:dateTime" name="Changed"/>
-							<xs:element name="Applications">
+							<xs:element type="xs:integer" name="AgreedRating"/>
+							<xs:element name="RatingApplicationsShort">
 								<xs:complexType>
-									<xs:sequence>
-										<xs:element name="Application" maxOccurs="unbounded" minOccurs="0">
-											<xs:complexType>
-												<xs:all>
-													<xs:element name="IDApplicationChoice">
-														<xs:complexType>
-															<xs:choice>
-																<xs:element type="xs:int" name="IDApplication"/>
-																<xs:element type="xs:int" name="OrderID" minOccurs="0"/>
-															</xs:choice>
-														</xs:complexType>
-													</xs:element>
-													<xs:element type="xs:string" name="FIO"/>
-													<xs:element type="xs:integer" name="Rating"/>
-													<xs:element type="xs:string" name="EithoutTests" minOccurs="0"/>
-													<xs:element type="xs:string" name="WithoutTests" minOccurs="0"/>
-													<xs:element type="xs:string" name="ReasonWithoutTests" minOccurs="0"/>
-													<xs:element type="xs:string" name="EntranceTest1"/>
-													<xs:element type="xs:float" name="Result1" minOccurs="0"/>
-													<xs:element type="xs:string" name="EntranceTest2"/>
-													<xs:element type="xs:float" name="Result2"/>
-													<xs:element type="xs:string" name="EntranceTest3"/>
-													<xs:element type="xs:float" name="Result3"/>
-													<xs:element type="xs:string" name="EntranceTest4" minOccurs="0"/>
-													<xs:element type="xs:float" name="Result4" minOccurs="0"/>
-													<xs:element type="xs:string" name="EntranceTest5" minOccurs="0"/>
-													<xs:element type="xs:integer" name="Result5" minOccurs="0"/>
-													<xs:element type="xs:string" name="Benefit"/>
-													<xs:element type="xs:string" name="ReasonBenefit" minOccurs="0"/>
-													<xs:element type="xs:float" name="SumMark"/>
-													<xs:element type="xs:string" name="Agreed"/>
-													<xs:element type="xs:string" name="Original"/>
-													<xs:element type="xs:string" name="Addition" minOccurs="0"/>
-												</xs:all>
-											</xs:complexType>
-										</xs:element>
-									</xs:sequence>
+									<xs:all>
+										<xs:element type="xs:integer" name="CommonRating"/>
+										<xs:element type="xs:integer" name="FirstRating"/>
+										<xs:element type="xs:integer" name="ChangeRating"/>
+										<xs:element type="xs:integer" name="CountApplication"/>
+										<xs:element type="xs:integer" name="CountAgreed"/>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="RatingApplicationsLong">
+								<xs:complexType>
+									<xs:all>
+										<xs:element type="xs:string" name="FIO"/>
+										<xs:element type="xs:boolean" name="WithoutTests" minOccurs="0"/>
+										<xs:element type="xs:string" name="ReasonWithoutTests" minOccurs="0"/>
+										<xs:element type="xs:string" name="EntranceTest1"/>
+										<xs:element type="xs:float" name="Result1"/>
+										<xs:element type="xs:string" name="EntranceTest2"/>
+										<xs:element type="xs:float" name="Result2"/>
+										<xs:element type="xs:string" name="EntranceTest3"/>
+										<xs:element type="xs:float" name="Result3"/>
+										<xs:element type="xs:string" name="EntranceTest4" minOccurs="0"/>
+										<xs:element type="xs:float" name="Result4" minOccurs="0"/>
+										<xs:element type="xs:string" name="EntranceTest5" minOccurs="0"/>
+										<xs:element type="xs:float" name="Result5" minOccurs="0"/>
+										<xs:element type="xs:boolean" name="Benefit"/>
+										<xs:element type="xs:string" name="ReasonBenefit" minOccurs="0"/>
+										<xs:element type="xs:float" name="Mark"/>
+										<xs:element type="xs:float" name="SumMark"/>
+										<xs:element type="xs:boolean" name="Agreed"/>
+										<xs:element type="xs:boolean" name="Original"/>
+										<xs:element type="xs:string" name="Addition" minOccurs="0"/>
+									</xs:all>
 								</xs:complexType>
 							</xs:element>
 						</xs:all>

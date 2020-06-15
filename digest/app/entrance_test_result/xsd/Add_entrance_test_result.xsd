@@ -22,7 +22,7 @@
                             <xs:element type="xs:float" name="ResultValue"/>
                             <xs:element type="xs:integer" name="IdBenefit" minOccurs="0"/>
                             <xs:element type="xs:integer" name="IdAppealStatus" minOccurs="0"/>
-                            <xs:element type="xs:string" name="HasEge" minOccurs="0"/>
+                            <xs:element type="xs:boolean" name="HasEge" minOccurs="0"/>
                             <xs:element type="xs:integer" name="EgeValue" minOccurs="0"/>
                         </xs:all>
                     </xs:complexType>

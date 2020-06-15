@@ -12,14 +12,11 @@
                             <xs:element type="xs:boolean" name="Original" minOccurs="0"/>
                             <xs:element type="xs:boolean" name="SpecialConditions"/>
                             <xs:element type="xs:boolean" name="DistanceTest"/>
-                            <xs:element type="xs:integer" name="UIDCompetitiveGroup"/>
-                            <xs:element type="xs:integer" name="UIDCompetitiveGroupTarget" minOccurs="0"/>
+                            <xs:element type="xs:string" name="UIDCompetitiveGroup"/>
                             <xs:element type="xs:integer" name="IDStatus"/>
                             <xs:element type="xs:string"  name="StatusComment" minOccurs="0"/>
                             <xs:element type="xs:integer" name="IDBenefit" minOccurs="0"/>
-                            <xs:element type="xs:integer" name="IDOrderAdmission" minOccurs="0"/>
-                            <xs:element type="xs:integer" name="Priority"/>
-                            <xs:element type="xs:integer" name="IDViolation" minOccurs="0"/>
+                            <xs:element type="xs:integer" name="Priority" minOccurs="0"/>
                             <xs:element name="IDDisabledDocumentChoice" minOccurs="0">
                                 <xs:complexType>
                                     <xs:choice>

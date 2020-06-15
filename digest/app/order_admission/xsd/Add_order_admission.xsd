@@ -25,8 +25,8 @@
                             <xs:element type="xs:dateTime" name="Published" minOccurs="0"/>
                             <xs:element type="xs:int"  name="IDOrderAdmissionStatus"/>
                             <xs:element type="xs:int"  name="IdOrderAdmissionType"/>
-                            <xs:element type="xs:string" name="PreferentialOrder"/>
-                            <xs:element type="xs:string" name="Foreigners"/>
+                            <xs:element type="xs:boolean" name="PreferentialOrder"/>
+                            <xs:element type="xs:boolean" name="Foreigners"/>
                             <xs:element name="Application" minOccurs="0">
                                 <xs:complexType>
                                     <xs:all>

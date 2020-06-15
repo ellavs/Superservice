@@ -1,5 +1,3 @@
-
-
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="PackageData">
         <xs:complexType>
@@ -7,15 +5,6 @@
                 <xs:element name="Militaries" maxOccurs="unbounded" minOccurs="0">
                     <xs:complexType>
                         <xs:all>
-                            <xs:element type="xs:long" name="SNILS"/>
-                            <xs:element type="xs:integer" name="IDDocumentType" minOccurs="0"/>
-                            <xs:element type="xs:string" name="DocName"/>
-                            <xs:element type="xs:string" name="DocOrg" minOccurs="0"/>
-                            <xs:element type="xs:string" name="DocNumber" minOccurs="0"/>
-                            <xs:element type="xs:dateTime" name="IssueDate" minOccurs="0"/>
-                            <xs:element type="xs:integer" name="IDCategory"/>
-                            <xs:element type="xs:string" name="DocSeries" minOccurs="0"/>
-                            <xs:element type="xs:string" name="File"/>
                             <xs:element name="IDDocChoice">
                                 <xs:complexType>
                                     <xs:choice>
@@ -31,4 +20,3 @@
         </xs:complexType>
     </xs:element>
 </xs:schema>
-

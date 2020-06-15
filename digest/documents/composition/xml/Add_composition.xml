@@ -18,6 +18,7 @@
         <HasAppealed>true</HasAppealed>
         <!--Optional:-->
         <IDAppealStatus>100</IDAppealStatus>
+
         <File>string</File>
         <IDDocChoice>
             <!--You have a CHOICE of the next 2 items at this level-->

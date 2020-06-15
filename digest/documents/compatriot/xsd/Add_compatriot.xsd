@@ -10,6 +10,7 @@
                             <xs:element type="xs:string" name="DocName"/>
                             <xs:element type="xs:string" name="DocOrg" minOccurs="0"/>
                             <xs:element type="xs:integer" name="IDCompatriotCategory"/>
+
                             <xs:element type="xs:string" name="File"/>
                             <xs:element name="IDDocChoice">
                                 <xs:complexType>

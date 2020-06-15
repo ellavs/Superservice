@@ -11,6 +11,7 @@
         <DocNumber>string</DocNumber>
         <IssueDate>2008-09-29T05:49:45</IssueDate>
         <IDDisabilityType>100</IDDisabilityType>
+
         <File>string</File>
         <IDDocChoice>
             <!--You have a CHOICE of the next 2 items at this level-->

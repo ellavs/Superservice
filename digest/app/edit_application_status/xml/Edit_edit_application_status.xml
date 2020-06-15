@@ -1,0 +1,18 @@
+<PackageData>
+  <!--Zero or more repetitions:-->
+  <ApplicationStatus>
+    <IDStatus>100</IDStatus>
+    <IDApplicationChoice>
+      <!--You have a CHOICE of the next 2 items at this level-->
+      <UID>string1</UID>
+
+    </IDApplicationChoice>
+  </ApplicationStatus>
+  <ApplicationStatus>
+    <IDStatus>100</IDStatus>
+    <IDApplicationChoice>
+      <!--You have a CHOICE of the next 2 items at this level-->
+      <UIDEpgu>101</UIDEpgu>
+    </IDApplicationChoice>
+  </ApplicationStatus>
+</PackageData>

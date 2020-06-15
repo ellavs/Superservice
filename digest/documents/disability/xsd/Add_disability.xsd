@@ -15,6 +15,7 @@
                             <xs:element type="xs:string" name="DocNumber"  minOccurs="0"/>
                             <xs:element type="xs:dateTime" name="IssueDate"/>
                             <xs:element type="xs:integer" name="IDDisabilityType"/>
+
                             <xs:element type="xs:string" name="File"/>
                             <xs:element name="IDDocChoice">
                                 <xs:complexType>

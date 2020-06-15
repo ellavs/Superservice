@@ -6,7 +6,7 @@
                     <xs:complexType>
                         <xs:all>
                             <xs:element type="xs:string" name="UIDCompetitiveGroup"/>
-                            <xs:element type="xs:string" name="UIDSubdivisionOrg"/>
+                            <xs:element type="xs:string" name="UIDSubdivisionOrg" minOccurs="0"/>
                             <xs:element type="xs:string" name="Name"/>
                             <xs:element type="xs:string" name="UID"/>
                         </xs:all>
