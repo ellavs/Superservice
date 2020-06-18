@@ -14,7 +14,7 @@
                             <xs:element type="xs:string" name="RegisterNumber" minOccurs="0"/>
                             <xs:element type="xs:string" name="DocNumber" minOccurs="0"/>
                             <xs:element type="xs:integer" name="IDRegion" minOccurs="0"/>
-                            <xs:element type="xs:integer" name="IDSubject" minOccurs="0"/>
+                            <xs:element type="xs:integer" name="IDSubject"/>
                             <xs:element type="xs:integer" name="Mark" minOccurs="0"/>
                             <xs:element type="xs:dateTime" name="ResultDate" minOccurs="0"/>
                             <xs:element type="xs:dateTime" name="IssueDate" minOccurs="0" />

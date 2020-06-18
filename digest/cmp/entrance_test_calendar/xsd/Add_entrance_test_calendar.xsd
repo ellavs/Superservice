@@ -5,17 +5,10 @@
 				<xs:element name="EntranceTestCalendar">
 					<xs:complexType>
 						<xs:all>
-							<xs:element type="xs:byte" name="UIDEntranceTest"/>
+							<xs:element type="xs:string" name="UIDEntranceTest"/>
 							<xs:element type="xs:string" name="ExamLocation"/>
 							<xs:element type="xs:dateTime" name="EntranceTestDate"/>
-							<xs:element name="IDEntranceTestCalendarChoice">
-								<xs:complexType>
-									<xs:choice>
-										<xs:element type="xs:string" name="UID"/>
-										<xs:element type="xs:integer" name="UIDEpgu"/>
-									</xs:choice>
-								</xs:complexType>
-							</xs:element>
+							<xs:element type="xs:string" name="UID"/>
 						</xs:all>
 					</xs:complexType>
 				</xs:element>

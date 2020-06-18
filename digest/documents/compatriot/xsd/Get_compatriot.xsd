@@ -1,23 +1,11 @@
-
-
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="PackageData">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Educations" maxOccurs="unbounded" minOccurs="0">
+                <xs:element name="Compatriot" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:all>
                             <xs:element type="xs:long" name="SNILS"/>
-                            <xs:element type="xs:integer" name="IDDocumentType"/>
-                            <xs:element type="xs:string" name="DocName"/>
-                            <xs:element type="xs:string" name="DocOrg" minOccurs="0"/>
-                            <xs:element type="xs:string" name="DocSeries"/>
-                            <xs:element type="xs:string" name="DocNumber"/>
-                            <xs:element type="xs:string" name="RegisterNumber" minOccurs="0"/>
-                            <xs:element type="xs:integer" name="IDDirection" minOccurs="0"/>
-                            <xs:element type="xs:integer" name="IDEducationLevel" />
-                            <xs:element type="xs:dateTime" name="IssueDate"/>
-                            <xs:element type="xs:string" name="File"/>
                             <xs:element name="IDDocChoice">
                                 <xs:complexType>
                                     <xs:choice>

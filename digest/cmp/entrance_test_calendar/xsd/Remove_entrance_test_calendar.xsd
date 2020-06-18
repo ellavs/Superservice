@@ -2,12 +2,11 @@
 	<xs:element name="PackageData">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="IDEntranceTestCalendarChoice">
+				<xs:element name="EntranceTestCalendar">
 					<xs:complexType>
-						<xs:choice>
+						<xs:all>
 							<xs:element type="xs:string" name="UID"/>
-							<xs:element type="xs:integer" name="UIDEpgu"/>
-						</xs:choice>
+						</xs:all>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>

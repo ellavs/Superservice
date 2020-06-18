@@ -14,6 +14,16 @@
                                     </xs:choice>
                                 </xs:complexType>
                             </xs:element>
+                            <xs:element name="SubStatuses"  minOccurs="0">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element type="xs:integer"  name="IDStatus" minOccurs="0"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:string"  name="StatusComment" minOccurs="0"/>
+                            <xs:element type="xs:boolean" name="Agreed" minOccurs="0"/>
+                            <xs:element type="xs:dateTime" name="AgreedDate" minOccurs="0"/>
                         </xs:all>
                     </xs:complexType>
                 </xs:element>

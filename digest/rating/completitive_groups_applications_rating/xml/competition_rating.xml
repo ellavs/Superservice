@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns:RatingRequest env="EPGU" xmlns:ns="http://epgu.gosuslugi.ru/fpriema/competition_rating/1.1.0">
+    <ns:id>1</ns:id>  
+	<ns:id_competitive_group>1225</ns:id_competitive_group> 	
+	<ns:competitive_group>Конкурсная группа К17</ns:competitive_group>
+	<ns:id_organization>34</ns:id_organization>
+	<ns:organization>ВУЗ В3</ns:organization>
+	<ns:admission_volume>70</ns:admission_volume>  	
+	<ns:count_first_step>50</ns:count_first_step> 
+	<ns:count_second_step>20</ns:count_second_step> 
+	<ns:changed>2020-07-20T10:00:00+03:00</ns:changed>
+	<ns:application>
+		<ns:id_application>55331</ns:id_application>
+		<ns:orderid>100001</ns:orderid>
+		<ns:fio>Тестов1 А.А.</ns:fio>
+		<ns:rating>1</ns:rating>
+		<ns:without_tests>false</ns:without_tests>
+		<ns:entrance_test1>Тест1</ns:entrance_test1>
+		<ns:result1>15.5</ns:result1>
+		<ns:entrance_test2>Тест2</ns:entrance_test2>
+		<ns:result2>10.5</ns:result2>		
+		<ns:entrance_test3>Тест3</ns:entrance_test3>
+		<ns:result3>22.7</ns:result3>		
+		<ns:entrance_test4>Тест4</ns:entrance_test4>
+		<ns:result4>9.2</ns:result4>		
+		<ns:entrance_test5>Тест5</ns:entrance_test5>
+		<ns:result5>30</ns:result5>		
+		<ns:benefit>false</ns:benefit>
+		<ns:sum_mark>87.9</ns:sum_mark>
+		<ns:agreed>true</ns:agreed>
+		<ns:original>false</ns:original>
+	</ns:application>	
+	<ns:application>
+		<ns:id_application>55332</ns:id_application>
+		<ns:fio>Тестов2 А.А.</ns:fio>
+		<ns:rating>2</ns:rating>
+		<ns:without_tests>true</ns:without_tests>
+		<ns:reason_without_tests>Победитель олимпиады</ns:reason_without_tests>
+		<ns:entrance_test1>Тест1</ns:entrance_test1>
+		<ns:result1>0</ns:result1>
+		<ns:entrance_test2>Тест2</ns:entrance_test2>
+		<ns:result2>0</ns:result2>		
+		<ns:entrance_test3>Тест3</ns:entrance_test3>
+		<ns:result3>0</ns:result3>
+		<ns:benefit>false</ns:benefit>
+		<ns:sum_mark>80</ns:sum_mark>
+		<ns:agreed>true</ns:agreed>
+		<ns:original>true</ns:original>
+		<ns:addition>Всероссийская олимпиада по физике</ns:addition>
+		<ns:enlisted>3</ns:enlisted>
+	</ns:application>						
+	<ns:application>
+		<ns:id_application>55333</ns:id_application>
+		<ns:orderid>100002</ns:orderid>		
+		<ns:fio>Тестов3 А.А.</ns:fio>
+		<ns:without_tests>false</ns:without_tests>
+		<ns:entrance_test1>Тест1</ns:entrance_test1>
+		<ns:result1>15.5</ns:result1>
+		<ns:entrance_test2>Тест2</ns:entrance_test2>
+		<ns:result2>10.5</ns:result2>		
+		<ns:entrance_test3>Тест3</ns:entrance_test3>
+		<ns:result3>15.4</ns:result3>		
+		<ns:entrance_test4>Тест4</ns:entrance_test4>
+		<ns:result4>9.2</ns:result4>		
+		<ns:entrance_test5>Тест5</ns:entrance_test5>
+		<ns:result5>25</ns:result5>		
+		<ns:benefit>true</ns:benefit>
+		<ns:reason_benefit>Инвалидность</ns:reason_benefit>
+		<ns:sum_mark>75.6</ns:sum_mark>
+		<ns:agreed>false</ns:agreed>
+		<ns:original>false</ns:original>
+	</ns:application>
+</ns:RatingRequest>
