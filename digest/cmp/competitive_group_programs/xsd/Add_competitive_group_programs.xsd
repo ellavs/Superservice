@@ -7,8 +7,20 @@
                         <xs:all>
                             <xs:element type="xs:string" name="UIDCompetitiveGroup"/>
                             <xs:element type="xs:string" name="UIDSubdivisionOrg" minOccurs="0"/>
-                            <xs:element type="xs:string" name="Name"/>
-                            <xs:element type="xs:string" name="UID"/>
+                              <xs:element name="Name">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="500"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                         </xs:all>
                     </xs:complexType>
                 </xs:element>

@@ -5,7 +5,13 @@
                 <xs:element name="EntranceTestResult" maxOccurs="unbounded" minOccurs="0">
                     <xs:complexType>
                         <xs:all>
-                            <xs:element type="xs:string" name="UID"/>
+                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                         </xs:all>
                     </xs:complexType>
                 </xs:element>

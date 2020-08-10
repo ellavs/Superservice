@@ -7,9 +7,15 @@
                 <xs:element name="DistributedAdmissionVolume">
                     <xs:complexType>
                         <xs:all>
-                            <xs:element type="xs:string" name="UID"/>
+                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                             <xs:element type="xs:string" name="UIDAdmissionVolume"/>
-                            <xs:element type="xs:short" name="IDDirection"/>
+                            <xs:element type="xs:integer" name="IDDirection"/>
                             <xs:element type="xs:integer" name="IDLevelBudget"/>
                             <xs:element type="xs:integer" name="Budget_o"/>
                             <xs:element type="xs:integer" name="Budget_oz"/>

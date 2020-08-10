@@ -5,7 +5,13 @@
 				<xs:element name="EntranceTest">
 					<xs:complexType>
 						<xs:all>
-							<xs:element type="xs:string" name="UID"/>
+							   <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
 							<xs:element type="xs:string" name="UIDCompetitiveGroup"/>
 							<xs:element type="xs:integer" name="IDEntranceTestType"/>
 							<xs:element type="xs:string" name="TestName" minOccurs="0" />

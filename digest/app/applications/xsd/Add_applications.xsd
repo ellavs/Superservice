@@ -20,7 +20,13 @@
                             <xs:element name="IDDisabledDocumentChoice" minOccurs="0">
                                 <xs:complexType>
                                     <xs:choice>
-                                        <xs:element type="xs:string" name="UID"/>
+                                           <xs:element name="UID">
+                                                <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                        <xs:maxLength value="36"/>
+                                                    </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:element>
                                         <xs:element type="xs:integer" name="UIDEpgu"/>
                                     </xs:choice>
                                 </xs:complexType>
@@ -32,7 +38,13 @@
                             <xs:element name="IDApplicationChoice" >
                                 <xs:complexType>
                                     <xs:choice>
-                                        <xs:element type="xs:string" name="UID"/>
+                                           <xs:element name="UID">
+                                                <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                        <xs:maxLength value="36"/>
+                                                    </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:element>
                                         <xs:element type="xs:integer" name="UIDEpgu"/>
                                     </xs:choice>
                                 </xs:complexType>
@@ -52,18 +64,36 @@
                                                 <xs:element name="IDAchievementChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>
                                                 </xs:element>
                                                 <xs:element type="xs:integer" name="IDCategory"/>
-                                                <xs:element type="xs:string" name="Name"/>
+                                                  <xs:element name="Name">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="500"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                 <xs:element type="xs:float" name="Mark" minOccurs="0"/>
                                                 <xs:element name="IDAchievementDocumentChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>
@@ -84,7 +114,13 @@
                                                 <xs:element name="IDDocChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>
@@ -99,7 +135,13 @@
                                                     <xs:element name="IDDocChoice" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:choice>
-                                                                <xs:element type="xs:string" name="UID"/>
+                                                                   <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                                 <xs:element type="xs:integer" name="UIDEpgu"/>
                                                             </xs:choice>
                                                         </xs:complexType>
@@ -114,7 +156,13 @@
                                                     <xs:element name="IDDocChoice" minOccurs="0">
                                                         <xs:complexType>
                                                             <xs:choice>
-                                                                <xs:element type="xs:string" name="UID"/>
+                                                                   <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                                 <xs:element type="xs:integer" name="UIDEpgu"/>
                                                             </xs:choice>
                                                         </xs:complexType>
@@ -129,7 +177,13 @@
                                                 <xs:element name="IDDocChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>
@@ -144,7 +198,13 @@
                                                 <xs:element name="IDDocChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>
@@ -159,7 +219,13 @@
                                                 <xs:element name="IDDocChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>
@@ -174,7 +240,13 @@
                                                 <xs:element name="IDDocChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>
@@ -189,7 +261,13 @@
                                                 <xs:element name="IDDocChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>
@@ -204,7 +282,13 @@
                                                 <xs:element name="IDDocChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>
@@ -219,7 +303,13 @@
                                                 <xs:element name="IDDocChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>
@@ -234,7 +324,13 @@
                                                 <xs:element name="IDDocChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>
@@ -249,7 +345,13 @@
                                                 <xs:element name="IDDocChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>
@@ -264,7 +366,13 @@
                                                 <xs:element name="IDDocChoice" minOccurs="0">
                                                     <xs:complexType>
                                                         <xs:choice>
-                                                            <xs:element type="xs:string" name="UID"/>
+                                                               <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                                             <xs:element type="xs:integer" name="UIDEpgu"/>
                                                         </xs:choice>
                                                     </xs:complexType>

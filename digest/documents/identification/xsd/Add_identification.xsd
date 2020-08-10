@@ -10,7 +10,13 @@
                             <xs:element type="xs:long" name="SNILS"/>
                             <xs:element type="xs:integer" name="IDDocumentType"/>
                             <xs:element type="xs:string" name="Surname"/>
-                            <xs:element type="xs:string" name="Name"/>
+                            <xs:element name="Name">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="255"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                             <xs:element type="xs:string" name="Patronymic" minOccurs="0"/>
                             <xs:element type="xs:string" name="DocSeries" minOccurs="0"/>
                             <xs:element type="xs:integer" name="DocNumber"/>
@@ -18,12 +24,17 @@
                             <xs:element type="xs:dateTime" name="IssueDate"/>
                             <xs:element type="xs:integer" name="IDOKCM"/>
                             <xs:element type="xs:string" name="File"/>
-
                             <xs:element type="xs:string" name="SubdivisionCode" minOccurs="0"/>
                             <xs:element name="IDDocChoice">
                                 <xs:complexType>
                                     <xs:choice>
-                                        <xs:element type="xs:string" name="UID"/>
+                                           <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                         <xs:element type="xs:integer" name="UIDEpgu"/>
                                     </xs:choice>
                                 </xs:complexType>

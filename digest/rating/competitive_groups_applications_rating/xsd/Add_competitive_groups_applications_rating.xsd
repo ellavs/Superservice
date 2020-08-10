@@ -1,0 +1,43 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="PackageData">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CompetitiveGroupsApplication" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element type="xs:string" name="UIDCompetitiveGroup"/>
+							<xs:element name="IDApplicationChoice">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="UID">
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:maxLength value="36"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<xs:element type="xs:int" name="UIDEpgu"/>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+							<xs:element type="xs:integer" name="AdmissionVolume"/>
+							<xs:element type="xs:integer" name="CommonRating"/>
+							<xs:element type="xs:integer" name="FirstRating"/>
+							<xs:element type="xs:integer" name="AgreedRating"/>
+							<xs:element type="xs:integer" name="ChangeRating"/>
+							<xs:element type="xs:integer" name="CountFirstStep"/>
+							<xs:element type="xs:integer" name="CountSecondStep"/>
+							<xs:element type="xs:integer" name="CountApplication"/>
+							<xs:element type="xs:integer" name="CountAgreed"/>
+							<xs:element type="xs:dateTime" name="Changed"/>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+
+
+
+

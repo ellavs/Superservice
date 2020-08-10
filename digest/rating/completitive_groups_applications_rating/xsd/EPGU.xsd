@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="http://epgu.gosuslugi.ru/fpriema/competition_rating/1.1.0"
+			targetNamespace="http://epgu.gosuslugi.ru/fpriema/competition_rating/1.1.0"
+			elementFormDefault="qualified" attributeFormDefault="unqualified">
+
+	<xsd:simpleType name="string-10">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="10"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="string-255">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:maxLength value="255"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="string-500">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:maxLength value="500"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="string-600">
+		<xsd:restriction base="xsd:normalizedString">
+			<xsd:maxLength value="600"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="string-2000">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2000"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="EnvType">
+		<xsd:restriction base="tns:string-10">
+			<xsd:enumeration value="EPGU"/>
+			<xsd:enumeration value="UAT"/>
+			<xsd:enumeration value="EXUAT"/>
+			<xsd:enumeration value="SVCDEV"/>
+			<xsd:enumeration value="TCOD"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="ApplicationType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Заявление
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id_application" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						Заявление абитуриента из ФИС
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="orderid" type="xsd:long" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Номер заявления ЕПГУ
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="fio" type="tns:string-500">
+				<xsd:annotation>
+					<xsd:documentation>
+						ФИО абитуриента
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="rating" type="xsd:integer" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Ранг (позиция в списке)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="without_tests" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>
+						Отметка о поступлении БВИ
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="reason_without_tests" type="tns:string-500" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Основание приема БВИ
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="entrance_test1" type="tns:string-255">
+				<xsd:annotation>
+					<xsd:documentation>
+						Тип ВИ1
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="result1" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation>
+						Балл ВИ1
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="entrance_test2" type="tns:string-255">
+				<xsd:annotation>
+					<xsd:documentation>
+						Тип ВИ2
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="result2" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation>
+						Балл ВИ2
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="entrance_test3" type="tns:string-255">
+				<xsd:annotation>
+					<xsd:documentation>
+						Тип ВИ3
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="result3" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation>
+						Балл ВИ3
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="entrance_test4" type="tns:string-255" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Тип ВИ4
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="result4" type="xsd:decimal" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Балл ВИ4
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="entrance_test5" type="tns:string-255" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Тип ВИ5
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="result5" type="xsd:decimal" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Балл ВИ5
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="benefit" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>
+						Наличие преимущественного права
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="reason_benefit" type="tns:string-500" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Основание преимущественного права
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="sum_mark" type="xsd:decimal">
+				<xsd:annotation>
+					<xsd:documentation>
+						Сумма конкурсных баллов
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="agreed" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>
+						Наличие заявления о согласии на зачисление
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="original" type="xsd:boolean">
+				<xsd:annotation>
+					<xsd:documentation>
+						Наличие оригинала документа об образовании
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="addition" type="tns:string-2000" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Дополнительный статус
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="enlisted" type="xsd:integer" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Зачислен в волну: 1 - 1-я волна, 2 - 2-я волна, 3 - 0-я волна, 4 - доп.набор, 5 - не зачислен
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="RatingRequestType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Запрос
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="id" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						Идентификатор
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="id_competitive_group" type="xsd:long">
+				<xsd:annotation>
+					<xsd:documentation>
+						Идентификатор конкурсной группы
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="competitive_group" type="tns:string-600">
+				<xsd:annotation>
+					<xsd:documentation>
+						Наименование конкурсной группы
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="id_organization" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						Идентификатор организации
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="organization" type="tns:string-600">
+				<xsd:annotation>
+					<xsd:documentation>
+						Наименование организации
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="admission_volume" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						Значение КЦП
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="count_first_step" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						Количество мест на 1 этап
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="count_second_step" type="xsd:integer">
+				<xsd:annotation>
+					<xsd:documentation>
+						Количество мест на 2 этап
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="changed" type="xsd:dateTime">
+				<xsd:annotation>
+					<xsd:documentation>
+						Дата и время обновления
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="application" type="tns:ApplicationType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						Массив заявлений
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="env" type="tns:EnvType" use="required"/>
+	</xsd:complexType>
+
+	<xsd:complexType name="RatingResponseType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Ответ
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="code" type="xsd:byte">
+				<xsd:annotation>
+					<xsd:documentation>
+						Код результата
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="message" type="tns:string-255" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>
+						Описание результата
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:element name="RatingRequest" type="tns:RatingRequestType"/>
+	<xsd:element name="RatingResponse" type="tns:RatingResponseType"/>
+
+</xsd:schema>

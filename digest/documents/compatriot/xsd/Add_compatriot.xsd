@@ -10,12 +10,17 @@
                             <xs:element type="xs:string" name="DocName"/>
                             <xs:element type="xs:string" name="DocOrg" minOccurs="0"/>
                             <xs:element type="xs:integer" name="IDCompatriotCategory"/>
-
                             <xs:element type="xs:string" name="File"/>
                             <xs:element name="IDDocChoice">
                                 <xs:complexType>
                                     <xs:choice>
-                                        <xs:element type="xs:string" name="UID"/>
+                                           <xs:element name="UID">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                                         <xs:element type="xs:integer" name="UIDEpgu"/>
                                     </xs:choice>
                                 </xs:complexType>

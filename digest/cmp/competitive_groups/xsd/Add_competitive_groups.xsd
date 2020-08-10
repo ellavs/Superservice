@@ -5,9 +5,15 @@
                 <xs:element name="CompetitiveGroup">
                     <xs:complexType>
                         <xs:all>
-                            <xs:element type="xs:string" name="UID"/>
+                            <xs:element type="xs:string" name="UID" />
                             <xs:element type="xs:string" name="UIDCampaign"/>
-                            <xs:element type="xs:string" name="Name"/>
+                              <xs:element name="Name">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="500"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
                             <xs:element type="xs:integer" name="IDLevelBudget" minOccurs="0"/>
                             <xs:element type="xs:integer" name="IDEducationLevel"/>
                             <xs:element type="xs:integer" name="IDEducationSource"/>
