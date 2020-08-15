@@ -108,6 +108,7 @@
                                                     <xs:element type="xs:dateTime" name="IssueDate"/>
                                                     <xs:element type="xs:byte" name="IDEducationLevel"/>
                                                     <xs:element type="xs:string" name="Checked"/>
+                                                    <xs:element type="xs:string" name="File"/>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
@@ -130,6 +131,7 @@
                                                     <xs:element type="xs:string" name="IssueDate"/>
                                                     <xs:element type="xs:string" name="Checked"/>
                                                     <xs:element type="xs:byte" name="IDExam"/>
+                                                    <xs:element type="xs:string" name="File"/>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
@@ -148,6 +150,7 @@
                                                     <xs:element type="xs:byte" name="IDCategory"/>
                                                     <xs:element type="xs:int" name="DocSeries"/>
                                                     <xs:element type="xs:string" name="Checked"/>
+                                                    <xs:element type="xs:string" name="File"/>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
@@ -196,4 +199,6 @@
         </xs:complexType>
     </xs:element>
 </xs:schema>
+
+
 

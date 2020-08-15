@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="PackageData">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element type="xs:string" name="TYPE"/>
+        <xs:element name="ApplicationFromEPGU">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Entrant">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="SNILS"/>
+                    <xs:element type="xs:string" name="Surname"/>
+                    <xs:element type="xs:string" name="Name"/>
+                    <xs:element type="xs:string" name="Patronymic"/>
+                    <xs:element type="xs:string" name="IDGender"/>
+                    <xs:element type="xs:string" name="Birthday"/>
+                    <xs:element type="xs:string" name="Birthplace"/>
+                    <xs:element type="xs:string" name="Phone"/>
+                    <xs:element type="xs:string" name="Email"/>
+                    <xs:element type="xs:string" name="IDOKCM"/>
+                    <xs:element type="xs:string" name="StrRegistrationAddr"/>
+                    <xs:element type="xs:string" name="StrFactAdd"/>
+                    <xs:element type="xs:string" name="UidEpgu"/>
+                    <xs:element name="RegistrationAddr">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="FullAddr"/>
+                          <xs:element type="xs:string" name="IndexAddr"/>
+                          <xs:element type="xs:string" name="IDRegion"/>
+                          <xs:element type="xs:string" name="Area"/>
+                          <xs:element type="xs:string" name="City"/>
+                          <xs:element type="xs:string" name="CityArea"/>
+                          <xs:element type="xs:string" name="Place"/>
+                          <xs:element type="xs:string" name="Street"/>
+                          <xs:element type="xs:string" name="AdditionalArea"/>
+                          <xs:element type="xs:string" name="AdditionalStreet"/>
+                          <xs:element type="xs:string" name="House"/>
+                          <xs:element type="xs:string" name="Building1"/>
+                          <xs:element type="xs:string" name="Building2"/>
+                          <xs:element type="xs:string" name="Apartment"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="FactAddr">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="FullAddr"/>
+                          <xs:element type="xs:string" name="IndexAddr"/>
+                          <xs:element type="xs:string" name="IDRegion"/>
+                          <xs:element type="xs:string" name="Area"/>
+                          <xs:element type="xs:string" name="City"/>
+                          <xs:element type="xs:string" name="CityArea"/>
+                          <xs:element type="xs:string" name="Place"/>
+                          <xs:element type="xs:string" name="Street"/>
+                          <xs:element type="xs:string" name="AdditionalArea"/>
+                          <xs:element type="xs:string" name="AdditionalStreet"/>
+                          <xs:element type="xs:string" name="House"/>
+                          <xs:element type="xs:string" name="Building1"/>
+                          <xs:element type="xs:string" name="Building2"/>
+                          <xs:element type="xs:string" name="Apartment"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="EntrantDocuments">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="IdentificationDocument" >
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="Surname"/>
+                          <xs:element type="xs:string" name="Name"/>
+                          <xs:element type="xs:string" name="Patronymic"/>
+                          <xs:element type="xs:string" name="DocSeries"/>
+                          <xs:element type="xs:string" name="DocNumber"/>
+                          <xs:element type="xs:string" name="DocOrganization"/>
+                          <xs:element type="xs:string" name="IssueDate"/>
+                          <xs:element type="xs:string" name="IDOkcm"/>
+                          <xs:element type="xs:string" name="SubdivisionCode"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                          <xs:element type="xs:string" name="id_check_status"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="EducationDocument">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDocumentCategories"/>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="DocName"/>
+                          <xs:element type="xs:string" name="DocOrg"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="DocSeries"/>
+                          <xs:element type="xs:string" name="DocNumber"/>
+                          <xs:element type="xs:string" name="RegisterNumber"/>
+                          <xs:element type="xs:string" name="IssueDate"/>
+                          <xs:element type="xs:string" name="IDEducationLevel"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="EgeDocument" >
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDocumentCategories"/>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="DocName"/>
+                          <xs:element type="xs:string" name="DocOrg"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="RegisterNumber"/>
+                          <xs:element type="xs:string" name="DocNumber"/>
+                          <xs:element type="xs:string" name="IDRegion"/>
+                          <xs:element type="xs:string" name="IDSubject"/>
+                          <xs:element type="xs:string" name="Mark"/>
+                          <xs:element type="xs:string" name="ResultDate"/>
+                          <xs:element type="xs:string" name="IssueDate"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="IDExam"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="CompositionDocument" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDocumentCategories"/>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="DocName"/>
+                          <xs:element type="xs:string" name="DocOrg"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="IDCompositionTheme"/>
+                          <xs:element type="xs:string" name="IssueDate"/>
+                          <xs:element type="xs:string" name="Result"/>
+                          <xs:element type="xs:string" name="DocYear"/>
+                          <xs:element type="xs:string" name="HasAppealed"/>
+                          <xs:element type="xs:string" name="IDAppealStatus"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="CompatriotDocument" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDocumentCategories"/>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="DocName"/>
+                          <xs:element type="xs:string" name="DocOrg"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="IDCompatriotCategory"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="DisabilityDocument" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDocumentCategories"/>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="DocName"/>
+                          <xs:element type="xs:string" name="DocOrg"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="DocNumber"/>
+                          <xs:element type="xs:string" name="IssueDate"/>
+                          <xs:element type="xs:string" name="IDDisabilityType"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="MilitariesDocument" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDocumentCategories"/>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="DocName"/>
+                          <xs:element type="xs:string" name="DocOrg"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="DocNumber"/>
+                          <xs:element type="xs:string" name="IssueDate"/>
+                          <xs:element type="xs:string" name="IDCategory"/>
+                          <xs:element type="xs:string" name="DocSeries"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="OlympicsDocument" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDocumentCategories"/>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="DocName"/>
+                          <xs:element type="xs:string" name="DocOrg"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="DocSeries"/>
+                          <xs:element type="xs:string" name="DocNumber"/>
+                          <xs:element type="xs:string" name="IssueDate"/>
+                          <xs:element type="xs:string" name="IDOlympic"/>
+                          <xs:element type="xs:string" name="IDOlympicDiplomants"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="OrphansDocument" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDocumentCategories"/>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="DocName"/>
+                          <xs:element type="xs:string" name="DocOrg"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="DocSeries"/>
+                          <xs:element type="xs:string" name="DocNumber"/>
+                          <xs:element type="xs:string" name="IssueDate"/>
+                          <xs:element type="xs:string" name="IDCategory"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="ParentsLostDocument" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDocumentCategories"/>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="DocName"/>
+                          <xs:element type="xs:string" name="DocOrg"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="DocSeries"/>
+                          <xs:element type="xs:string" name="DocNumber"/>
+                          <xs:element type="xs:string" name="IssueDate"/>
+                          <xs:element type="xs:string" name="IDCategory"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element >
+                    <xs:element name="RadiationworkDocument" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDocumentCategories"/>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="DocName"/>
+                          <xs:element type="xs:string" name="DocOrg"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="DocSeries"/>
+                          <xs:element type="xs:string" name="DocNumber"/>
+                          <xs:element type="xs:string" name="IssueDate"/>
+                          <xs:element type="xs:string" name="IDCategory"/>
+                          <xs:element type="xs:string" name="PathFiles"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="VeteranDocument" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDocumentCategories"/>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="DocName"/>
+                          <xs:element type="xs:string" name="DocOrg"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="DocSeries"/>
+                          <xs:element type="xs:string" name="DocNumber"/>
+                          <xs:element type="xs:string" name="IssueDate"/>
+                          <xs:element type="xs:string" name="IDCategory"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="OtherDocument" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDocumentCategories"/>
+                          <xs:element type="xs:string" name="IDDocumentType"/>
+                          <xs:element type="xs:string" name="DocName"/>
+                          <xs:element type="xs:string" name="DocOrg"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element type="xs:string" name="SNILS"/>
+                          <xs:element type="xs:string" name="DocSeries"/>
+                          <xs:element type="xs:string" name="DocNumber"/>
+                          <xs:element type="xs:string" name="IssueDate"/>
+                          <xs:element type="xs:string" name="Checked"/>
+                          <xs:element type="xs:string" name="File"  maxOccurs="1" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Achievements" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="IDDocument"/>
+                          <xs:element type="xs:string" name="IDCategory"/>
+                          <xs:element type="xs:string" name="Name"/>
+                          <xs:element type="xs:string" name="Mark"/>
+                          <xs:element type="xs:string" name="UID"/>
+                          <xs:element type="xs:string" name="UIDEpgu"/>
+                          <xs:element name="AchievmentsFiles" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:string" name="IDApplication"/>
+                                <xs:element type="xs:string" name="IDAchievement"/>
+                                <xs:element type="xs:string" name="PathFile"/>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Application">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="FirstHigherEducation"/>
+                    <xs:element type="xs:string" name="NeedHostel"/>
+                    <xs:element type="xs:string" name="Original"/>
+                    <xs:element type="xs:string" name="SpecialConditions"/>
+                    <xs:element type="xs:string" name="DistanceTest"/>
+                    <xs:element type="xs:string" name="IDCompetitiveGroupTarget"/>
+                    <xs:element type="xs:string" name="IDStatus"/>
+                    <xs:element type="xs:string" name="StatusComment"/>
+                    <xs:element type="xs:string" name="IDBenefit"/>
+                    <xs:element type="xs:string" name="IDOrderAdmission"/>
+                    <xs:element type="xs:string" name="Priority"/>
+                    <xs:element type="xs:string" name="IDViolation"/>
+                    <xs:element type="xs:string" name="Rating"/>
+                    <xs:element type="xs:string" name="IDReturnType"/>
+                    <xs:element type="xs:string" name="AppNumber"/>
+                    <xs:element type="xs:string" name="DistancePlace"/>
+                    <xs:element type="xs:string" name="Uid"/>
+                    <xs:element type="xs:string" name="UidEpgu"/>
+                    <xs:element type="xs:string" name="RegistrationDate"/>
+                    <xs:element type="xs:string" name="EgeCheck"/>
+                    <xs:element type="xs:string" name="AgreedDate"/>
+                    <xs:element type="xs:string" name="DisagreedDate"/>
+                    <xs:element type="xs:string" name="OrderAdmissionDate"/>
+                    <xs:element type="xs:string" name="ReturnDate"/>
+                    <xs:element type="xs:string" name="OriginalDoc"/>
+                    <xs:element type="xs:string" name="UidCompetitiveGroup"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element type="xs:string" name="ApplicationDocuments"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

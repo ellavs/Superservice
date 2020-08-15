@@ -1,84 +1,21 @@
 <PackageData>
-	<CompletitiveGroupsApplications>
-		<UIDCompetitiveGroup>1225</UIDCompetitiveGroup>
-		<AdmissionVolume>70</AdmissionVolume>
-		<CommonRating>50</CommonRating>
-		<FirstRating>50</FirstRating>
-		<AgreedRating>50</AgreedRating>
-		<ChangeRating>50</ChangeRating>
-		<CountFirstStep>50</CountFirstStep>
-		<CountSecondStep>20</CountSecondStep>
-		<CountApplication>20</CountApplication>
-		<CountAgreed>20</CountAgreed>
-		<Changed>2020-07-20T10:00:00+03:00</Changed>
-		<Applications>
-		<Application>
-			<IDApplicationChoice>
-				<IDApplication>55331</IDApplication>
-				<OrderID>100001</OrderID>
-			</IDApplicationChoice>
-			<FIO>Тестов1 А.А.</FIO>
-			<Rating>1</Rating>
-			<EithoutTests>false</EithoutTests>
-			<EntranceTest1>Тест1</EntranceTest1>
-			<Result1>15.5</Result1>
-			<EntranceTest2>Тест2</EntranceTest2>
-			<Result2>10.5</Result2>
-			<EntranceTest3>Тест3</EntranceTest3>
-			<Result3>22.7</Result3>
-			<EntranceTest4>Тест4</EntranceTest4>
-			<Result4>9.2</Result4>
-			<EntranceTest5>Тест5</EntranceTest5>
-			<Result5>30</Result5>
-			<Benefit>false</Benefit>
-			<SumMark>87.9</SumMark>
-			<Agreed>true</Agreed>
-			<Original>false</Original>
-		</Application>
-		<Application>
-			<IDApplicationChoice>
-				<IDApplication>55332</IDApplication>
-			</IDApplicationChoice>
-			<FIO>Тестов2 А.А.</FIO>
-			<Rating>2</Rating>
-			<WithoutTests>true</WithoutTests>
-			<ReasonWithoutTests>Победитель олимпиады</ReasonWithoutTests>
-			<EntranceTest1>Тест1</EntranceTest1>
-			<Result1>0</Result1>
-			<EntranceTest2>Тест2</EntranceTest2>
-			<Result2>0</Result2>
-			<EntranceTest3>Тест3</EntranceTest3>
-			<Result3>0</Result3>
-			<Benefit>false</Benefit>
-			<SumMark>80</SumMark>
-			<Agreed>true</Agreed>
-			<Original>true</Original>
-			<Addition>Всероссийская олимпиада по физике</Addition>
-		</Application>
-		<Application>
-			<IDApplicationChoice>
-				<IDApplication>55333</IDApplication>
-				<OrderID>100002</OrderID>
-			</IDApplicationChoice>
-			<FIO>Тестов3 А.А.</FIO>
-			<Rating>3</Rating>
-			<WithoutTests>false</WithoutTests>
-			<EntranceTest1>Тест1</EntranceTest1>
-			<result1>15.5</result1>
-			<EntranceTest2>Тест2</EntranceTest2>
-			<Result2>10.5</Result2>
-			<EntranceTest3>Тест3</EntranceTest3>
-			<Result3>15.4</Result3>
-			<EntranceTest4>Тест4</EntranceTest4>
-			<Result4>9.2</Result4>
-			<EntranceTest5>Тест5</EntranceTest5>
-			<Result5>25</Result5>
-			<Benefit>true</Benefit>
-			<ReasonBenefit>Инвалидность</ReasonBenefit>
-			<SumMark>75.6</SumMark>
-			<Agreed>false</Agreed>
-			<Original>false</Original>
-		</Application>
-		</Applications>
-	</CompletitiveGroupsApplications>
+  <!--Zero or more repetitions:-->
+  <CompetitiveGroupsApplication>
+    <UIDCompetitiveGroup>string</UIDCompetitiveGroup>
+    <IDApplicationChoice>
+      <!--You have a CHOICE of the next 2 items at this level-->
+      <UID>string</UID>
+      <UIDEpgu>3</UIDEpgu>
+    </IDApplicationChoice>
+    <AdmissionVolume>100</AdmissionVolume>
+    <CommonRating>100</CommonRating>
+    <FirstRating>100</FirstRating>
+    <AgreedRating>100</AgreedRating>
+    <ChangeRating>100</ChangeRating>
+    <CountFirstStep>100</CountFirstStep>
+    <CountSecondStep>100</CountSecondStep>
+    <CountApplication>100</CountApplication>
+    <CountAgreed>100</CountAgreed>
+    <Changed>2008-09-29T05:49:45+03:00</Changed>
+  </CompetitiveGroupsApplication>
 </PackageData>
