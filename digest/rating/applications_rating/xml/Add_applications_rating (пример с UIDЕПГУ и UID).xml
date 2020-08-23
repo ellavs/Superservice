@@ -1,0 +1,72 @@
+<PackageData>
+    <ApplicationsRating>
+        <UIDCompetitiveGroup>c3b5f43b-881b-4948-a9fb-82208e4bea81</UIDCompetitiveGroup>
+        <AdmissionVolume>5</AdmissionVolume>
+        <CountFirstStep>0</CountFirstStep>
+        <CountSecondStep>0</CountSecondStep>
+        <Changed>2020-08-15T15:00:00Z</Changed>
+        <Applications>
+            <Application>
+                <IDApplicationChoice>
+                    <UID>000000092</UID>
+                </IDApplicationChoice>
+                <FIO>Петров Владимир Павлович</FIO>
+                <Rating>3</Rating>
+                <WithoutTests>false</WithoutTests>
+                <EntranceTest1>Русский язык</EntranceTest1>
+                <Result1>0</Result1>
+                <EntranceTest2>Математика</EntranceTest2>
+                <Result2>0</Result2>
+                <EntranceTest3>Биология</EntranceTest3>
+                <EntranceTest4>Индивидуальное достижение</EntranceTest4>
+                <Mark>0</Mark>
+                <Benefit>false</Benefit>
+                <SumMark>0</SumMark>
+                <Agreed>false</Agreed>
+                <Original>false</Original>
+                <Enlisted>5</Enlisted>
+            </Application>
+            <Application>
+                <IDApplicationChoice>
+                    <UID>000000091</UID>
+                </IDApplicationChoice>
+                <FIO>Сидорова Татьяна Дмитриевна</FIO>
+                <Rating>2</Rating>
+                <WithoutTests>false</WithoutTests>
+                <EntranceTest1>Русский язык</EntranceTest1>
+                <Result1>0</Result1>
+                <EntranceTest2>Математика</EntranceTest2>
+                <Result2>0</Result2>
+                <EntranceTest3>Биология</EntranceTest3>
+                <EntranceTest4>Индивидуальное достижение</EntranceTest4>
+                <Mark>0</Mark>
+                <Benefit>false</Benefit>
+                <SumMark>0</SumMark>
+                <Agreed>false</Agreed>
+                <Original>false</Original>
+                <Enlisted>5</Enlisted>
+            </Application>
+            <Application>
+                <IDApplicationChoice>
+                    <UIDEpgu>872303599</UIDEpgu>
+                </IDApplicationChoice>
+                <FIO>Иванов Иван Иванович</FIO>
+                <Rating>4</Rating>
+                <WithoutTests>false</WithoutTests>
+                <EntranceTest1>Русский язык</EntranceTest1>
+                <Result1>0</Result1>
+                <EntranceTest2>Математика</EntranceTest2>
+                <Result2>0</Result2>
+                <EntranceTest3>Биология</EntranceTest3>
+                <Result3>0</Result3>
+                <EntranceTest4>Индивидуальное достижение</EntranceTest4>
+                <Mark>1</Mark>
+                <Benefit>false</Benefit>
+                <SumMark>1</SumMark>
+                <Agreed>false</Agreed>
+                <Original>false</Original>
+                <Enlisted>5</Enlisted>
+            </Application>
+        </Applications>
+    </ApplicationsRating>
+</PackageData>

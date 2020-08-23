@@ -1,0 +1,85 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="PackageData">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="OrderAdmission" maxOccurs="10" minOccurs="0" > - Тег приказа
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="UID"> - Идентификатор гененрируемый вузом
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:maxLength value="36"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                            <xs:element type="xs:string" name="UIDCampaign"/> - Идентификатор приемной кампании 
+                            <xs:element type="xs:int"  name="IDEducationForm"/> - Идентификатор формы обучения согласно классификатора
+                            <xs:element type="xs:int"  name="IDEducationSource"/> - Идентификатор источника финансирования  согласно классификатора
+                            <xs:element type="xs:int"  name="IDEducationLevel"/> - Идентификатор уровня образования согласно классификатора
+                            <xs:element type="xs:string" name="OrderName"/>  - Наименование приказа
+                            <xs:element type="xs:string" name="OrderNumber"/> - Номер приказа
+                            <xs:element type="xs:dateTime" name="OrderDate"/> - Дата приказа
+                            <xs:element type="xs:dateTime" name="Published" minOccurs="0"/> - Дата публикации
+                            <xs:element type="xs:int"  name="IDOrderAdmissionStatus"/> - Статус приказа согласно классификатора
+                            <xs:element type="xs:int"  name="IDOrderAdmissionType"/> - Тип приказа согласно классификатора
+                            <xs:element type="xs:boolean" name="PreferentialOrder"/> - Зарезервирован на будущее
+                            <xs:element type="xs:boolean" name="Foreigners"/> - Зарезервирован на будущее
+                            <xs:element name="AddApplications">  - Заявления добавляемые в приказ на зачисление
+                                <xs:complexType>
+                                    <xs:sequence>
+                                     <xs:element name="Application" maxOccurs="unbounded" minOccurs="0"> - Заявление
+                                        <xs:complexType>
+                                            <xs:all>
+                                             <xs:element name="IDApplicationChoice" minOccurs="0"> - Тег выбора идентификатора 
+                                             <xs:complexType>
+                                                <xs:choice>
+                                                       <xs:element name="UID"> - Идентификатор присваиваемый вузом
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:maxLength value="36"/>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                         </xs:element>
+                                                    <xs:element type="xs:integer" name="UIDEpgu"/> - Идентификатор присваиваемый ЕПГУ (в текущей версии возможна обработка только его)
+                                                </xs:choice>
+                                            </xs:complexType>
+                                            </xs:element>
+                                             </xs:all>
+                                        </xs:complexType>
+                                     </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="RemoveApplications"> - Заявления исключаемые из приказов на зачисление
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="Application" maxOccurs="unbounded" minOccurs="0"> - Заявление
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element name="IDApplicationChoice" minOccurs="0"> - Тег выбора идентификатора 
+                                                        <xs:complexType>
+                                                            <xs:choice>
+                                                                <xs:element name="UID"> - Идентификатор присваиваемый вузом
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:maxLength value="36"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                                <xs:element type="xs:integer" name="UIDEpgu"/> > - Идентификатор присваиваемый ЕПГУ (в текущей версии возможна обработка только его)
+                                                            </xs:choice>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

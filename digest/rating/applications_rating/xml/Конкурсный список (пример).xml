@@ -1,0 +1,132 @@
+
+<PackageData>
+    <ApplicationsRating>
+        <UIDCompetitiveGroup>b2480071-4266-4f18-909a-ed698fad258a</UIDCompetitiveGroup>
+        <AdmissionVolume>10</AdmissionVolume>
+        <CountFirstStep>0</CountFirstStep>
+        <CountSecondStep>0</CountSecondStep>
+        <Changed>2020-08-17T06:52:21Z</Changed>
+        <Applications>
+            <Application>
+                <IDApplicationChoice>
+                    <UIDEpgu>850855199</UIDEpgu>
+                </IDApplicationChoice>
+                <FIO>Сидоров Олег Александрович</FIO>
+                <Rating>1</Rating>
+                <WithoutTests>false</WithoutTests>
+                <EntranceTest1>Математика</EntranceTest1>
+                <Result1>0</Result1>
+                <EntranceTest2>Русский язык</EntranceTest2>
+                <Result2>0</Result2>
+                <EntranceTest3>Информатика</EntranceTest3>
+                <Result3>0</Result3>
+                <Mark>0</Mark>
+                <Benefit>false</Benefit>
+                <SumMark>0</SumMark>
+                <Agreed>false</Agreed>
+                <Original>false</Original>
+                <Enlisted>5</Enlisted>
+            </Application>
+            <Application>
+                <IDApplicationChoice>
+                    <UIDEpgu>857333335</UIDEpgu>
+                </IDApplicationChoice>
+                <FIO>Титова Ксения Михайловна</FIO>
+                <Rating>2</Rating>
+                <WithoutTests>false</WithoutTests>
+                <EntranceTest1>Математика</EntranceTest1>
+                <Result1>0</Result1>
+                <EntranceTest2>Русский язык</EntranceTest2>
+                <Result2>0</Result2>
+                <EntranceTest3>Информатика</EntranceTest3>
+                <Result3>0</Result3>
+                <Mark>0</Mark>
+                <Benefit>false</Benefit>
+                <SumMark>0</SumMark>
+                <Agreed>false</Agreed>
+                <Original>false</Original>
+                <Enlisted>5</Enlisted>
+            </Application>
+            <Application>
+                <IDApplicationChoice>
+                    <UIDEpgu>861111468</UIDEpgu>
+                </IDApplicationChoice>
+                <FIO>Иванова Диана Михайловна</FIO>
+                <Rating>3</Rating>
+                <WithoutTests>false</WithoutTests>
+                <EntranceTest1>Математика</EntranceTest1>
+                <Result1>0</Result1>
+                <EntranceTest2>Русский язык</EntranceTest2>
+                <Result2>0</Result2>
+                <EntranceTest3>Информатика</EntranceTest3>
+                <Result3>0</Result3>
+                <Mark>0</Mark>
+                <Benefit>false</Benefit>
+                <SumMark>0</SumMark>
+                <Agreed>false</Agreed>
+                <Original>false</Original>
+                <Enlisted>5</Enlisted>
+            </Application>
+            <Application>
+                <IDApplicationChoice>
+                    <UIDEpgu>822227275</UIDEpgu>
+                </IDApplicationChoice>
+                <FIO>Тестова Ирина Викторовна</FIO>
+                <Rating>4</Rating>
+                <WithoutTests>false</WithoutTests>
+                <EntranceTest1>Математика</EntranceTest1>
+                <Result1>0</Result1>
+                <EntranceTest2>Русский язык</EntranceTest2>
+                <Result2>0</Result2>
+                <EntranceTest3>Информатика</EntranceTest3>
+                <Result3>0</Result3>
+                <Mark>0</Mark>
+                <Benefit>false</Benefit>
+                <SumMark>0</SumMark>
+                <Agreed>false</Agreed>
+                <Original>false</Original>
+                <Enlisted>5</Enlisted>
+            </Application>
+            <Application>
+                <IDApplicationChoice>
+                    <UIDEpgu>867049553</UIDEpgu>
+                </IDApplicationChoice>
+                <FIO>Иванов Иван Иванович</FIO>
+                <Rating>5</Rating>
+                <WithoutTests>false</WithoutTests>
+                <EntranceTest1>Математика</EntranceTest1>
+                <Result1>0</Result1>
+                <EntranceTest2>Русский язык</EntranceTest2>
+                <Result2>0</Result2>
+                <EntranceTest3>Информатика</EntranceTest3>
+                <Result3>0</Result3>
+                <Mark>0</Mark>
+                <Benefit>false</Benefit>
+                <SumMark>0</SumMark>
+                <Agreed>false</Agreed>
+                <Original>false</Original>
+                <Enlisted>5</Enlisted>
+            </Application>
+            <Application>
+                <IDApplicationChoice>
+                    <UIDEpgu>872303592</UIDEpgu>
+                </IDApplicationChoice>
+                <FIO>Петрова Ирина Владимировна</FIO>
+                <Rating>6</Rating>
+                <WithoutTests>false</WithoutTests>
+                <EntranceTest1>Математика</EntranceTest1>
+                <Result1>0</Result1>
+                <EntranceTest2>Русский язык</EntranceTest2>
+                <Result2>0</Result2>
+                <EntranceTest3>Информатика</EntranceTest3>
+                <Result3>0</Result3>
+                <Mark>0</Mark>
+                <Benefit>false</Benefit>
+                <SumMark>0</SumMark>
+                <Agreed>true</Agreed>
+                <Original>false</Original>
+                <Enlisted>5</Enlisted>
+            </Application>
+        </Applications>
+    </ApplicationsRating>
+</PackageData>

@@ -1,32 +1,41 @@
 <PackageData>
-    <!--Zero or more repetitions:-->
+    <!--0 to 10 repetitions:-->
     <OrderAdmission>
-        <IDOrderAdmissionChoice>
-            <!--You have a CHOICE of the next 2 items at this level-->
-            <UID>string</UID>
-            <UIDEpgu>100</UIDEpgu>
-        </IDOrderAdmissionChoice>
+        <UID>string</UID>
         <UIDCampaign>string</UIDCampaign>
         <IDEducationForm>3</IDEducationForm>
         <IDEducationSource>3</IDEducationSource>
         <IDEducationLevel>3</IDEducationLevel>
         <OrderName>string</OrderName>
         <OrderNumber>string</OrderNumber>
-        <OrderDate>2008-09-29T05:49:45+04:00</OrderDate>
+        <OrderDate>2008-09-29T05:49:45</OrderDate>
         <!--Optional:-->
-        <Published>2014-09-19T03:18:33+04:00</Published>
+        <Published>2014-09-19T03:18:33</Published>
         <IDOrderAdmissionStatus>3</IDOrderAdmissionStatus>
-        <IdOrderAdmissionType>3</IdOrderAdmissionType>
-        <PreferentialOrder>string</PreferentialOrder>
-        <Foreigners>string</Foreigners>
-        <!--Optional:-->
-        <Application>
-            <!--Optional:-->
-            <IDApplicationChoice>
-                <!--You have a CHOICE of the next 2 items at this level-->
-                <UID>string</UID>
-                <UIDEpgu>100</UIDEpgu>
-            </IDApplicationChoice>
-        </Application>
+        <IDOrderAdmissionType>3</IDOrderAdmissionType>
+        <PreferentialOrder>true</PreferentialOrder>
+        <Foreigners>false</Foreigners>
+        <AddApplications>
+            <!--Zero or more repetitions:-->
+            <Application>
+                <!--Optional:-->
+                <IDApplicationChoice>
+                    <!--You have a CHOICE of the next 2 items at this level-->
+                    <UID>string</UID>
+                    <UIDEpgu>100</UIDEpgu>
+                </IDApplicationChoice>
+            </Application>
+        </AddApplications>
+        <RemoveApplications>
+            <!--Zero or more repetitions:-->
+            <Application>
+                <!--Optional:-->
+                <IDApplicationChoice>
+                    <!--You have a CHOICE of the next 2 items at this level-->
+                    <UID>string</UID>
+                    <UIDEpgu>100</UIDEpgu>
+                </IDApplicationChoice>
+            </Application>
+        </RemoveApplications>
     </OrderAdmission>
 </PackageData>

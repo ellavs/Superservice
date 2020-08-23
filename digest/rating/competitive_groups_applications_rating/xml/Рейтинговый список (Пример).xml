@@ -1,0 +1,109 @@
+<PackageData>
+
+    <CompetitiveGroupsApplication>
+        <UIDCompetitiveGroup>b2480071-4266-4f18-909a-ed698fad258a</UIDCompetitiveGroup>
+        <IDApplicationChoice>
+            <UIDEpgu>850855199</UIDEpgu>
+        </IDApplicationChoice>
+        <AdmissionVolume>10</AdmissionVolume>
+        <CommonRating>1</CommonRating>
+        <FirstRating>1</FirstRating>
+        <AgreedRating>0</AgreedRating>
+        <ChangeRating>0</ChangeRating>
+        <CountFirstStep>0</CountFirstStep>
+        <CountSecondStep>0</CountSecondStep>
+        <CountApplication>6</CountApplication>
+        <CountAgreed>0</CountAgreed>
+        <Changed>2020-08-17T06:52:21Z</Changed>
+    </CompetitiveGroupsApplication>
+
+
+    <CompetitiveGroupsApplication>
+        <UIDCompetitiveGroup>b2480071-4266-4f18-909a-ed698fad258a</UIDCompetitiveGroup>
+        <IDApplicationChoice>
+            <UIDEpgu>857333335</UIDEpgu>
+        </IDApplicationChoice>
+        <AdmissionVolume>10</AdmissionVolume>
+        <CommonRating>2</CommonRating>
+        <FirstRating>2</FirstRating>
+        <AgreedRating>0</AgreedRating>
+        <ChangeRating>0</ChangeRating>
+        <CountFirstStep>0</CountFirstStep>
+        <CountSecondStep>0</CountSecondStep>
+        <CountApplication>6</CountApplication>
+        <CountAgreed>0</CountAgreed>
+        <Changed>2020-08-17T06:52:21Z</Changed>
+    </CompetitiveGroupsApplication>
+
+
+    <CompetitiveGroupsApplication>
+        <UIDCompetitiveGroup>b2480071-4266-4f18-909a-ed698fad258a</UIDCompetitiveGroup>
+        <IDApplicationChoice>
+            <UIDEpgu>861111468</UIDEpgu>
+        </IDApplicationChoice>
+        <AdmissionVolume>10</AdmissionVolume>
+        <CommonRating>3</CommonRating>
+        <FirstRating>3</FirstRating>
+        <AgreedRating>0</AgreedRating>
+        <ChangeRating>0</ChangeRating>
+        <CountFirstStep>0</CountFirstStep>
+        <CountSecondStep>0</CountSecondStep>
+        <CountApplication>6</CountApplication>
+        <CountAgreed>0</CountAgreed>
+        <Changed>2020-08-17T06:52:21Z</Changed>
+    </CompetitiveGroupsApplication>
+
+
+    <CompetitiveGroupsApplication>
+        <UIDCompetitiveGroup>b2480071-4266-4f18-909a-ed698fad258a</UIDCompetitiveGroup>
+        <IDApplicationChoice>
+            <UIDEpgu>822227275</UIDEpgu>
+        </IDApplicationChoice>
+        <AdmissionVolume>10</AdmissionVolume>
+        <CommonRating>4</CommonRating>
+        <FirstRating>4</FirstRating>
+        <AgreedRating>0</AgreedRating>
+        <ChangeRating>0</ChangeRating>
+        <CountFirstStep>0</CountFirstStep>
+        <CountSecondStep>0</CountSecondStep>
+        <CountApplication>6</CountApplication>
+        <CountAgreed>0</CountAgreed>
+        <Changed>2020-08-17T06:52:21Z</Changed>
+    </CompetitiveGroupsApplication>
+
+
+    <CompetitiveGroupsApplication>
+        <UIDCompetitiveGroup>b2480071-4266-4f18-909a-ed698fad258a</UIDCompetitiveGroup>
+        <IDApplicationChoice>
+            <UIDEpgu>867049553</UIDEpgu>
+        </IDApplicationChoice>
+        <AdmissionVolume>10</AdmissionVolume>
+        <CommonRating>5</CommonRating>
+        <FirstRating>5</FirstRating>
+        <AgreedRating>0</AgreedRating>
+        <ChangeRating>0</ChangeRating>
+        <CountFirstStep>0</CountFirstStep>
+        <CountSecondStep>0</CountSecondStep>
+        <CountApplication>6</CountApplication>
+        <CountAgreed>0</CountAgreed>
+        <Changed>2020-08-17T06:52:21Z</Changed>
+    </CompetitiveGroupsApplication>
+
+
+    <CompetitiveGroupsApplication>
+        <UIDCompetitiveGroup>b2480071-4266-4f18-909a-ed698fad258a</UIDCompetitiveGroup>
+        <IDApplicationChoice>
+            <UIDEpgu>872303592</UIDEpgu>
+        </IDApplicationChoice>
+        <AdmissionVolume>10</AdmissionVolume>
+        <CommonRating>6</CommonRating>
+        <FirstRating>6</FirstRating>
+        <AgreedRating>1</AgreedRating>
+        <ChangeRating>0</ChangeRating>
+        <CountFirstStep>0</CountFirstStep>
+        <CountSecondStep>0</CountSecondStep>
+        <CountApplication>6</CountApplication>
+        <CountAgreed>0</CountAgreed>
+        <Changed>2020-08-17T06:52:21Z</Changed>
+    </CompetitiveGroupsApplication>
+</PackageData>
